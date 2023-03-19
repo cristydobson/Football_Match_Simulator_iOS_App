@@ -66,9 +66,9 @@ struct ViewHelper {
   }
   
   // Create an ImageView
-  static func createImageView() -> UIImageView {
+  static func createImageView(contentMode: UIView.ContentMode) -> UIImageView {
     let newImageView = UIImageView()
-    newImageView.contentMode = .scaleAspectFit
+    newImageView.contentMode = contentMode
     newImageView.backgroundColor = .clear
     newImageView.translatesAutoresizingMaskIntoConstraints = false
     return newImageView
