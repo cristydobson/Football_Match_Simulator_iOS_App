@@ -19,6 +19,9 @@ class HomeScreenViewController: UIViewController {
   private let viewModel = HomeScreenViewModel()
   
   
+  @IBOutlet weak var tempButton: UIButton!
+  
+  
   // MARK: - View Controller's Life Cycle
 
   override func viewDidLoad() {
@@ -28,9 +31,14 @@ class HomeScreenViewController: UIViewController {
     
     viewModel.loadTeams()
     
-    startSimulation()
+//    startSimulation()
   }
   
+  
+  
+  @IBAction func tempButtonAction(_ sender: UIButton) {
+    createSegueToGameViewController()
+  }
   
   
   
@@ -62,6 +70,15 @@ class HomeScreenViewController: UIViewController {
     let gameSimulation = GameSimulation(team1: team1, team2: team2)
     
     
+  }
+  
+  
+  // MARK: - Navigation
+  
+  func createSegueToGameViewController() {
+    let controller = GameSimulationViewController()
+    controller.modalPresentationStyle = .fullScreen
+    present(controller, animated: true)
   }
   
   

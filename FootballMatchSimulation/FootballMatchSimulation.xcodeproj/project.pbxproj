@@ -43,6 +43,9 @@
 		5E6A685029C758EA00500B04 /* CurrentTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A684F29C758EA00500B04 /* CurrentTeam.swift */; };
 		5E6A685429C75C4D00500B04 /* PlayingTeamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A685329C75C4D00500B04 /* PlayingTeamTests.swift */; };
 		5E6A685829C769E500500B04 /* GameSimulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A685729C769E500500B04 /* GameSimulation.swift */; };
+		5E6A685A29C777E100500B04 /* GameSimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A685929C777E100500B04 /* GameSimulationViewController.swift */; };
+		5E6A685D29C778E300500B04 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A685C29C778E300500B04 /* ColorHelper.swift */; };
+		5E6A685F29C7795200500B04 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A685E29C7795100500B04 /* ViewHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +106,9 @@
 		5E6A684F29C758EA00500B04 /* CurrentTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTeam.swift; sourceTree = "<group>"; };
 		5E6A685329C75C4D00500B04 /* PlayingTeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingTeamTests.swift; sourceTree = "<group>"; };
 		5E6A685729C769E500500B04 /* GameSimulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSimulation.swift; sourceTree = "<group>"; };
+		5E6A685929C777E100500B04 /* GameSimulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSimulationViewController.swift; sourceTree = "<group>"; };
+		5E6A685C29C778E300500B04 /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
+		5E6A685E29C7795100500B04 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +223,7 @@
 				5E6A681129C4E14400500B04 /* Storyboards */,
 				5E6A681329C4E19B00500B04 /* HomeScreen */,
 				5E6A682829C645EE00500B04 /* Cards */,
+				5E6A685B29C777E700500B04 /* GameSimulation */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -268,6 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				5E6A682229C5E8BF00500B04 /* DoubleHelper.swift */,
+				5E6A685C29C778E300500B04 /* ColorHelper.swift */,
+				5E6A685E29C7795100500B04 /* ViewHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -374,6 +383,14 @@
 				5E6A685729C769E500500B04 /* GameSimulation.swift */,
 			);
 			path = "Game Simulation";
+			sourceTree = "<group>";
+		};
+		5E6A685B29C777E700500B04 /* GameSimulation */ = {
+			isa = PBXGroup;
+			children = (
+				5E6A685929C777E100500B04 /* GameSimulationViewController.swift */,
+			);
+			path = GameSimulation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -517,11 +534,13 @@
 				5E6A682329C5E8BF00500B04 /* DoubleHelper.swift in Sources */,
 				5E6A685829C769E500500B04 /* GameSimulation.swift in Sources */,
 				5E6A684E29C74B3200500B04 /* AthleticDecay.swift in Sources */,
+				5E6A685A29C777E100500B04 /* GameSimulationViewController.swift in Sources */,
 				5E6A681729C4F1D000500B04 /* DataLoader.swift in Sources */,
 				5E6A685029C758EA00500B04 /* CurrentTeam.swift in Sources */,
 				5E6A684129C71D6E00500B04 /* PlayingTeam.swift in Sources */,
 				5E6A682E29C64DB000500B04 /* FinalsCard.swift in Sources */,
 				5E6A684A29C7425100500B04 /* SkillPower.swift in Sources */,
+				5E6A685F29C7795200500B04 /* ViewHelper.swift in Sources */,
 				5E6A682729C645DE00500B04 /* RoundCard.swift in Sources */,
 				5E6A681B29C5D6C500500B04 /* PlayerPosition.swift in Sources */,
 				5E6A684629C7395600500B04 /* FoulChecker.swift in Sources */,
@@ -531,6 +550,7 @@
 				5E6A67DC29C4D00900500B04 /* AppDelegate.swift in Sources */,
 				5E6A681529C4E1CB00500B04 /* TeamModel.swift in Sources */,
 				5E6A684429C738F200500B04 /* YellowCardTracker.swift in Sources */,
+				5E6A685D29C778E300500B04 /* ColorHelper.swift in Sources */,
 				5E6A684C29C7467100500B04 /* Players.swift in Sources */,
 				5E6A683729C6608400500B04 /* StandingsCardRow.swift in Sources */,
 				5E6A67DE29C4D00900500B04 /* SceneDelegate.swift in Sources */,
@@ -719,8 +739,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -747,8 +767,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
