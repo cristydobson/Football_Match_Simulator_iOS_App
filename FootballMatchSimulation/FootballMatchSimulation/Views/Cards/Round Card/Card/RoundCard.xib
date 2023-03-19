@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RoundCard" customModule="FootballMatchSimulation" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="243"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGf-Is-Dt6">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ROUND 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIa-b8-Z6R">
+                            <rect key="frame" x="24" y="21.666666666666671" width="71.666666666666671" height="20.333333333333329"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poc-Lb-WOX">
+                            <rect key="frame" x="316.66666666666669" y="7.6666666666666679" width="64.333333333333314" height="34.333333333333329"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="PLAY"/>
+                            <connections>
+                                <action selector="playButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="eE0-iG-Rgv"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="gIa-b8-Z6R" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tGf-Is-Dt6" secondAttribute="top" id="3aQ-eP-0Eq"/>
+                        <constraint firstItem="poc-Lb-WOX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gIa-b8-Z6R" secondAttribute="trailing" constant="4" id="3na-XE-g6n"/>
+                        <constraint firstAttribute="bottom" secondItem="gIa-b8-Z6R" secondAttribute="bottom" constant="8" id="LXV-na-WyB"/>
+                        <constraint firstAttribute="bottom" secondItem="poc-Lb-WOX" secondAttribute="bottom" constant="8" id="SgX-1N-m7A"/>
+                        <constraint firstAttribute="height" constant="50" id="g4n-N7-vN1"/>
+                        <constraint firstItem="gIa-b8-Z6R" firstAttribute="leading" secondItem="tGf-Is-Dt6" secondAttribute="leading" constant="24" id="qJk-0G-awP"/>
+                        <constraint firstItem="poc-Lb-WOX" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tGf-Is-Dt6" secondAttribute="top" id="xz3-Jc-fGR"/>
+                        <constraint firstAttribute="trailing" secondItem="poc-Lb-WOX" secondAttribute="trailing" constant="12" id="zp4-eB-lJV"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="tGf-Is-Dt6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VpI-ys-va8"/>
+                <constraint firstItem="tGf-Is-Dt6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yJS-Bu-KTz"/>
+                <constraint firstAttribute="trailing" secondItem="tGf-Is-Dt6" secondAttribute="trailing" id="zzO-vC-iRQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="headerContainerView" destination="tGf-Is-Dt6" id="N8K-Ek-Oe5"/>
+                <outlet property="playButton" destination="poc-Lb-WOX" id="cYN-Dl-7al"/>
+                <outlet property="titleLabel" destination="gIa-b8-Z6R" id="gYk-tP-Ua2"/>
+            </connections>
+            <point key="canvasLocation" x="139.69465648854961" y="-0.35211267605633806"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

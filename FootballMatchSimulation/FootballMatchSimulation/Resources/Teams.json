@@ -1,0 +1,159 @@
+[
+  {
+    "name": "FC Barcelona",
+    "stadium": "Spotify Camp Nou",
+    "image_name": "",
+    "keeper": {
+      "name": "Marc-Andre ter Stegen",
+      "shirt": 1,
+      "position": "keeper",
+      "skillPower": 7.06
+    },
+    "defenders": [
+      {
+        "name": "Álex Balde",
+        "shirt": 28,
+        "position": "defender",
+        "skillPower": 7.51
+      },
+      {
+        "name": "Andreas Christensen",
+        "shirt": 15,
+        "position": "defender",
+        "skillPower": 7.38
+      },
+      {
+        "name": "Jules Koundé",
+        "shirt": 23,
+        "position": "defender",
+        "skillPower": 7.45
+      },
+      {
+        "name": "Sergi Roberto",
+        "shirt": 20,
+        "position": "defender",
+        "skillPower": 7.08
+      }
+    ],
+    "midfielders": [
+      {
+        "name": "Frenkie de Jong",
+        "shirt": 21,
+        "position": "midfielder",
+        "skillPower": 7.42
+      },
+      {
+        "name": "Sergio Busquets",
+        "shirt": 5,
+        "position": "midfielder",
+        "skillPower": 7.40
+      },
+      {
+        "name": "Gavi",
+        "shirt": 6,
+        "position": "midfielder",
+        "skillPower": 7.06
+      }
+    ],
+    "attackers": [
+      {
+        "name": "Ferran Torres",
+        "shirt": 11,
+        "position": "attacker",
+        "skillPower": 6.81
+      },
+      {
+        "name": "Robert Lewandowski",
+        "shirt": 9,
+        "position": "attacker",
+        "skillPower": 7.70
+      },
+      {
+        "name": "Raphinha",
+        "shirt": 22,
+        "position": "attacker",
+        "skillPower": 7.34
+      }
+    ]
+  },
+  {
+    "name": "Paris Saint-Germain",
+    "stadium": "Parc des Princes",
+    "image_name": "",
+    "keeper": {
+      "name": "Gianluigi Donnarumma",
+      "shirt": 99,
+      "position": "keeper",
+      "skillPower": 7.07
+    },
+    "defenders": [
+      {
+        "name": "Nuno Mendes",
+        "shirt": 25,
+        "position": "defender",
+        "skillPower": 7.36
+      },
+      {
+        "name": "Danilo Pereira",
+        "shirt": 15,
+        "position": "defender",
+        "skillPower": 7.17
+      },
+      {
+        "name": "Sergio Ramos",
+        "shirt": 4,
+        "position": "defender",
+        "skillPower": 7.12
+      },
+      {
+        "name": "Timothée Pembélé",
+        "shirt": 29,
+        "position": "defender",
+        "skillPower": 6.69
+      }
+    ],
+    "midfielders": [
+      {
+        "name": "Fabián Ruiz",
+        "shirt": 8,
+        "position": "midfielder",
+        "skillPower": 7.17
+      },
+      {
+        "name": "Warren Zaire-Emery",
+        "shirt": 33,
+        "position": "midfielder",
+        "skillPower": 6.74
+      },
+      {
+        "name": "Marco Verratti",
+        "shirt": 6,
+        "position": "midfielder",
+        "skillPower": 7.38
+      }
+    ],
+    "attackers": [
+      {
+        "name": "Kylian Mbappé",
+        "shirt": 7,
+        "position": "attacker",
+        "skillPower": 7.89
+      },
+      {
+        "name": "Lionel Messi",
+        "shirt": 30,
+        "position": "attacker",
+        "skillPower": 8.34
+      },
+      {
+        "name": "Carlos Soler",
+        "shirt": 28,
+        "position": "attacker",
+        "skillPower": 6.83
+      }
+    ]
+  }
+]
+
+ 
+ 
