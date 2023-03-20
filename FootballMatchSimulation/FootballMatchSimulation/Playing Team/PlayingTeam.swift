@@ -104,7 +104,7 @@ class PlayingTeam: CurrentTeam {
     players.updatePlays(for: currentPosition)
     
     let totalSkillPower = totalSkillPower(for: currentPosition)
-    
+    print("TOTAL SKILL: \(totalSkillPower)!!!!")
     /*
      Get a random number in the range (0.0...totalSkillPower)
      to use in the head-to-head battle for the ball

@@ -7,9 +7,10 @@
 
 
 import Foundation
+import Combine
 
 
-class GameSimulation {
+class GameSimulation: ObservableObject {
   
   
   // MARK: - Properties
@@ -21,6 +22,7 @@ class GameSimulation {
   
   private var plays = 0
   
+  @Published private(set) var currentEvent: String = ""
   
   
   // MARK: - Init Method
@@ -29,7 +31,7 @@ class GameSimulation {
     self.team1 = team1
     self.team2 = team2
     
-    startSimulation()
+    
   }
   
   
@@ -44,7 +46,7 @@ class GameSimulation {
   
   
   // MARK: - Handle Simulation
-  
+
   func battle(_ team1: PlayingTeam, vs team2: PlayingTeam) {
     
     plays += 1
@@ -60,46 +62,66 @@ class GameSimulation {
       if teamTwoSkillPower >= teamOneSkillPower {
         if team2.commitedFoul() && team2.currentPosition != .keeper {
           print("FOUL BY T2: \(team2.name)!!!!")
+          currentEvent = "Foul by \(team2.name)"
           foulBy(teamOne: team2, against: team1)
-          battle(team1, vs: team2)
+          
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.battle(team1, vs: team2)
+          }
         }
         else {
+          currentEvent = "\(team2.name)'s \(team2.currentPosition.rawValue) takes the ball"
           ballPossession = team2
           team1.fallBackPosition(against: team2.currentPosition)
           team2.nextPosition()
-          battle(team2, vs: team1)
+          
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.battle(team2, vs: team1)
+          }
         }
       }
       else { // team1 > team2
         
         if team2.currentPosition == .keeper {
           print("GOAL by \(team1.name)!!!!!!!!!!!!")
-          
+          currentEvent = "GOAL by \(team1.name)!!!"
           ballPossession = team2
           team2.nextPosition()
           team1.updateGoals()
-          battle(team2, vs: team1)
-          //        print("GOAL for \(team1.name) and possession: \(ballPossession.name)!!!!!!!!!!!!")
+          
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.battle(team2, vs: team1)
+          }
         }
         else {
           if team1.commitedFoul() {
             print("FOUL BY T1: \(team1.name)!!!!")
+            currentEvent = "Foul by \(team1.name)"
             foulBy(teamOne: team1, against: team2)
             ballPossession = team2
-            battle(team2, vs: team1)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+              self.battle(team2, vs: team1)
+            }
           }
           else {
+            currentEvent = "\(team1.name)'s \(team1.currentPosition.rawValue) keeps the ball"
             team2.fallBackPosition(against: team1.currentPosition)
             team1.nextPosition()
-            battle(team1, vs: team2)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+              self.battle(team1, vs: team2)
+            }
           }
         }
         
       }
     }
     else {
+      currentEvent = "MATCH DONE!!!!!!!"
       print("MATCH IS DONE!!!!!")
       print("GOALS: \(team1.name)(\(team1.goals)) - \(team2.name)(\(team2.goals))")
+      
     }
     
   }

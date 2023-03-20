@@ -8,12 +8,18 @@
 
 import Foundation
 import UIKit
+import Combine
 
 
 class GameSimulationViewController: UIViewController {
   
   
   // MARK: - Properties
+  
+  private var viewModel = GameSimulationViewModel()
+  private var subscriptions = Set<AnyCancellable>()
+  
+  private var gameSimulation: GameSimulation!
   
   var hudContainerView: UIView!
   var teamOneNameLabel: UILabel!
@@ -24,6 +30,7 @@ class GameSimulationViewController: UIViewController {
   
   var updatesLabel: UILabel!
   
+  var teams: [PlayingTeam] = []
   
   
   
@@ -34,7 +41,6 @@ class GameSimulationViewController: UIViewController {
     
     transitionToLandscape()
     
-    
   }
   
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -43,8 +49,16 @@ class GameSimulationViewController: UIViewController {
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+
     setupBackground()
     addViews()
+    gameSimulation = GameSimulation(team1: teams[0], team2: teams[1])
+    setupBindings()
+    gameSimulation.startSimulation()
   }
   
   
@@ -196,7 +210,7 @@ class GameSimulationViewController: UIViewController {
      */
     
     updatesLabel = ViewHelper.createLabel(
-      with: .black, text: "Game is starting...",
+      with: .black, text: "", //Blowing the whistle...
       alignment: .center, font: UIFont.systemFont(ofSize: 24, weight: .medium))
     view.addSubview(updatesLabel)
     
@@ -211,7 +225,14 @@ class GameSimulationViewController: UIViewController {
   }
   
   
+  // MARK: - Bindings
   
+  func setupBindings() {
+    
+    gameSimulation.$currentEvent.assign(to: \.text!, on: updatesLabel)
+      .store(in: &subscriptions)
+      
+  }
   
   
 }

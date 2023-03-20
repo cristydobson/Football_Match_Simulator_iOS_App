@@ -46,6 +46,7 @@
 		5E6A685A29C777E100500B04 /* GameSimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A685929C777E100500B04 /* GameSimulationViewController.swift */; };
 		5E6A685D29C778E300500B04 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A685C29C778E300500B04 /* ColorHelper.swift */; };
 		5E6A685F29C7795200500B04 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A685E29C7795100500B04 /* ViewHelper.swift */; };
+		5ED471ED29C8597A00D8F664 /* GameSimulationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED471EC29C8597A00D8F664 /* GameSimulationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		5E6A685929C777E100500B04 /* GameSimulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSimulationViewController.swift; sourceTree = "<group>"; };
 		5E6A685C29C778E300500B04 /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		5E6A685E29C7795100500B04 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
+		5ED471EC29C8597A00D8F664 /* GameSimulationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSimulationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				5E6A681E29C5DF0D00500B04 /* HomeScreen */,
+				5ED471EC29C8597A00D8F664 /* GameSimulationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E6A683329C6537A00500B04 /* StandingsCard.swift in Sources */,
+				5ED471ED29C8597A00D8F664 /* GameSimulationViewModel.swift in Sources */,
 				5E6A682329C5E8BF00500B04 /* DoubleHelper.swift in Sources */,
 				5E6A685829C769E500500B04 /* GameSimulation.swift in Sources */,
 				5E6A684E29C74B3200500B04 /* AthleticDecay.swift in Sources */,

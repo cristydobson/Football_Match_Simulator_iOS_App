@@ -31,7 +31,7 @@ class HomeScreenViewController: UIViewController {
     
     viewModel.loadTeams()
     
-    startSimulation()
+//    startSimulation()
   }
   
   
@@ -67,8 +67,7 @@ class HomeScreenViewController: UIViewController {
     let team2 = PlayingTeam(team: viewModel.teams.last!)
     
     
-    let gameSimulation = GameSimulation(team1: team1, team2: team2)
-    gameSimulation.startSimulation()
+    let _ = GameSimulation(team1: team1, team2: team2)
     
   }
   
@@ -78,6 +77,11 @@ class HomeScreenViewController: UIViewController {
   func createSegueToGameViewController() {
     let controller = GameSimulationViewController()
     controller.modalPresentationStyle = .fullScreen
+    
+    let team1 = PlayingTeam(team: viewModel.teams.first!)
+    let team2 = PlayingTeam(team: viewModel.teams.last!)
+    controller.teams = [team1, team2]
+    
     present(controller, animated: true)
   }
   
