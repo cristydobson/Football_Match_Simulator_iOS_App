@@ -19,21 +19,23 @@ class PlayingTeam: CurrentTeam {
 
   // MARK: - Properties
   
+  // Team
   let team: Team
-  
-  private(set) var name = ""
-  private(set) var currentPosition: Position = .midfielder
-  
   private(set) var teamType: TeamType!
+  
+  // Team Info
+  private(set) var name = ""
+  private(set) var stadium = ""
   
   // Team Players
   private(set) var players: Players!
   
-  // Tracking Team Info
+  // Current position being played
+  private(set) var currentPosition: Position = .midfielder
+  
+  // Track Goals
   private(set) var goals = 0
-  private(set) var yellowCardTracker: YellowCardTracker!
-  private(set) var positionPlays: PositionPlays!
-  private(set) var athleticDecay: AthleticDecay!
+  
   
   
   // MARK: - Init Method
@@ -42,7 +44,6 @@ class PlayingTeam: CurrentTeam {
     self.team = team
     
     setupTeam()
-    setupTrackers()
   }
   
   
@@ -50,22 +51,20 @@ class PlayingTeam: CurrentTeam {
   
   func setupTeam() {
     name = team.name
+    stadium = team.stadium
     
     players = Players(
-      keeper: team.keeper, defenders: team.defenders,
-      midfielders: team.midfielders, attackers: team.attackers)
+      keeper: team.keeper,
+      defenders: team.defenders,
+      midfielders: team.midfielders,
+      attackers: team.attackers)
   }
   
-  func setTeamType(for stadium: String) {
-    teamType = stadium == team.stadium ? .homeTeam : .visitorTeam
+  func setTeamType(for currentStadium: String) {
+    teamType = (currentStadium == team.stadium) ?
+      .homeTeam :
+      .visitorTeam
   }
-  
-  func setupTrackers() {
-    yellowCardTracker = YellowCardTracker()
-    positionPlays = PositionPlays()
-    athleticDecay = AthleticDecay()
-  }
-
   
   
   // MARK: - Update Goals
@@ -102,18 +101,9 @@ class PlayingTeam: CurrentTeam {
   func playersSkillPower() -> Double {
     
     // +1 Play to the field Position
-    positionPlays.updatePlays(for: currentPosition)
-    let plays = positionPlays.getPlays(for: currentPosition)
+    players.updatePlays(for: currentPosition)
     
-    // Calculate the SkillPower for a given position
-    let skillPower = SkillPower.getSkillPower(
-      for: currentPosition, withPlayers: players)
-    
-    // Calculate the total AthleticDecay so far in the game
-    let athleticDecay = athleticDecay.getTotalAthleticDecay(
-      skillPower: skillPower, plays: plays)
-    
-    let totalSkillPower = skillPower - athleticDecay
+    let totalSkillPower = totalSkillPower(for: currentPosition)
     
     /*
      Get a random number in the range (0.0...totalSkillPower)
@@ -122,6 +112,17 @@ class PlayingTeam: CurrentTeam {
     let randomSkillPower = totalSkillPower.randomNumber()
     
     return randomSkillPower.rounded(to: 3)
+  }
+  
+  func totalSkillPower(for position: Position) -> Double {
+    // Calculate the SkillPower for a given position
+    let skillPower = players.skillPower(for: position)
+    
+    // Calculate the total AthleticDecay so far in the game
+    let athleticDecay = players.totalAthleticDecay(
+      for: skillPower, andPosition: position)
+    
+    return skillPower - athleticDecay
   }
   
 }
@@ -150,27 +151,29 @@ extension PlayingTeam {
    
    RED Card:
    - Remove a player from the field permanently.
+   
+   FREEKICK:
+   - Do nothing.
    */
   func handleCommittedFoul(_ foulPenalty: FoulPenalty) {
     print("HANDLE FOUL BY: \(name)!!!!!!")
     
     switch foulPenalty {
+        
       case .yellowCard:
         print("YELLOW CARD!!!!!")
+        players.addYellowCard(for: currentPosition)
         
-        yellowCardTracker.updateCardCount(for: currentPosition)
-        
-        if yellowCardTracker.isExpulsion(for: currentPosition) {
-          players.removePlayer(from: currentPosition)
-        }
       case .redCard:
         print("RED CARD!!!!!")
         
         players.removePlayer(from: currentPosition)
+        
       default:
         print("GO ON!!")
     }
   }
+  
   
   // Handle the team receiving the foul
   func handleReceivedFoul(_ foulPenalty: FoulPenalty) {
@@ -182,11 +185,11 @@ extension PlayingTeam {
      */
     switch foulPenalty {
       case .yellowCard:
-        athleticDecay.updateCoefficient(by: 0.002)
+        players.updateAthleticDecayCoefficient(by: 0.002)
       case .redCard:
-        athleticDecay.updateCoefficient(by: 0.003)
+        players.updateAthleticDecayCoefficient(by: 0.003)
       default:
-        athleticDecay.updateCoefficient(by: 0.001)
+        players.updateAthleticDecayCoefficient(by: 0.001)
     }
   }
   

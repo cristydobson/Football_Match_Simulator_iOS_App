@@ -28,7 +28,7 @@ final class FoulChecker {
     let randomFoulGrade = arc4random_uniform(51)
     
     switch randomFoulGrade {
-      case 49:
+      case 48, 49:
         return .yellowCard
       case 50:
         return .redCard

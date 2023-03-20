@@ -31,7 +31,7 @@ class HomeScreenViewController: UIViewController {
     
     viewModel.loadTeams()
     
-//    startSimulation()
+    startSimulation()
   }
   
   
@@ -68,7 +68,7 @@ class HomeScreenViewController: UIViewController {
     
     
     let gameSimulation = GameSimulation(team1: team1, team2: team2)
-    
+    gameSimulation.startSimulation()
     
   }
   
