@@ -31,14 +31,11 @@ class HomeScreenViewController: UIViewController {
     
     viewModel.loadTeams()
     
-//    startSimulation()
   }
   
   
+  // MARK: - Setup Methods
   
-  @IBAction func tempButtonAction(_ sender: UIButton) {
-    createSegueToGameViewController()
-  }
   
   
   
@@ -47,29 +44,22 @@ class HomeScreenViewController: UIViewController {
   
   func setupBindings() {
     
-//    viewModel.$teams.sink { [weak self] _ in
-//      DispatchQueue.main.async {
-//        print("DECODED TEAMS!!!!!!")
-//      }
-//    }
+    //    viewModel.$teams.sink { [weak self] _ in
+    //      DispatchQueue.main.async {
+    //        print("DECODED TEAMS!!!!!!")
+    //      }
+    //    }
     
   }
   
   
   
+  // MARK: - Button Actions
   
-  // TODO: - DELETE Testing Code ******
-  
-
-  func startSimulation() {
-    
-    let team1 = PlayingTeam(team: viewModel.teams.first!)
-    let team2 = PlayingTeam(team: viewModel.teams.last!)
-    
-    
-    let _ = GameSimulation(team1: team1, team2: team2)
-    
+  @IBAction func tempButtonAction(_ sender: UIButton) {
+    createSegueToGameViewController()
   }
+  
   
   
   // MARK: - Navigation

@@ -13,7 +13,7 @@ class Team: Codable {
   
   let name: String
   let stadium: String
-  let image_name: String?
+  let image_name: String
   let keeper: Player
   let defenders: [Player]
   let midfielders: [Player]

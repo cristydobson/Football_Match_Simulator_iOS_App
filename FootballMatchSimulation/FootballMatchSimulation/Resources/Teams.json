@@ -2,7 +2,7 @@
   {
     "name": "FC Barcelona",
     "stadium": "Spotify Camp Nou",
-    "image_name": "",
+    "image_name": "FC_Barcelona",
     "keeper": {
       "name": "Marc-Andre ter Stegen",
       "shirt": 1,
@@ -79,7 +79,7 @@
   {
     "name": "Paris Saint-Germain",
     "stadium": "Parc des Princes",
-    "image_name": "",
+    "image_name": "Paris_Saint-Germain",
     "keeper": {
       "name": "Gianluigi Donnarumma",
       "shirt": 99,

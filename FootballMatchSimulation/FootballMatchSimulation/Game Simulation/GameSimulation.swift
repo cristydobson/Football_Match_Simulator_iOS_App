@@ -20,7 +20,7 @@ class GameSimulation: ObservableObject {
   
   private var ballPossession: PlayingTeam!
   
-  private var plays = 0
+  @Published private(set) var plays = 0
   
   @Published private(set) var currentEvent: String = ""
   
