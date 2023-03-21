@@ -53,7 +53,7 @@ class GameSimulationViewController: UIViewController {
     addViews()
     gameSimulation = GameSimulation(team1: teams[0], team2: teams[1])
     setupBindings()
-    gameSimulation.startSimulation()
+    gameSimulation.startFirstTimeSimulation()
   }
   
   
@@ -129,9 +129,12 @@ class GameSimulationViewController: UIViewController {
     
     subscriptions = [
       gameSimulation.$currentEvent.assign(to: \.text!, on: updatesLabel),
-      gameSimulation.$plays.map { String($0) }.assign(to: \.text!, on: hudView.playsCounter)
+      gameSimulation.$plays.map { String($0) }.assign(to: \.text!, on: hudView.playsCounter),
+      gameSimulation.$team1Goals.map { String($0) }.assign(to: \.text!, on: teamView.team1ScoreLabel),
+      gameSimulation.$team2Goals.map { String($0) }.assign(to: \.text!, on: teamView.team2ScoreLabel)
     ]
       
+    
   }
   
   

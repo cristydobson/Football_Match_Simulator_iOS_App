@@ -7,6 +7,7 @@
 
 
 import Foundation
+import Combine
 
 
 enum TeamType {
@@ -15,7 +16,7 @@ enum TeamType {
 }
 
 
-class PlayingTeam: CurrentTeam {
+class PlayingTeam: CurrentTeam, ObservableObject {
 
   // MARK: - Properties
   
@@ -34,7 +35,12 @@ class PlayingTeam: CurrentTeam {
   private(set) var currentPosition: Position = .midfielder
   
   // Track Goals
-  private(set) var goals = 0
+  @Published private(set) var goals = 0
+  
+  
+  var isGoalKeeper: Bool {
+    return currentPosition == .keeper
+  }
   
   
   
@@ -88,6 +94,10 @@ class PlayingTeam: CurrentTeam {
   // Loser of the head-to-head battle for the ball
   func fallBackPosition(against rivalPosition: Position) {
     currentPosition = currentPosition.fallbackPosition(against: rivalPosition)
+  }
+  
+  func resetPosition() {
+    currentPosition = .midfielder
   }
   
   
