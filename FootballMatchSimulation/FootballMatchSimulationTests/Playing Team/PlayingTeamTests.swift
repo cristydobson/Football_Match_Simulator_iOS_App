@@ -93,7 +93,7 @@ final class PlayingTeamTests: XCTestCase {
     let _ = sut.playersSkillPower()
     
     // then
-    XCTAssertTrue(sut.positionPlays.getPlays(for: .midfielder) == 1)
+    XCTAssertTrue(sut.players.positionPlays.getPlays(for: .midfielder) == 1)
   }
   
   func testGetPlayersSkillPower_returnsPositiveNonZeroDouble() {
@@ -112,8 +112,8 @@ final class PlayingTeamTests: XCTestCase {
     sut.handleCommittedFoul(.yellowCard)
     
     // then
-    XCTAssertTrue(sut.yellowCardTracker.midFielderCount == 1)
-    XCTAssertTrue(!sut.yellowCardTracker.isExpulsion(for: .midfielder))
+    XCTAssertTrue(sut.players.yellowCards.midFielderCount == 1)
+    XCTAssertTrue(!sut.players.yellowCards.isExpulsion(for: .midfielder))
   }
   
   func testHandleCommittedFoul_whenTwoYellowCards_forMidfielderPosition() {
@@ -127,8 +127,8 @@ final class PlayingTeamTests: XCTestCase {
     let currentMidfielderCount = sut.players.midfielders.count
     
     // then
-    XCTAssertTrue(sut.yellowCardTracker.midFielderCount == 2)
-    XCTAssertTrue(sut.yellowCardTracker.isExpulsion(for: .midfielder))
+    XCTAssertTrue(sut.players.yellowCards.midFielderCount == 2)
+    XCTAssertTrue(sut.players.yellowCards.isExpulsion(for: .midfielder))
     XCTAssertEqual(currentMidfielderCount, expectedMidfielderCount)
   }
   
@@ -154,7 +154,7 @@ final class PlayingTeamTests: XCTestCase {
     
     // when
     sut.handleReceivedFoul(.yellowCard)
-    let result = sut.athleticDecay.athleticDecayCoefficient
+    let result = sut.players.athleticDecay.athleticDecayCoefficient
     
     // then
     XCTAssertEqual(result, expectedResult)
@@ -167,7 +167,7 @@ final class PlayingTeamTests: XCTestCase {
     
     // when
     sut.handleReceivedFoul(.redCard)
-    let result = sut.athleticDecay.athleticDecayCoefficient
+    let result = sut.players.athleticDecay.athleticDecayCoefficient
     
     // then
     XCTAssertEqual(result, expectedResult)
@@ -180,7 +180,7 @@ final class PlayingTeamTests: XCTestCase {
     
     // when
     sut.handleReceivedFoul(.freeKick)
-    let result = sut.athleticDecay.athleticDecayCoefficient
+    let result = sut.players.athleticDecay.athleticDecayCoefficient
     
     // then
     XCTAssertEqual(result, expectedResult)

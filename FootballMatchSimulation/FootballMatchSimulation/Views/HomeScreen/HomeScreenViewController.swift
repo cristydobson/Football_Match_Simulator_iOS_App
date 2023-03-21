@@ -18,6 +18,10 @@ class HomeScreenViewController: UIViewController {
   private var subscriptions = Set<AnyCancellable>()
   private let viewModel = HomeScreenViewModel()
   
+  // Cards
+  var standingsCard: StandingsCard!
+  
+  
   
   @IBOutlet weak var tempButton: UIButton!
   
@@ -26,6 +30,8 @@ class HomeScreenViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    addViews()
     
     setupBindings()
     
@@ -36,8 +42,37 @@ class HomeScreenViewController: UIViewController {
   
   // MARK: - Setup Methods
   
+  func addViews() {
+    
+    let tempView = ViewHelper.createEmptyView()
+    tempView.backgroundColor = .red
+    view.addSubview(tempView)
+    
+    let safeArea = view.safeAreaLayoutGuide
+      
+    standingsCard = UINib(nibName: "StandingsCard", bundle: nil)
+      .instantiate(withOwner: nil)[0] as? StandingsCard
+//    standingsCard.frame.origin = CGPoint.zero
+//    standingsCard.frame.size.width = view.frame.width
+    
+    standingsCard.backgroundColor = .yellow
+    tempView.addSubview(standingsCard)
+
+    
+    NSLayoutConstraint.activate([
+      standingsCard.leadingAnchor.constraint(equalTo: tempView.leadingAnchor),
+      standingsCard.trailingAnchor.constraint(equalTo: tempView.trailingAnchor),
+      standingsCard.topAnchor.constraint(equalTo: tempView.topAnchor),
+      standingsCard.bottomAnchor.constraint(equalTo: tempView.topAnchor),
+      
+      tempView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+      tempView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+      tempView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+      tempView.widthAnchor.constraint(equalTo: view.widthAnchor)
+    ])
   
-  
+    
+  }
   
   
   // MARK: - Bindings
