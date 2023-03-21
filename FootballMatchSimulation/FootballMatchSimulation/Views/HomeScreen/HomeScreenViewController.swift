@@ -20,7 +20,7 @@ class HomeScreenViewController: UIViewController {
   
   // Cards
   var standingsCard: StandingsCard!
-  
+  var roundCollectionView: RoundCardCollectionView!
   
   
   @IBOutlet weak var tempButton: UIButton!
@@ -31,6 +31,7 @@ class HomeScreenViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    setupBackground()
     addViews()
     
     setupBindings()
@@ -42,35 +43,48 @@ class HomeScreenViewController: UIViewController {
   
   // MARK: - Setup Methods
   
+  func setupBackground() {
+    view.addGradientBackground()
+  }
+  
   func addViews() {
     
-    let tempView = ViewHelper.createEmptyView()
-    tempView.backgroundColor = .red
-    view.addSubview(tempView)
-    
     let safeArea = view.safeAreaLayoutGuide
+    let standingsContainerViewHeight = view.frame.height*0.3
+    
+    let standingsContainerView = ViewHelper.createEmptyView()
+    standingsContainerView.backgroundColor = UIColor.darkGray
+    view.addSubview(standingsContainerView)
       
     standingsCard = UINib(nibName: "StandingsCard", bundle: nil)
       .instantiate(withOwner: nil)[0] as? StandingsCard
-//    standingsCard.frame.origin = CGPoint.zero
-//    standingsCard.frame.size.width = view.frame.width
-    
-    standingsCard.backgroundColor = .yellow
-    tempView.addSubview(standingsCard)
+    standingsCard.translatesAutoresizingMaskIntoConstraints = false
+    standingsContainerView.addSubview(standingsCard)
 
     
     NSLayoutConstraint.activate([
-      standingsCard.leadingAnchor.constraint(equalTo: tempView.leadingAnchor),
-      standingsCard.trailingAnchor.constraint(equalTo: tempView.trailingAnchor),
-      standingsCard.topAnchor.constraint(equalTo: tempView.topAnchor),
-      standingsCard.bottomAnchor.constraint(equalTo: tempView.topAnchor),
+      standingsCard.leadingAnchor.constraint(equalTo: standingsContainerView.leadingAnchor),
+      standingsCard.trailingAnchor.constraint(equalTo: standingsContainerView.trailingAnchor),
+      standingsCard.topAnchor.constraint(equalTo: standingsContainerView.topAnchor),
+      standingsCard.bottomAnchor.constraint(equalTo: standingsContainerView.topAnchor),
       
-      tempView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-      tempView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-      tempView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-      tempView.widthAnchor.constraint(equalTo: view.widthAnchor)
+      standingsContainerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+      standingsContainerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+      standingsContainerView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+      standingsContainerView.setHeightContraint(by: standingsContainerViewHeight)
     ])
-  
+
+    
+    /*
+     Round Card Collection View
+     */
+    let roundCollectionViewHeight = view.frame.height-standingsContainerViewHeight
+    roundCollectionView = RoundCardCollectionView(
+      frame: CGRect(x: 0, y: standingsContainerViewHeight+40,
+                    width: view.frame.width,
+                    height: roundCollectionViewHeight))
+    roundCollectionView.backgroundColor = .red
+    view.addSubview(roundCollectionView)
     
   }
   

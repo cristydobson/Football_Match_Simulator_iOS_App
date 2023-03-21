@@ -17,6 +17,10 @@ extension UIView {
     return heightAnchor.constraint(equalToConstant: constant)
   }
   
+  func setWidthContraint(by constant: CGFloat) -> NSLayoutConstraint {
+    return widthAnchor.constraint(equalToConstant: constant)
+  }
+  
   // Add a gradient color to the background view
   func addGradientBackground() {
     let gradient = CAGradientLayer()

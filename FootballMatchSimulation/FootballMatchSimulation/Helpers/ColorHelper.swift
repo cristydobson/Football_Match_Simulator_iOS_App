@@ -21,4 +21,9 @@ extension UIColor {
   static let darkerBlue = UIColor(red: 0/255, green: 113/255,
                                   blue: 123/255, alpha: 1)
   
+  // Support custom colors for dark and light themes
+//  static func dynamicColor(light: UIColor, dark: UIColor) -> UIColor {
+//    return UIColor { $0.userInterfaceStyle == .dark ? dark : light }
+//  }
+  
 }

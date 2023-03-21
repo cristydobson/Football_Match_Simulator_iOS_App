@@ -59,6 +59,8 @@
 		5ED4720429C9D28400D8F664 /* EventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4720329C9D28400D8F664 /* EventHelper.swift */; };
 		5ED4720729C9E60F00D8F664 /* GameSimulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4720629C9E60F00D8F664 /* GameSimulationTests.swift */; };
 		5ED4720929C9F3CB00D8F664 /* MockedPlayingTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4720829C9F3CB00D8F664 /* MockedPlayingTeam.swift */; };
+		5ED4720D29CA2C7200D8F664 /* RoundCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4720C29CA2C7200D8F664 /* RoundCardCollectionView.swift */; };
+		5ED4721329CA33EC00D8F664 /* RoundCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4721129CA33EC00D8F664 /* RoundCardCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,8 @@
 		5ED4720329C9D28400D8F664 /* EventHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHelper.swift; sourceTree = "<group>"; };
 		5ED4720629C9E60F00D8F664 /* GameSimulationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSimulationTests.swift; sourceTree = "<group>"; };
 		5ED4720829C9F3CB00D8F664 /* MockedPlayingTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedPlayingTeam.swift; sourceTree = "<group>"; };
+		5ED4720C29CA2C7200D8F664 /* RoundCardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCardCollectionView.swift; sourceTree = "<group>"; };
+		5ED4721129CA33EC00D8F664 /* RoundCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCardCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,7 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				5E6A681E29C5DF0D00500B04 /* HomeScreen */,
-				5ED471EC29C8597A00D8F664 /* GameSimulationViewModel.swift */,
+				5ED4720B29CA2AFB00D8F664 /* Cards */,
+				5ED4720A29CA132700D8F664 /* GameSimulation */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				5E6A67DF29C4D00900500B04 /* HomeScreenViewController.swift */,
+				5ED4720E29CA2F2E00D8F664 /* ReoundCard CollectionView */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -448,6 +454,30 @@
 			path = "Game Simulation";
 			sourceTree = "<group>";
 		};
+		5ED4720A29CA132700D8F664 /* GameSimulation */ = {
+			isa = PBXGroup;
+			children = (
+				5ED471EC29C8597A00D8F664 /* GameSimulationViewModel.swift */,
+			);
+			path = GameSimulation;
+			sourceTree = "<group>";
+		};
+		5ED4720B29CA2AFB00D8F664 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		5ED4720E29CA2F2E00D8F664 /* ReoundCard CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4720C29CA2C7200D8F664 /* RoundCardCollectionView.swift */,
+				5ED4721129CA33EC00D8F664 /* RoundCardCell.swift */,
+			);
+			path = "ReoundCard CollectionView";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -601,6 +631,7 @@
 				5E6A685029C758EA00500B04 /* CurrentTeam.swift in Sources */,
 				5E6A684129C71D6E00500B04 /* PlayingTeam.swift in Sources */,
 				5ED4720429C9D28400D8F664 /* EventHelper.swift in Sources */,
+				5ED4721329CA33EC00D8F664 /* RoundCardCell.swift in Sources */,
 				5E6A682E29C64DB000500B04 /* FinalsCard.swift in Sources */,
 				5E6A684A29C7425100500B04 /* SkillPower.swift in Sources */,
 				5E6A685F29C7795200500B04 /* ViewHelper.swift in Sources */,
@@ -616,6 +647,7 @@
 				5E6A685D29C778E300500B04 /* ColorHelper.swift in Sources */,
 				5E6A684C29C7467100500B04 /* Players.swift in Sources */,
 				5E6A683729C6608400500B04 /* StandingsCardRow.swift in Sources */,
+				5ED4720D29CA2C7200D8F664 /* RoundCardCollectionView.swift in Sources */,
 				5ED4720229C8D09100D8F664 /* ImageHelper.swift in Sources */,
 				5E6A67DE29C4D00900500B04 /* SceneDelegate.swift in Sources */,
 				5ED471F529C8C91D00D8F664 /* TeamView.swift in Sources */,

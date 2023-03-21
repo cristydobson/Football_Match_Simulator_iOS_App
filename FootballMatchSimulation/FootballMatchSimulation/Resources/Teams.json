@@ -1,5 +1,82 @@
 [
   {
+    "name": "Ajax",
+    "stadium": "Johan Cruijff Arena",
+    "image_name": "Ajax",
+    "keeper": {
+      "name": "Geronimo Rulli",
+      "shirt": 12,
+      "position": "keeper",
+      "skillPower": 7.07
+    },
+    "defenders": [
+      {
+        "name": "Owen Wijndal",
+        "shirt": 5,
+        "position": "defender",
+        "skillPower": 7.00
+      },
+      {
+        "name": "Calvin Bassey",
+        "shirt": 3,
+        "position": "defender",
+        "skillPower": 7.36
+      },
+      {
+        "name": "Jurrien Timber",
+        "shirt": 2,
+        "position": "defender",
+        "skillPower": 7.26
+      },
+      {
+        "name": "Jorge Sánchez",
+        "shirt": 19,
+        "position": "defender",
+        "skillPower": 7.14
+      }
+    ],
+    "midfielders": [
+      {
+        "name": "Kenneth Taylor",
+        "shirt": 8,
+        "position": "midfielder",
+        "skillPower": 7.47
+      },
+      {
+        "name": "Edson Álvarez",
+        "shirt": 4,
+        "position": "midfielder",
+        "skillPower": 7.77
+      },
+      {
+        "name": "Steven Berghuis",
+        "shirt": 23,
+        "position": "midfielder",
+        "skillPower": 7.70
+      }
+    ],
+    "attackers": [
+      {
+        "name": "Steven Bergwijn",
+        "shirt": 7,
+        "position": "attacker",
+        "skillPower": 7.65
+      },
+      {
+        "name": "Dusan Tadic",
+        "shirt": 10,
+        "position": "attacker",
+        "skillPower": 7.97
+      },
+      {
+        "name": "Mohammed Kudus",
+        "shirt": 20,
+        "position": "attacker",
+        "skillPower": 7.66
+      }
+    ]
+  },
+  {
     "name": "FC Barcelona",
     "stadium": "Spotify Camp Nou",
     "image_name": "FC_Barcelona",
@@ -150,6 +227,83 @@
         "shirt": 28,
         "position": "attacker",
         "skillPower": 6.83
+      }
+    ]
+  },
+  {
+    "name": "Bayern München",
+    "stadium": "Allianz Arena",
+    "image_name": "FC_Bayern",
+    "keeper": {
+      "name": "Yann Sommer",
+      "shirt": 27,
+      "position": "keeper",
+      "skillPower": 6.85
+    },
+    "defenders": [
+      {
+        "name": "Matthijs de Ligt",
+        "shirt": 4,
+        "position": "defender",
+        "skillPower": 7.23
+      },
+      {
+        "name": "Dayot Upamecano",
+        "shirt": 2,
+        "position": "defender",
+        "skillPower": 7.42
+      },
+      {
+        "name": "Benjamin Pavard",
+        "shirt": 5,
+        "position": "defender",
+        "skillPower": 7.52
+      }
+    ],
+    "midfielders": [
+      {
+        "name": "Alphonso Davies",
+        "shirt": 19,
+        "position": "midfielder",
+        "skillPower": 7.75
+      },
+      {
+        "name": "Leon Goretzka",
+        "shirt": 8,
+        "position": "midfielder",
+        "skillPower": 7.51
+      },
+      {
+        "name": "Joshua Kimmich",
+        "shirt": 6,
+        "position": "midfielder",
+        "skillPower": 7.86
+      },
+      {
+        "name": "Joao Cancelo",
+        "shirt": 22,
+        "position": "midfielder",
+        "skillPower": 7.42
+      }
+    ],
+    "attackers": [
+      {
+        "name": "Sadio Mané",
+        "shirt": 17,
+        "position": "attacker",
+        "skillPower": 7.21
+      },
+      {
+        "name": "Leroy Sané",
+        "shirt": 10,
+        "position": "attacker",
+        "skillPower": 7.33
+      },
+      {
+        "name": "Thomas Müller",
+        "shirt": 25,
+        "position": "attacker",
+        "skillPower": 7.39
       }
     ]
   }
