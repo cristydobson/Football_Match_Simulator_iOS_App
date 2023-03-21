@@ -13,12 +13,20 @@ import Combine
 class GameSimulation: ObservableObject {
   
   
+  enum GameState {
+    case none
+    case inProgress
+    case halfTime
+    case finished
+  }
+  
+  
   // MARK: - Properties
   
   private var subscriptions = Set<AnyCancellable>()
   
-  private let team1: PlayingTeam
-  private let team2: PlayingTeam
+  private let homeTeam: PlayingTeam
+  private let visitorTeam: PlayingTeam
   
 //  private var ballPossession: PlayingTeam!
   
@@ -28,6 +36,8 @@ class GameSimulation: ObservableObject {
   
   @Published private(set) var team1Goals = 0
   @Published private(set) var team2Goals = 0
+  
+  @Published private(set) var gameState = GameState.none
   
   
   var isHalfTime: Bool {
@@ -41,37 +51,86 @@ class GameSimulation: ObservableObject {
   
   // MARK: - Init Method
   
-  init(team1: PlayingTeam, team2: PlayingTeam) {
-    self.team1 = team1
-    self.team2 = team2
+  init(homeTeam: PlayingTeam, visitorTeam: PlayingTeam) {
+    self.homeTeam = homeTeam
+    self.visitorTeam = visitorTeam
     
     setupBindings()
   }
   
   
   
-  // MARK: - Start Simulation
+  // MARK: - Start Simulations
   
   func startFirstTimeSimulation() {
-    battle(team1, vs: team2)
+    gameState = .inProgress
+    battle(homeTeam, vs: visitorTeam)
   }
   
   func startSecondTimeSimulation() {
-    team1.resetPosition()
-    team2.resetPosition()
-    battle(team2, vs: team1)
+    gameState = .inProgress
+    
+    homeTeam.resetPosition()
+    visitorTeam.resetPosition()
+    
+    battle(visitorTeam, vs: homeTeam)
   }
   
+  
+  // MARK: - Handle Simulation Phases
+  
   func handleHalfTime() {
+    gameState = .halfTime
+    
     currentEvent = eventString(for: .halfTime, andTeam: nil)
     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
       self.startSecondTimeSimulation()
     }
   }
   
+  func handleGameInProgress(for teamOne: PlayingTeam, vs teamTwo: PlayingTeam) {
+    
+    if isMorePowerful(teamTwo, than: teamOne) {
+      
+      if nonKeeperCommittedFoul(from: teamTwo) {
+        foulBy(teamTwo, against: teamOne)
+      }
+      else {
+        takesBall(teamTwo, from: teamOne)
+      }
+    }
+    else { // team1 > team2
+      
+      if teamTwo.isGoalKeeper {
+        handleGoalScoring(from: teamOne, against: teamTwo)
+      }
+      else {
+        
+        if teamOne.commitedFoul() {
+          foulBy(teamOne, against: teamTwo)
+        }
+        else {
+          keepsBall(teamOne, against: teamTwo)
+        }
+        
+      }
+      
+    }
+    
+  }
   
-  // MARK: - Handle Simulation
+  func handleFinishedMatch(for teamOne: PlayingTeam, vs teamTwo: PlayingTeam) {
+    gameState = .finished
+    
+    currentEvent = eventString(for: .matchFinished, andTeam: nil)
+    print("MATCH IS DONE!!!!!")
+    print("GOALS: \(teamOne.name)(\(teamOne.goals)) - \(teamTwo.name)(\(teamTwo.goals))")
+  }
+  
+  
+  // MARK: - Handle Players Head-To-Head Simulation
 
+  
   func battle(_ team1: PlayingTeam, vs team2: PlayingTeam) {
     
     plays += 1
@@ -81,40 +140,10 @@ class GameSimulation: ObservableObject {
       handleHalfTime()
     }
     else if matchInProgress {
-      
-      if isMorePowerful(team2, than: team1) {
-        
-        if nonKeeperCommittedFoul(from: team2) {
-          foulBy(team2, against: team1)
-        }
-        else {
-          takesBall(team2, from: team1)
-        }
-      }
-      else { // team1 > team2
-        
-        if team2.isGoalKeeper {
-          handleGoalScoring(from: team1, against: team2)
-        }
-        else {
-          
-          if team1.commitedFoul() {
-            foulBy(team1, against: team2)
-          }
-          else {
-            keepsBall(team1, against: team2)
-          }
-          
-        }
-        
-      }
-      
+      handleGameInProgress(for: team1, vs: team2)
     }
     else { // MATCH ENDED
-      currentEvent = eventString(for: .matchFinished, andTeam: nil)
-      print("MATCH IS DONE!!!!!")
-      print("GOALS: \(team1.name)(\(team1.goals)) - \(team2.name)(\(team2.goals))")
-      
+      handleFinishedMatch(for: team1, vs: team2)
     }
     
   }
@@ -146,7 +175,7 @@ class GameSimulation: ObservableObject {
   }
   
   func handleFoulBy(_ teamOne: PlayingTeam, against teamTwo: PlayingTeam) {
-    let foul = team1.getFoulPenaltyType()
+    let foul = teamOne.getFoulPenaltyType()
     print("FOUL: \(foul)!!!!")
     teamOne.handleCommittedFoul(foul)
     teamTwo.handleReceivedFoul(foul)
@@ -239,12 +268,12 @@ class GameSimulation: ObservableObject {
   
   func setupBindings() {
     
-    team1.$goals.sink { [weak self] goals in
+    homeTeam.$goals.sink { [weak self] goals in
       self?.team1Goals = goals
     }
     .store(in: &subscriptions)
     
-    team2.$goals.sink { [weak self] goals in
+    visitorTeam.$goals.sink { [weak self] goals in
       self?.team2Goals = goals
     }
     .store(in: &subscriptions)

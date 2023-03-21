@@ -51,7 +51,7 @@ class GameSimulationViewController: UIViewController {
 
     setupBackground()
     addViews()
-    gameSimulation = GameSimulation(team1: teams[0], team2: teams[1])
+    gameSimulation = GameSimulation(homeTeam: teams[0], visitorTeam: teams[1])
     setupBindings()
     gameSimulation.startFirstTimeSimulation()
   }
@@ -133,7 +133,23 @@ class GameSimulationViewController: UIViewController {
       gameSimulation.$team1Goals.map { String($0) }.assign(to: \.text!, on: teamView.team1ScoreLabel),
       gameSimulation.$team2Goals.map { String($0) }.assign(to: \.text!, on: teamView.team2ScoreLabel)
     ]
-      
+     
+    gameSimulation.$gameState.sink { [weak self] state in
+      DispatchQueue.main.async {
+        
+        switch state {
+          case .inProgress:
+            print("\n GAME IN PROGRESS!!!!!!\n")
+          case .halfTime:
+            print("\n GAME AT HALFTIME!!!!!!!\n")
+          case .finished:
+            print("\n GAME IS FINISHED!!!!!!\n")
+          default:
+            print("\n GAME ABOUT TO START!!!!!\n")
+        }
+        
+      }
+    }.store(in: &subscriptions)
     
   }
   
