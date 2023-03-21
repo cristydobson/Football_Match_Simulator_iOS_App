@@ -56,6 +56,9 @@
 		5ED471FF29C8CEEE00D8F664 /* FC_Barcelona.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED471FB29C8CEEE00D8F664 /* FC_Barcelona.png */; };
 		5ED4720029C8CEEE00D8F664 /* FC_Bayern.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED471FC29C8CEEE00D8F664 /* FC_Bayern.png */; };
 		5ED4720229C8D09100D8F664 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4720129C8D09100D8F664 /* ImageHelper.swift */; };
+		5ED4720429C9D28400D8F664 /* EventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4720329C9D28400D8F664 /* EventHelper.swift */; };
+		5ED4720729C9E60F00D8F664 /* GameSimulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4720629C9E60F00D8F664 /* GameSimulationTests.swift */; };
+		5ED4720929C9F3CB00D8F664 /* MockedPlayingTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4720829C9F3CB00D8F664 /* MockedPlayingTeam.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +132,9 @@
 		5ED471FB29C8CEEE00D8F664 /* FC_Barcelona.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FC_Barcelona.png; sourceTree = "<group>"; };
 		5ED471FC29C8CEEE00D8F664 /* FC_Bayern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FC_Bayern.png; sourceTree = "<group>"; };
 		5ED4720129C8D09100D8F664 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		5ED4720329C9D28400D8F664 /* EventHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHelper.swift; sourceTree = "<group>"; };
+		5ED4720629C9E60F00D8F664 /* GameSimulationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSimulationTests.swift; sourceTree = "<group>"; };
+		5ED4720829C9F3CB00D8F664 /* MockedPlayingTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedPlayingTeam.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +204,7 @@
 				5E6A681C29C5DA2700500B04 /* PlayerPositionTests.swift */,
 				5E6A682429C5EFC800500B04 /* DoubleHelperTests.swift */,
 				5E6A685529C75C5700500B04 /* Playing Team */,
+				5ED4720529C9E5F500D8F664 /* Game Simulation */,
 			);
 			path = FootballMatchSimulationTests;
 			sourceTree = "<group>";
@@ -300,6 +307,7 @@
 				5E6A685C29C778E300500B04 /* ColorHelper.swift */,
 				5E6A685E29C7795100500B04 /* ViewHelper.swift */,
 				5ED4720129C8D09100D8F664 /* ImageHelper.swift */,
+				5ED4720329C9D28400D8F664 /* EventHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -429,6 +437,15 @@
 				5ED471FA29C8CEEE00D8F664 /* Paris_Saint-Germain.png */,
 			);
 			path = "Team Logos";
+			sourceTree = "<group>";
+		};
+		5ED4720529C9E5F500D8F664 /* Game Simulation */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4720629C9E60F00D8F664 /* GameSimulationTests.swift */,
+				5ED4720829C9F3CB00D8F664 /* MockedPlayingTeam.swift */,
+			);
+			path = "Game Simulation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -583,6 +600,7 @@
 				5E6A681729C4F1D000500B04 /* DataLoader.swift in Sources */,
 				5E6A685029C758EA00500B04 /* CurrentTeam.swift in Sources */,
 				5E6A684129C71D6E00500B04 /* PlayingTeam.swift in Sources */,
+				5ED4720429C9D28400D8F664 /* EventHelper.swift in Sources */,
 				5E6A682E29C64DB000500B04 /* FinalsCard.swift in Sources */,
 				5E6A684A29C7425100500B04 /* SkillPower.swift in Sources */,
 				5E6A685F29C7795200500B04 /* ViewHelper.swift in Sources */,
@@ -612,6 +630,8 @@
 			files = (
 				5E6A685429C75C4D00500B04 /* PlayingTeamTests.swift in Sources */,
 				5E6A681D29C5DA2700500B04 /* PlayerPositionTests.swift in Sources */,
+				5ED4720729C9E60F00D8F664 /* GameSimulationTests.swift in Sources */,
+				5ED4720929C9F3CB00D8F664 /* MockedPlayingTeam.swift in Sources */,
 				5E6A682529C5EFC800500B04 /* DoubleHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

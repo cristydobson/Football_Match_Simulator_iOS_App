@@ -7,16 +7,13 @@
 
 
 import Foundation
-import Combine
 
 
-class GameSimulationViewModel: ObservableObject {
+class GameSimulationViewModel {
   
   
   // MARK: - Properties
   
-  private var subscriptions = Set<AnyCancellable>()
-  @Published private(set) var currentEvent: String = ""
     
   
   // MARK: - Methods

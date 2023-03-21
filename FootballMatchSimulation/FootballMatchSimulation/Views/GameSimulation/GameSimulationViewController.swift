@@ -128,10 +128,18 @@ class GameSimulationViewController: UIViewController {
   func setupBindings() {
     
     subscriptions = [
-      gameSimulation.$currentEvent.assign(to: \.text!, on: updatesLabel),
-      gameSimulation.$plays.map { String($0) }.assign(to: \.text!, on: hudView.playsCounter),
-      gameSimulation.$team1Goals.map { String($0) }.assign(to: \.text!, on: teamView.team1ScoreLabel),
-      gameSimulation.$team2Goals.map { String($0) }.assign(to: \.text!, on: teamView.team2ScoreLabel)
+      gameSimulation.$currentEvent
+        .receive(on: DispatchQueue.main)
+        .assign(to: \.text!, on: updatesLabel),
+      gameSimulation.$plays.map { String($0) }
+        .receive(on: DispatchQueue.main)
+        .assign(to: \.text!, on: hudView.playsCounter),
+      gameSimulation.$team1Goals.map { String($0) }
+        .receive(on: DispatchQueue.main)
+        .assign(to: \.text!, on: teamView.team1ScoreLabel),
+      gameSimulation.$team2Goals.map { String($0) }
+        .receive(on: DispatchQueue.main)
+        .assign(to: \.text!, on: teamView.team2ScoreLabel)
     ]
      
     gameSimulation.$gameState.sink { [weak self] state in

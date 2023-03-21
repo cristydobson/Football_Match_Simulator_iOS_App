@@ -135,12 +135,8 @@ class PlayingTeam: CurrentTeam, ObservableObject {
     return skillPower - athleticDecay
   }
   
-}
-
-
-// MARK: - Handle Team Fouls
-
-extension PlayingTeam {
+  
+  // MARK: - Get Team Fouls
   
   func commitedFoul() -> Bool {
     return FoulChecker.committedFoul()
@@ -150,6 +146,13 @@ extension PlayingTeam {
   func getFoulPenaltyType() -> FoulPenalty {
     return FoulChecker.getFoulType()
   }
+  
+}
+
+
+// MARK: - Handle Team Fouls
+
+extension PlayingTeam {
   
   /*
    Handle the team committing the foul.
