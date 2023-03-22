@@ -21,7 +21,7 @@ class PlayingTeam: CurrentTeam, ObservableObject {
   // MARK: - Properties
   
   // Team
-  let team: Team
+  let team: TeamModel
   private(set) var teamType: TeamType!
   
   // Team Info
@@ -46,7 +46,7 @@ class PlayingTeam: CurrentTeam, ObservableObject {
   
   // MARK: - Init Method
   
-  init(team: Team) {
+  init(team: TeamModel) {
     self.team = team
     
     setupTeam()

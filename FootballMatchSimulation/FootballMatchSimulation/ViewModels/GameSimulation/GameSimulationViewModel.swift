@@ -24,8 +24,8 @@ class GameSimulationViewModel {
   }
   
   func loadTeamViewModel(for teams: [PlayingTeam]) -> TeamViewModel {
-    return TeamViewModel(team1ImageName: teams[0].team.image_name,
-                         team2ImageName: teams[1].team.image_name)
+    return TeamViewModel(team1ImageName: teams[0].team.imageName,
+                         team2ImageName: teams[1].team.imageName)
   }
   
   

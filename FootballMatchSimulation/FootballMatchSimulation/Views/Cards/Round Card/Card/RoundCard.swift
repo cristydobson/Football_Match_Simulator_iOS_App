@@ -5,12 +5,17 @@
 //  Created by Cristina Dobson on 3/18/23.
 //
 
-import UIKit
 
-class RoundCard: UIView {
+import UIKit
+import Combine
+
+
+class RoundCard: UIView, ObservableObject {
 
 
   // MARK: - Properties
+  
+  @Published var playButtonTapped = false
   
   // Header
   @IBOutlet weak var headerContainerView: UIView!
@@ -59,11 +64,19 @@ class RoundCard: UIView {
     
   }
   
+  func loadRows(withModels models: [RoundCardRowViewModel]?) {
+    if let models = models {
+      row1.viewModel = models[0]
+      row2.viewModel = models[1]
+    }
+  }
+  
   
   
   // MARK: - Actions
   
   @IBAction func playButtonAction(_ sender: UIButton) {
+    playButtonTapped = true
   }
   
   

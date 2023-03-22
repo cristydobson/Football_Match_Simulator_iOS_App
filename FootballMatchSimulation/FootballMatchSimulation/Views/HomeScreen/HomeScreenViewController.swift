@@ -23,9 +23,6 @@ class HomeScreenViewController: UIViewController {
   var roundCollectionView: RoundCardCollectionView!
   
   
-  @IBOutlet weak var tempButton: UIButton!
-  
-  
   // MARK: - View Controller's Life Cycle
 
   override func viewDidLoad() {
@@ -79,10 +76,11 @@ class HomeScreenViewController: UIViewController {
      Round Card Collection View
      */
     let roundCollectionViewHeight = view.frame.height-standingsContainerViewHeight
+    let collectionViewFrame = CGRect(x: 0, y: standingsContainerViewHeight+40,
+                                     width: view.frame.width,
+                                     height: roundCollectionViewHeight)
     roundCollectionView = RoundCardCollectionView(
-      frame: CGRect(x: 0, y: standingsContainerViewHeight+40,
-                    width: view.frame.width,
-                    height: roundCollectionViewHeight))
+      frame: collectionViewFrame, controller: self)
     roundCollectionView.backgroundColor = .red
     view.addSubview(roundCollectionView)
     
@@ -93,37 +91,42 @@ class HomeScreenViewController: UIViewController {
   
   func setupBindings() {
     
-    //    viewModel.$teams.sink { [weak self] _ in
-    //      DispatchQueue.main.async {
-    //        print("DECODED TEAMS!!!!!!")
-    //      }
-    //    }
+    viewModel.$teamModels.sink { [weak self] teamModels in
+      DispatchQueue.main.async {
+        if teamModels.count > 0 {
+          self?.loadStandings()
+          self?.viewModel.generateRounds(teamModels)
+        }
+      }
+    }.store(in: &subscriptions)
     
+    viewModel.$rounds.sink { [weak self] rounds in
+      DispatchQueue.main.async {
+        if rounds.count > 0 {
+          self?.roundCollectionView.rounds = rounds
+        }
+      }
+    }.store(in: &subscriptions)
+   
   }
-  
-  
-  
-  // MARK: - Button Actions
-  
-  @IBAction func tempButtonAction(_ sender: UIButton) {
-    createSegueToGameViewController()
-  }
+
   
   
   
   // MARK: - Navigation
   
-  func createSegueToGameViewController() {
-    let controller = GameSimulationViewController()
-    controller.modalPresentationStyle = .fullScreen
-    
-    let team1 = PlayingTeam(team: viewModel.teams.first!)
-    let team2 = PlayingTeam(team: viewModel.teams.last!)
-    controller.teams = [team1, team2]
-    
-    present(controller, animated: true)
-  }
+//  func createSegueToGameViewController() {
+//    let controller = RoundGamesViewController()
+//    controller.teams = viewModel.teams
+//
+//    present(controller, animated: true)
+//  }
   
+
+  
+  func loadStandings() {
+    print("LOADING Standings with Team Models!!!!!!!\n")
+  }
   
   
 }

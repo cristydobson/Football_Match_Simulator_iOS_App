@@ -10,13 +10,12 @@
 		5E6A67DC29C4D00900500B04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A67DB29C4D00900500B04 /* AppDelegate.swift */; };
 		5E6A67DE29C4D00900500B04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A67DD29C4D00900500B04 /* SceneDelegate.swift */; };
 		5E6A67E029C4D00900500B04 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A67DF29C4D00900500B04 /* HomeScreenViewController.swift */; };
-		5E6A67E329C4D00900500B04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E6A67E129C4D00900500B04 /* Main.storyboard */; };
 		5E6A67E529C4D00C00500B04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6A67E429C4D00C00500B04 /* Assets.xcassets */; };
 		5E6A67E829C4D00C00500B04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E6A67E629C4D00C00500B04 /* LaunchScreen.storyboard */; };
 		5E6A67FD29C4D00C00500B04 /* FootballMatchSimulationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A67FC29C4D00C00500B04 /* FootballMatchSimulationUITests.swift */; };
 		5E6A67FF29C4D00C00500B04 /* FootballMatchSimulationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A67FE29C4D00C00500B04 /* FootballMatchSimulationUITestsLaunchTests.swift */; };
 		5E6A680C29C4D25B00500B04 /* Teams.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E6A680B29C4D25B00500B04 /* Teams.json */; };
-		5E6A681529C4E1CB00500B04 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A681429C4E1CB00500B04 /* TeamModel.swift */; };
+		5E6A681529C4E1CB00500B04 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A681429C4E1CB00500B04 /* Team.swift */; };
 		5E6A681729C4F1D000500B04 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A681629C4F1D000500B04 /* DataLoader.swift */; };
 		5E6A681B29C5D6C500500B04 /* PlayerPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A681A29C5D6C500500B04 /* PlayerPosition.swift */; };
 		5E6A681D29C5DA2700500B04 /* PlayerPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A681C29C5DA2700500B04 /* PlayerPositionTests.swift */; };
@@ -25,8 +24,8 @@
 		5E6A682529C5EFC800500B04 /* DoubleHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A682429C5EFC800500B04 /* DoubleHelperTests.swift */; };
 		5E6A682729C645DE00500B04 /* RoundCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A682629C645DD00500B04 /* RoundCard.swift */; };
 		5E6A682A29C6460E00500B04 /* RoundCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6A682929C6460E00500B04 /* RoundCard.xib */; };
-		5E6A682E29C64DB000500B04 /* FinalsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A682D29C64DB000500B04 /* FinalsCard.swift */; };
-		5E6A683029C64DE200500B04 /* FinalsCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6A682F29C64DE200500B04 /* FinalsCard.xib */; };
+		5E6A682E29C64DB000500B04 /* GameRoundCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A682D29C64DB000500B04 /* GameRoundCard.swift */; };
+		5E6A683029C64DE200500B04 /* GameRoundCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6A682F29C64DE200500B04 /* GameRoundCard.xib */; };
 		5E6A683329C6537A00500B04 /* StandingsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A683229C6537A00500B04 /* StandingsCard.swift */; };
 		5E6A683529C653B800500B04 /* StandingsCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6A683429C653B800500B04 /* StandingsCard.xib */; };
 		5E6A683729C6608400500B04 /* StandingsCardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A683629C6608400500B04 /* StandingsCardRow.swift */; };
@@ -61,6 +60,19 @@
 		5ED4720929C9F3CB00D8F664 /* MockedPlayingTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4720829C9F3CB00D8F664 /* MockedPlayingTeam.swift */; };
 		5ED4720D29CA2C7200D8F664 /* RoundCardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4720C29CA2C7200D8F664 /* RoundCardCollectionView.swift */; };
 		5ED4721329CA33EC00D8F664 /* RoundCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4721129CA33EC00D8F664 /* RoundCardCell.swift */; };
+		5ED4721729CAF88B00D8F664 /* RoundGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4721629CAF88B00D8F664 /* RoundGamesViewController.swift */; };
+		5ED4721A29CAF90A00D8F664 /* RoundGamesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4721929CAF90A00D8F664 /* RoundGamesViewModel.swift */; };
+		5ED4721C29CAFC6500D8F664 /* RoundCardCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4721B29CAFC6500D8F664 /* RoundCardCollectionViewModel.swift */; };
+		5ED4721E29CB02A800D8F664 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4721D29CB02A800D8F664 /* TeamModel.swift */; };
+		5ED4722029CB0AC200D8F664 /* RoundCardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4721F29CB0AC200D8F664 /* RoundCardCellViewModel.swift */; };
+		5ED4722329CB0C3800D8F664 /* RoundCardRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4722229CB0C3800D8F664 /* RoundCardRowViewModel.swift */; };
+		5ED4722629CB0FDD00D8F664 /* RoundCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4722529CB0FDD00D8F664 /* RoundCardViewModel.swift */; };
+		5ED4722B29CB16EE00D8F664 /* RoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4722A29CB16EE00D8F664 /* RoundModel.swift */; };
+		5ED4722E29CB2EC500D8F664 /* RoundGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4722D29CB2EC400D8F664 /* RoundGenerator.swift */; };
+		5ED4723029CB4D3A00D8F664 /* RoundGamesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4722F29CB4D3A00D8F664 /* RoundGamesCollectionView.swift */; };
+		5ED4723229CB4DA700D8F664 /* RoundGamesCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4723129CB4DA700D8F664 /* RoundGamesCollectionViewModel.swift */; };
+		5ED4723429CB4F7F00D8F664 /* RoundGameCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4723329CB4F7F00D8F664 /* RoundGameCellViewModel.swift */; };
+		5ED4723629CB504700D8F664 /* RoundGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4723529CB504700D8F664 /* RoundGameCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +97,6 @@
 		5E6A67DB29C4D00900500B04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E6A67DD29C4D00900500B04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5E6A67DF29C4D00900500B04 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
-		5E6A67E229C4D00900500B04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5E6A67E429C4D00C00500B04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E6A67E729C4D00C00500B04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E6A67E929C4D00C00500B04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,7 +105,7 @@
 		5E6A67FC29C4D00C00500B04 /* FootballMatchSimulationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballMatchSimulationUITests.swift; sourceTree = "<group>"; };
 		5E6A67FE29C4D00C00500B04 /* FootballMatchSimulationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballMatchSimulationUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5E6A680B29C4D25B00500B04 /* Teams.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Teams.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
-		5E6A681429C4E1CB00500B04 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
+		5E6A681429C4E1CB00500B04 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		5E6A681629C4F1D000500B04 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		5E6A681A29C5D6C500500B04 /* PlayerPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPosition.swift; sourceTree = "<group>"; };
 		5E6A681C29C5DA2700500B04 /* PlayerPositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPositionTests.swift; sourceTree = "<group>"; };
@@ -103,8 +114,8 @@
 		5E6A682429C5EFC800500B04 /* DoubleHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleHelperTests.swift; sourceTree = "<group>"; };
 		5E6A682629C645DD00500B04 /* RoundCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCard.swift; sourceTree = "<group>"; };
 		5E6A682929C6460E00500B04 /* RoundCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoundCard.xib; sourceTree = "<group>"; };
-		5E6A682D29C64DB000500B04 /* FinalsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalsCard.swift; sourceTree = "<group>"; };
-		5E6A682F29C64DE200500B04 /* FinalsCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalsCard.xib; sourceTree = "<group>"; };
+		5E6A682D29C64DB000500B04 /* GameRoundCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoundCard.swift; sourceTree = "<group>"; };
+		5E6A682F29C64DE200500B04 /* GameRoundCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameRoundCard.xib; sourceTree = "<group>"; };
 		5E6A683229C6537A00500B04 /* StandingsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCard.swift; sourceTree = "<group>"; };
 		5E6A683429C653B800500B04 /* StandingsCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StandingsCard.xib; sourceTree = "<group>"; };
 		5E6A683629C6608400500B04 /* StandingsCardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCardRow.swift; sourceTree = "<group>"; };
@@ -139,6 +150,19 @@
 		5ED4720829C9F3CB00D8F664 /* MockedPlayingTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedPlayingTeam.swift; sourceTree = "<group>"; };
 		5ED4720C29CA2C7200D8F664 /* RoundCardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCardCollectionView.swift; sourceTree = "<group>"; };
 		5ED4721129CA33EC00D8F664 /* RoundCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCardCell.swift; sourceTree = "<group>"; };
+		5ED4721629CAF88B00D8F664 /* RoundGamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundGamesViewController.swift; sourceTree = "<group>"; };
+		5ED4721929CAF90A00D8F664 /* RoundGamesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundGamesViewModel.swift; sourceTree = "<group>"; };
+		5ED4721B29CAFC6500D8F664 /* RoundCardCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCardCollectionViewModel.swift; sourceTree = "<group>"; };
+		5ED4721D29CB02A800D8F664 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
+		5ED4721F29CB0AC200D8F664 /* RoundCardCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCardCellViewModel.swift; sourceTree = "<group>"; };
+		5ED4722229CB0C3800D8F664 /* RoundCardRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCardRowViewModel.swift; sourceTree = "<group>"; };
+		5ED4722529CB0FDD00D8F664 /* RoundCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCardViewModel.swift; sourceTree = "<group>"; };
+		5ED4722A29CB16EE00D8F664 /* RoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundModel.swift; sourceTree = "<group>"; };
+		5ED4722D29CB2EC400D8F664 /* RoundGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundGenerator.swift; sourceTree = "<group>"; };
+		5ED4722F29CB4D3A00D8F664 /* RoundGamesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundGamesCollectionView.swift; sourceTree = "<group>"; };
+		5ED4723129CB4DA700D8F664 /* RoundGamesCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundGamesCollectionViewModel.swift; sourceTree = "<group>"; };
+		5ED4723329CB4F7F00D8F664 /* RoundGameCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundGameCellViewModel.swift; sourceTree = "<group>"; };
+		5ED4723529CB504700D8F664 /* RoundGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundGameCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,8 +258,10 @@
 		5E6A680E29C4E10000500B04 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5E6A681429C4E1CB00500B04 /* TeamModel.swift */,
+				5E6A681429C4E1CB00500B04 /* Team.swift */,
 				5E6A681A29C5D6C500500B04 /* PlayerPosition.swift */,
+				5ED4721D29CB02A800D8F664 /* TeamModel.swift */,
+				5ED4722A29CB16EE00D8F664 /* RoundModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -243,7 +269,9 @@
 		5E6A680F29C4E10F00500B04 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				5ED4722C29CB2EB300D8F664 /* RoundGenerator */,
 				5E6A681E29C5DF0D00500B04 /* HomeScreen */,
+				5ED4721829CAF8ED00D8F664 /* Round Games */,
 				5ED4720B29CA2AFB00D8F664 /* Cards */,
 				5ED4720A29CA132700D8F664 /* GameSimulation */,
 			);
@@ -255,6 +283,7 @@
 			children = (
 				5E6A681129C4E14400500B04 /* Storyboards */,
 				5E6A681329C4E19B00500B04 /* HomeScreen */,
+				5ED4721529CAF85E00D8F664 /* Round Games */,
 				5E6A682829C645EE00500B04 /* Cards */,
 				5E6A685B29C777E700500B04 /* GameSimulation */,
 			);
@@ -264,7 +293,6 @@
 		5E6A681129C4E14400500B04 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				5E6A67E129C4D00900500B04 /* Main.storyboard */,
 				5E6A67E629C4D00C00500B04 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -302,6 +330,8 @@
 			isa = PBXGroup;
 			children = (
 				5E6A681F29C5DF2500500B04 /* HomeScreenViewModel.swift */,
+				5ED4721B29CAFC6500D8F664 /* RoundCardCollectionViewModel.swift */,
+				5ED4721F29CB0AC200D8F664 /* RoundCardCellViewModel.swift */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -322,7 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				5E6A682B29C64D9200500B04 /* Round Card */,
-				5E6A682C29C64D9B00500B04 /* Finals Card */,
+				5E6A682C29C64D9B00500B04 /* Game Round Card */,
 				5E6A683129C6533A00500B04 /* Standings */,
 			);
 			path = Cards;
@@ -337,13 +367,13 @@
 			path = "Round Card";
 			sourceTree = "<group>";
 		};
-		5E6A682C29C64D9B00500B04 /* Finals Card */ = {
+		5E6A682C29C64D9B00500B04 /* Game Round Card */ = {
 			isa = PBXGroup;
 			children = (
-				5E6A682D29C64DB000500B04 /* FinalsCard.swift */,
-				5E6A682F29C64DE200500B04 /* FinalsCard.xib */,
+				5E6A682D29C64DB000500B04 /* GameRoundCard.swift */,
+				5E6A682F29C64DE200500B04 /* GameRoundCard.xib */,
 			);
-			path = "Finals Card";
+			path = "Game Round Card";
 			sourceTree = "<group>";
 		};
 		5E6A683129C6533A00500B04 /* Standings */ = {
@@ -465,6 +495,8 @@
 		5ED4720B29CA2AFB00D8F664 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				5ED4722429CB0F9700D8F664 /* Card */,
+				5ED4722129CB0C1D00D8F664 /* Card Row */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -476,6 +508,50 @@
 				5ED4721129CA33EC00D8F664 /* RoundCardCell.swift */,
 			);
 			path = "ReoundCard CollectionView";
+			sourceTree = "<group>";
+		};
+		5ED4721529CAF85E00D8F664 /* Round Games */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4721629CAF88B00D8F664 /* RoundGamesViewController.swift */,
+				5ED4722F29CB4D3A00D8F664 /* RoundGamesCollectionView.swift */,
+				5ED4723529CB504700D8F664 /* RoundGameCell.swift */,
+			);
+			path = "Round Games";
+			sourceTree = "<group>";
+		};
+		5ED4721829CAF8ED00D8F664 /* Round Games */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4721929CAF90A00D8F664 /* RoundGamesViewModel.swift */,
+				5ED4723129CB4DA700D8F664 /* RoundGamesCollectionViewModel.swift */,
+				5ED4723329CB4F7F00D8F664 /* RoundGameCellViewModel.swift */,
+			);
+			path = "Round Games";
+			sourceTree = "<group>";
+		};
+		5ED4722129CB0C1D00D8F664 /* Card Row */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4722229CB0C3800D8F664 /* RoundCardRowViewModel.swift */,
+			);
+			path = "Card Row";
+			sourceTree = "<group>";
+		};
+		5ED4722429CB0F9700D8F664 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4722529CB0FDD00D8F664 /* RoundCardViewModel.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		5ED4722C29CB2EB300D8F664 /* RoundGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4722D29CB2EC400D8F664 /* RoundGenerator.swift */,
+			);
+			path = RoundGenerator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -587,12 +663,11 @@
 				5E6A680C29C4D25B00500B04 /* Teams.json in Resources */,
 				5E6A683929C660B800500B04 /* StandingsCardRow.xib in Resources */,
 				5E6A67E829C4D00C00500B04 /* LaunchScreen.storyboard in Resources */,
-				5E6A683029C64DE200500B04 /* FinalsCard.xib in Resources */,
+				5E6A683029C64DE200500B04 /* GameRoundCard.xib in Resources */,
 				5E6A67E529C4D00C00500B04 /* Assets.xcassets in Resources */,
 				5ED471FE29C8CEEE00D8F664 /* Paris_Saint-Germain.png in Resources */,
 				5E6A683D29C66E7700500B04 /* RoundCardRow.xib in Resources */,
 				5ED471FD29C8CEEE00D8F664 /* Ajax.png in Resources */,
-				5E6A67E329C4D00900500B04 /* Main.storyboard in Resources */,
 				5ED471FF29C8CEEE00D8F664 /* FC_Barcelona.png in Resources */,
 				5E6A682A29C6460E00500B04 /* RoundCard.xib in Resources */,
 			);
@@ -619,37 +694,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ED4723229CB4DA700D8F664 /* RoundGamesCollectionViewModel.swift in Sources */,
 				5E6A683329C6537A00500B04 /* StandingsCard.swift in Sources */,
 				5ED471ED29C8597A00D8F664 /* GameSimulationViewModel.swift in Sources */,
 				5ED471F229C8BC0700D8F664 /* HudViewModel.swift in Sources */,
 				5E6A682329C5E8BF00500B04 /* DoubleHelper.swift in Sources */,
+				5ED4723429CB4F7F00D8F664 /* RoundGameCellViewModel.swift in Sources */,
 				5E6A685829C769E500500B04 /* GameSimulation.swift in Sources */,
+				5ED4721A29CAF90A00D8F664 /* RoundGamesViewModel.swift in Sources */,
+				5ED4721C29CAFC6500D8F664 /* RoundCardCollectionViewModel.swift in Sources */,
 				5ED471F729C8C95500D8F664 /* TeamViewModel.swift in Sources */,
 				5E6A684E29C74B3200500B04 /* AthleticDecay.swift in Sources */,
 				5E6A685A29C777E100500B04 /* GameSimulationViewController.swift in Sources */,
 				5E6A681729C4F1D000500B04 /* DataLoader.swift in Sources */,
+				5ED4722B29CB16EE00D8F664 /* RoundModel.swift in Sources */,
 				5E6A685029C758EA00500B04 /* CurrentTeam.swift in Sources */,
 				5E6A684129C71D6E00500B04 /* PlayingTeam.swift in Sources */,
 				5ED4720429C9D28400D8F664 /* EventHelper.swift in Sources */,
 				5ED4721329CA33EC00D8F664 /* RoundCardCell.swift in Sources */,
-				5E6A682E29C64DB000500B04 /* FinalsCard.swift in Sources */,
+				5E6A682E29C64DB000500B04 /* GameRoundCard.swift in Sources */,
 				5E6A684A29C7425100500B04 /* SkillPower.swift in Sources */,
+				5ED4722029CB0AC200D8F664 /* RoundCardCellViewModel.swift in Sources */,
 				5E6A685F29C7795200500B04 /* ViewHelper.swift in Sources */,
+				5ED4721729CAF88B00D8F664 /* RoundGamesViewController.swift in Sources */,
 				5E6A682729C645DE00500B04 /* RoundCard.swift in Sources */,
 				5E6A681B29C5D6C500500B04 /* PlayerPosition.swift in Sources */,
+				5ED4722E29CB2EC500D8F664 /* RoundGenerator.swift in Sources */,
 				5E6A684629C7395600500B04 /* FoulChecker.swift in Sources */,
 				5E6A682029C5DF2500500B04 /* HomeScreenViewModel.swift in Sources */,
 				5E6A67E029C4D00900500B04 /* HomeScreenViewController.swift in Sources */,
 				5E6A683B29C66E5000500B04 /* RoundCardRow.swift in Sources */,
 				5E6A67DC29C4D00900500B04 /* AppDelegate.swift in Sources */,
-				5E6A681529C4E1CB00500B04 /* TeamModel.swift in Sources */,
+				5ED4723029CB4D3A00D8F664 /* RoundGamesCollectionView.swift in Sources */,
+				5E6A681529C4E1CB00500B04 /* Team.swift in Sources */,
 				5E6A684429C738F200500B04 /* YellowCardTracker.swift in Sources */,
+				5ED4722629CB0FDD00D8F664 /* RoundCardViewModel.swift in Sources */,
+				5ED4723629CB504700D8F664 /* RoundGameCell.swift in Sources */,
 				5E6A685D29C778E300500B04 /* ColorHelper.swift in Sources */,
 				5E6A684C29C7467100500B04 /* Players.swift in Sources */,
 				5E6A683729C6608400500B04 /* StandingsCardRow.swift in Sources */,
 				5ED4720D29CA2C7200D8F664 /* RoundCardCollectionView.swift in Sources */,
 				5ED4720229C8D09100D8F664 /* ImageHelper.swift in Sources */,
 				5E6A67DE29C4D00900500B04 /* SceneDelegate.swift in Sources */,
+				5ED4721E29CB02A800D8F664 /* TeamModel.swift in Sources */,
+				5ED4722329CB0C3800D8F664 /* RoundCardRowViewModel.swift in Sources */,
 				5ED471F529C8C91D00D8F664 /* TeamView.swift in Sources */,
 				5E6A684829C739F100500B04 /* PositionPlays.swift in Sources */,
 				5ED471F029C8BBF300D8F664 /* HudView.swift in Sources */,
@@ -693,14 +781,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5E6A67E129C4D00900500B04 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5E6A67E229C4D00900500B04 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5E6A67E629C4D00C00500B04 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -838,7 +918,7 @@
 				INFOPLIST_FILE = FootballMatchSimulation/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -866,7 +946,7 @@
 				INFOPLIST_FILE = FootballMatchSimulation/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (

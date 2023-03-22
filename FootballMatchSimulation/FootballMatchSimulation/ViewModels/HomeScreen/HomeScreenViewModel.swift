@@ -15,7 +15,15 @@ class HomeScreenViewModel: ObservableObject {
   
   // MARK: - Properties
   
-  @Published var teams: [Team] = []
+  var teams: [Team] = [] {
+    didSet {
+      createTeamModels()
+    }
+  }
+  
+  @Published var teamModels: [TeamModel] = []
+  
+  @Published var rounds: [Round] = []
   
   
   
@@ -26,6 +34,33 @@ class HomeScreenViewModel: ObservableObject {
       self.teams = teams
     }
   }
+  
+  func createTeamModels() {
+    var models: [TeamModel] = []
+    
+    for team in teams {
+      let model = buildTeamModel(from: team)
+      models.append(model)
+    }
+    teamModels = models
+  }
+  
+  func buildTeamModel(from team: Team) -> TeamModel {
+    return TeamModel(
+      name: team.name, stadium: team.stadium,
+      imageName: team.image_name,
+      keeper: team.keeper, defenders: team.defenders,
+      midfielders: team.midfielders, attackers: team.attackers)
+  }
+  
+  
+  // MARK: - Load Rounds
+  
+  func generateRounds(_ models: [TeamModel]) {
+    let generator = RoundGenerator()
+    rounds = generator.getRounds(with: models)
+  }
+  
   
   
 }

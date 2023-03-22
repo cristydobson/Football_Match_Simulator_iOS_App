@@ -1,9 +1,10 @@
 //
-//  RoundCardCollectionView.swift
+//  RoundGamesCollectionView.swift
 //  FootballMatchSimulation
 //
-//  Created by Cristina Dobson on 3/21/23.
+//  Created by Cristina Dobson on 3/22/23.
 //
+
 
 
 import Foundation
@@ -11,8 +12,8 @@ import UIKit
 import Combine
 
 
-class RoundCardCollectionView: UIView {
-  
+class RoundGamesCollectionView: UIView {
+
   
   // MARK: - Properties
   
@@ -20,15 +21,10 @@ class RoundCardCollectionView: UIView {
   private var controller: UIViewController!
   
   var collectionView: UICollectionView!
-  let cellID = "RoundCardCell"
+  let cellID = "RoundGameCardCell"
   
-  private var viewModel = RoundCardCollectionViewModel()
-     
-  var rounds: [Round]! {
-    didSet {
-      viewModel.loadCellViewModels(from: rounds)
-    }
-  }
+  private var viewModel = RoundGamesCollectionViewModel()
+  var round: Round!
   
   
   // MARK: - Init Method
@@ -41,15 +37,17 @@ class RoundCardCollectionView: UIView {
     super.init(coder: coder)
   }
   
-  convenience init(frame: CGRect, controller: UIViewController) {
+  convenience init(frame: CGRect, controller: UIViewController, round: Round) {
     self.init(frame: frame)
     self.controller = controller
+    self.round = round
     
     setupView()
     setupCollectionView()
     
     setupBindings()
     
+    viewModel.loadCellViewModels(from: round)
   }
   
   
@@ -79,33 +77,40 @@ class RoundCardCollectionView: UIView {
     collectionView.delegate = self
     
     // Register the CollectionView's cell
-    collectionView.register(RoundCardCell.self, forCellWithReuseIdentifier: cellID)
+    collectionView.register(RoundGameCell.self, forCellWithReuseIdentifier: cellID)
     
     // Add CollectionView to current View
     addSubview(collectionView)
-
+    
   }
   
   
-  // MARK: - Bindings
-  
   func setupBindings() {
-
+    
     viewModel.$cellViewModels.sink { [weak self] _ in
       DispatchQueue.main.async {
         self?.collectionView.reloadData()
       }
     }.store(in: &subscriptions)
     
+    
+    
   }
   
   
   // MARK: - Navigation
   
-  func pushRoundGamesViewController(for indexPath: IndexPath) {
-    let viewController = RoundGamesViewController()
-    viewController.round = rounds[indexPath.row]
-    controller.navigationController?.pushViewController(viewController, animated: true)
+  func presentGameViewController(for indexPath: IndexPath) {
+    let viewController = GameSimulationViewController()
+    viewController.modalPresentationStyle = .fullScreen
+    
+    let match = round.matches[indexPath.row]
+    let team1 = PlayingTeam(team: match.teams[0])
+    let team2 = PlayingTeam(team: match.teams[1])
+    
+    viewController.teams = [team1, team2]
+    
+    controller.present(viewController, animated: true)
   }
   
   
@@ -114,7 +119,7 @@ class RoundCardCollectionView: UIView {
 
 // MARK: - UICollectionViewDataSource
 
-extension RoundCardCollectionView: UICollectionViewDataSource {
+extension RoundGamesCollectionView: UICollectionViewDataSource {
   
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
@@ -125,10 +130,18 @@ extension RoundCardCollectionView: UICollectionViewDataSource {
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+    
     let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: cellID, for: indexPath) as! RoundCardCell
+      withReuseIdentifier: cellID, for: indexPath) as! RoundGameCell
     cell.viewModel = viewModel.getCellViewModel(at: indexPath)
+    
+    cell.$cellTapped.sink { [weak self] flag in
+      DispatchQueue.main.async {
+        if flag {
+          self?.presentGameViewController(for: indexPath)
+        }
+      }
+    }.store(in: &subscriptions)
     
     return cell
   }
@@ -138,10 +151,9 @@ extension RoundCardCollectionView: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 
-extension RoundCardCollectionView: UICollectionViewDelegate {
+extension RoundGamesCollectionView: UICollectionViewDelegate {
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    pushRoundGamesViewController(for: indexPath)
   }
   
   func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
@@ -161,18 +173,4 @@ extension RoundCardCollectionView: UICollectionViewDelegate {
   }
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
