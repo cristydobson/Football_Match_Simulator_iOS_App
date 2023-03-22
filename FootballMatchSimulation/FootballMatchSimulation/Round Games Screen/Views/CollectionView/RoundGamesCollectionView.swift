@@ -21,7 +21,7 @@ class RoundGamesCollectionView: UIView {
   private var controller: UIViewController!
   
   var collectionView: UICollectionView!
-  let cellID = "RoundGameCardCell"
+  let cellID = "RoundGameCell"
   
   private var viewModel = RoundGamesCollectionViewModel()
   var round: Round!
@@ -58,21 +58,19 @@ class RoundGamesCollectionView: UIView {
   }
   
   func setupCollectionView() {
-    
-    let cellWidth = frame.width-24
-    
+
     // CollectionView Layout
-    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    layout.sectionInset = UIEdgeInsets(
-      top: 20, left: 0, bottom: 20, right: 0)
-    layout.minimumLineSpacing = 0
-    layout.itemSize = CGSize(width: cellWidth, height: cellWidth*0.7)
-    
+    let layout = CollectionViewHelper.createLayout(
+      for: frame, andHeight: 0.8)
     
     // Instantiate CollectionView
-    collectionView = UICollectionView(
-      frame: frame, collectionViewLayout: layout)
-    collectionView.backgroundColor = .clear
+    collectionView = CollectionViewHelper.createCollectionView(
+      with: frame, andLayout: layout)
+    
+    // Style
+    collectionView.showsVerticalScrollIndicator = false
+    
+    // Setup Delegates
     collectionView.dataSource = self
     collectionView.delegate = self
     
@@ -93,14 +91,13 @@ class RoundGamesCollectionView: UIView {
       }
     }.store(in: &subscriptions)
     
-    
-    
   }
   
   
   // MARK: - Navigation
   
   func presentGameViewController(for indexPath: IndexPath) {
+    
     let viewController = GameSimulationViewController()
     viewController.modalPresentationStyle = .fullScreen
     
@@ -119,7 +116,7 @@ class RoundGamesCollectionView: UIView {
 
 // MARK: - UICollectionViewDataSource
 
-extension RoundGamesCollectionView: UICollectionViewDataSource {
+extension RoundGamesCollectionView: UICollectionViewDataSource, UICollectionViewDelegate {
   
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
@@ -133,6 +130,7 @@ extension RoundGamesCollectionView: UICollectionViewDataSource {
     
     let cell = collectionView.dequeueReusableCell(
       withReuseIdentifier: cellID, for: indexPath) as! RoundGameCell
+    
     cell.viewModel = viewModel.getCellViewModel(at: indexPath)
     
     cell.$cellTapped.sink { [weak self] flag in
@@ -148,29 +146,4 @@ extension RoundGamesCollectionView: UICollectionViewDataSource {
   
 }
 
-
-// MARK: - UICollectionViewDelegate
-
-extension RoundGamesCollectionView: UICollectionViewDelegate {
-  
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-    
-    if let cell = collectionView.cellForItem(at: indexPath) {
-      
-      UIView.animate(withDuration: 0.2, animations: {
-        cell.alpha = 0.5
-      }) { (_) in
-        UIView.animate(withDuration: 0.2) {
-          cell.alpha = 1.0
-        }
-      }
-    }
-    
-    return true
-  }
-  
-}
 

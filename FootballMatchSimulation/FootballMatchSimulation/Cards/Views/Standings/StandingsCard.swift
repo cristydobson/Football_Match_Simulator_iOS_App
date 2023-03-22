@@ -54,21 +54,21 @@ class StandingsCard: UIView {
     
     
     NSLayoutConstraint.activate([
-      row1.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-      row1.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-      row1.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 4),
+      row1.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+      row1.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+      row1.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 16),
       
-      row2.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-      row2.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-      row2.topAnchor.constraint(equalTo: row1.bottomAnchor, constant: 4),
+      row2.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+      row2.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+      row2.topAnchor.constraint(equalTo: row1.bottomAnchor, constant: 8),
       
-      row3.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-      row3.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-      row3.topAnchor.constraint(equalTo: row2.bottomAnchor, constant: 4),
+      row3.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+      row3.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+      row3.topAnchor.constraint(equalTo: row2.bottomAnchor, constant: 8),
       
-      row4.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-      row4.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-      row4.topAnchor.constraint(equalTo: row3.bottomAnchor, constant: 4)
+      row4.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+      row4.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+      row4.topAnchor.constraint(equalTo: row3.bottomAnchor, constant: 8)
     ])
     
   }

@@ -25,11 +25,8 @@ class RoundGameCell: UICollectionViewCell {
   
   var viewModel: RoundGameCellViewModel? {
     didSet {
-      gameCard.team1NameLabel.text = viewModel?.team1Name
-      gameCard.team1ImageView.image = viewModel?.team1Logo
-      
-      gameCard.team2NameLabel.text = viewModel?.team2Name
-      gameCard.team2ImageView.image = viewModel?.team2Logo
+      let cardViewModel = viewModel?.createGameCardViewModel()
+      gameCard.viewModel = cardViewModel
     }
   }
   
@@ -40,12 +37,21 @@ class RoundGameCell: UICollectionViewCell {
     super.init(frame: frame)
     
     addViews()
+    setupView()
     
     setupBindings()
   }
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
+  }
+  
+  
+  // MARK: - Setup Methods
+  
+  func setupView() {
+    gameCard.addCornerRadius(5)
+    gameCard.addBorderStyle(borderWidth: 1, borderColor: .alphaDarkBlue)
   }
   
   func addViews() {
@@ -61,7 +67,6 @@ class RoundGameCell: UICollectionViewCell {
       gameCard.topAnchor.constraint(equalTo: topAnchor, constant: 24),
       gameCard.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24)
     ])
-    
     
   }
   
@@ -79,7 +84,5 @@ class RoundGameCell: UICollectionViewCell {
     }.store(in: &subscriptions)
     
   }
-  
-  
   
 }

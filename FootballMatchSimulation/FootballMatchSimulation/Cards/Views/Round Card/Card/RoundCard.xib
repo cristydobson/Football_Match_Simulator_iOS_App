@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,34 +16,31 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ROUND 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIa-b8-Z6R">
-                            <rect key="frame" x="24" y="21.666666666666671" width="71.666666666666671" height="20.333333333333329"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <rect key="frame" x="24" y="11.999999999999998" width="93" height="26.333333333333329"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poc-Lb-WOX">
-                            <rect key="frame" x="316.66666666666669" y="7.6666666666666679" width="64.333333333333314" height="34.333333333333329"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="PLAY"/>
-                            <connections>
-                                <action selector="playButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="eE0-iG-Rgv"/>
-                            </connections>
-                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z19-qh-ipz">
+                            <rect key="frame" x="24" y="49" width="345" height="1"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="BfJ-Xt-vms"/>
+                            </constraints>
+                        </view>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="gIa-b8-Z6R" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tGf-Is-Dt6" secondAttribute="top" id="3aQ-eP-0Eq"/>
-                        <constraint firstItem="poc-Lb-WOX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gIa-b8-Z6R" secondAttribute="trailing" constant="4" id="3na-XE-g6n"/>
-                        <constraint firstAttribute="bottom" secondItem="gIa-b8-Z6R" secondAttribute="bottom" constant="8" id="LXV-na-WyB"/>
-                        <constraint firstAttribute="bottom" secondItem="poc-Lb-WOX" secondAttribute="bottom" constant="8" id="SgX-1N-m7A"/>
+                        <constraint firstAttribute="bottom" secondItem="z19-qh-ipz" secondAttribute="bottom" id="Ej3-4i-gRX"/>
+                        <constraint firstItem="gIa-b8-Z6R" firstAttribute="centerY" secondItem="tGf-Is-Dt6" secondAttribute="centerY" id="Zam-AI-Elo"/>
                         <constraint firstAttribute="height" constant="50" id="g4n-N7-vN1"/>
+                        <constraint firstAttribute="trailing" secondItem="z19-qh-ipz" secondAttribute="trailing" constant="24" id="gZu-Ty-YlQ"/>
+                        <constraint firstItem="z19-qh-ipz" firstAttribute="leading" secondItem="tGf-Is-Dt6" secondAttribute="leading" constant="24" id="hyk-Vu-W3Z"/>
                         <constraint firstItem="gIa-b8-Z6R" firstAttribute="leading" secondItem="tGf-Is-Dt6" secondAttribute="leading" constant="24" id="qJk-0G-awP"/>
-                        <constraint firstItem="poc-Lb-WOX" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tGf-Is-Dt6" secondAttribute="top" id="xz3-Jc-fGR"/>
-                        <constraint firstAttribute="trailing" secondItem="poc-Lb-WOX" secondAttribute="trailing" constant="12" id="zp4-eB-lJV"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="tGf-Is-Dt6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VpI-ys-va8"/>
                 <constraint firstItem="tGf-Is-Dt6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yJS-Bu-KTz"/>
@@ -53,15 +49,10 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="headerContainerView" destination="tGf-Is-Dt6" id="N8K-Ek-Oe5"/>
-                <outlet property="playButton" destination="poc-Lb-WOX" id="cYN-Dl-7al"/>
+                <outlet property="separatorView" destination="z19-qh-ipz" id="Dyj-jq-rfT"/>
                 <outlet property="titleLabel" destination="gIa-b8-Z6R" id="gYk-tP-Ua2"/>
             </connections>
             <point key="canvasLocation" x="139.69465648854961" y="-0.35211267605633806"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

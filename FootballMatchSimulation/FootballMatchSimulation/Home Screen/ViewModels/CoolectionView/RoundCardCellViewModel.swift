@@ -15,14 +15,18 @@ class RoundCardCellViewModel {
   // MARK: - Properties
   
   let roundName: String
-  let games: [RoundCardRowViewModel]
+  let matches: [Round.Match]
   
   
   // MARK: - Methods
 
-  init(roundName: String, games: [RoundCardRowViewModel]) {
+  init(roundName: String, matches: [Round.Match]) {
     self.roundName = roundName
-    self.games = games
+    self.matches = matches
+  }
+  
+  func createRoundCardViewModel() -> RoundCardViewModel {
+    return RoundCardViewModel(title: roundName, matches: matches)
   }
   
   

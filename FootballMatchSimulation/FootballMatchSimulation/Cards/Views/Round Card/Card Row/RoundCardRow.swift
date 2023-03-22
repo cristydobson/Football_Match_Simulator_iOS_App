@@ -22,17 +22,18 @@ class RoundCardRow: UIView {
   @IBOutlet weak var teamTwoNameLabel: UILabel!
   @IBOutlet weak var teamTwoScoreLabel: UILabel!
   
+  
   var viewModel: RoundCardRowViewModel? {
     didSet {
       // Team 1
-      teamOneNameLabel.text = viewModel?.team1Name
-      teamOneLogo.image = viewModel?.team1Logo
-      teamOneScoreLabel.text = viewModel?.team1ScoreString
+      teamOneNameLabel.text = viewModel?.teamName(at: 0)
+      teamOneLogo.image = viewModel?.teamImage(at: 0)
+      teamOneScoreLabel.text = viewModel?.teamScore(at: 0)
       
       // Team 2
-      teamTwoNameLabel.text = viewModel?.team2Name
-      teamTwoLogo.image = viewModel?.team2Logo
-      teamTwoScoreLabel.text = viewModel?.team2ScoreString
+      teamTwoNameLabel.text = viewModel?.teamName(at: 1)
+      teamTwoLogo.image = viewModel?.teamImage(at: 1)
+      teamTwoScoreLabel.text = viewModel?.teamScore(at: 1)
     }
   }
   
@@ -42,8 +43,6 @@ class RoundCardRow: UIView {
   override func awakeFromNib() {
     super.awakeFromNib()
   }
-  
-  
   
 
 }

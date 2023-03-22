@@ -7,25 +7,21 @@
 
 
 import UIKit
-import Combine
 
 
 class RoundCardCell: UICollectionViewCell {
 
   
   // MARK: - Properties
-  
-  private var subscriptions = Set<AnyCancellable>()
-  
+    
   var roundCard: RoundCard!
   
   var viewModel: RoundCardCellViewModel? {
     didSet {
-      roundCard.titleLabel.text = viewModel?.roundName
-      roundCard.loadRows(withModels: viewModel?.games)
+      let cardViewModel = viewModel?.createRoundCardViewModel()
+      roundCard.viewModel = cardViewModel
     }
   }
-  
   
   
   // MARK: - Init Methods
@@ -34,8 +30,8 @@ class RoundCardCell: UICollectionViewCell {
     super.init(frame: frame)
     
     addViews()
+    setupView()
     
-    setupBindings()
   }
   
   required init?(coder: NSCoder) {
@@ -44,6 +40,11 @@ class RoundCardCell: UICollectionViewCell {
   
   
   // MARK: - Setup Methods
+  
+  func setupView() {
+    roundCard.addCornerRadius(5)
+    roundCard.addBorderStyle(borderWidth: 1, borderColor: .alphaDarkBlue)
+  }
   
   func addViews() {
     
@@ -61,20 +62,6 @@ class RoundCardCell: UICollectionViewCell {
     ])
     
   }
-  
-  
-  // MARK: - Bindings
-  
-  func setupBindings() {
-    
-    roundCard.$playButtonTapped.sink { [weak self] flag in
-      if flag {
-        self?.roundCard.playButtonTapped = false
-        print("PRESENT ROUND VC!!!!!!")
-      }
-    }.store(in: &subscriptions)
-    
-  }
-  
+
 
 }

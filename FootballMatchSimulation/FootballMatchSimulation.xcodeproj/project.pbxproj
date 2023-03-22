@@ -73,6 +73,8 @@
 		5ED4723229CB4DA700D8F664 /* RoundGamesCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4723129CB4DA700D8F664 /* RoundGamesCollectionViewModel.swift */; };
 		5ED4723429CB4F7F00D8F664 /* RoundGameCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4723329CB4F7F00D8F664 /* RoundGameCellViewModel.swift */; };
 		5ED4723629CB504700D8F664 /* RoundGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4723529CB504700D8F664 /* RoundGameCell.swift */; };
+		5ED4724029CB68F900D8F664 /* CollectionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4723F29CB68F900D8F664 /* CollectionViewHelper.swift */; };
+		5ED4724229CB798500D8F664 /* GameRoundCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4724129CB798500D8F664 /* GameRoundCardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +165,8 @@
 		5ED4723129CB4DA700D8F664 /* RoundGamesCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundGamesCollectionViewModel.swift; sourceTree = "<group>"; };
 		5ED4723329CB4F7F00D8F664 /* RoundGameCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundGameCellViewModel.swift; sourceTree = "<group>"; };
 		5ED4723529CB504700D8F664 /* RoundGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundGameCell.swift; sourceTree = "<group>"; };
+		5ED4723F29CB68F900D8F664 /* CollectionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHelper.swift; sourceTree = "<group>"; };
+		5ED4724129CB798500D8F664 /* GameRoundCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoundCardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,8 +226,7 @@
 				5ED4723729CB61F600D8F664 /* Home Screen */,
 				5ED4723A29CB628000D8F664 /* Round Games Screen */,
 				5ED4720A29CA132700D8F664 /* GameSimulation Screen */,
-				5ED4720B29CA2AFB00D8F664 /* Cards ViewModels */,
-				5ED4723D29CB642B00D8F664 /* Cards Views */,
+				5ED4723E29CB66CD00D8F664 /* Cards */,
 				5E6A682129C5E89900500B04 /* Helpers */,
 				5E6A681029C4E12F00500B04 /* Storyboards */,
 				5E6A681229C4E15500500B04 /* Resources */,
@@ -302,7 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				5E6A67DF29C4D00900500B04 /* HomeScreenViewController.swift */,
-				5ED4720E29CA2F2E00D8F664 /* ReoundCard CollectionView */,
+				5ED4720E29CA2F2E00D8F664 /* RoundCard CollectionView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,18 +335,9 @@
 				5E6A685E29C7795100500B04 /* ViewHelper.swift */,
 				5ED4720129C8D09100D8F664 /* ImageHelper.swift */,
 				5ED4720329C9D28400D8F664 /* EventHelper.swift */,
+				5ED4723F29CB68F900D8F664 /* CollectionViewHelper.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		5E6A682829C645EE00500B04 /* Cards */ = {
-			isa = PBXGroup;
-			children = (
-				5E6A682B29C64D9200500B04 /* Round Card */,
-				5E6A682C29C64D9B00500B04 /* Game Round Card */,
-				5E6A683129C6533A00500B04 /* Standings */,
-			);
-			path = Cards;
 			sourceTree = "<group>";
 		};
 		5E6A682B29C64D9200500B04 /* Round Card */ = {
@@ -479,30 +473,30 @@
 			path = "GameSimulation Screen";
 			sourceTree = "<group>";
 		};
-		5ED4720B29CA2AFB00D8F664 /* Cards ViewModels */ = {
+		5ED4720B29CA2AFB00D8F664 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				5ED4722429CB0F9700D8F664 /* RoundCard */,
+				5ED4724329CB799B00D8F664 /* Game Round Card */,
 				5ED4723929CB623400D8F664 /* StandingsCard */,
 			);
-			path = "Cards ViewModels";
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		5ED4720E29CA2F2E00D8F664 /* ReoundCard CollectionView */ = {
+		5ED4720E29CA2F2E00D8F664 /* RoundCard CollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				5ED4720C29CA2C7200D8F664 /* RoundCardCollectionView.swift */,
 				5ED4721129CA33EC00D8F664 /* RoundCardCell.swift */,
 			);
-			path = "ReoundCard CollectionView";
+			path = "RoundCard CollectionView";
 			sourceTree = "<group>";
 		};
 		5ED4721529CAF85E00D8F664 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				5ED4721629CAF88B00D8F664 /* RoundGamesViewController.swift */,
-				5ED4722F29CB4D3A00D8F664 /* RoundGamesCollectionView.swift */,
-				5ED4723529CB504700D8F664 /* RoundGameCell.swift */,
+				5ED4724429CB7BE600D8F664 /* CollectionView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -594,12 +588,40 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		5ED4723D29CB642B00D8F664 /* Cards Views */ = {
+		5ED4723D29CB642B00D8F664 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5E6A682829C645EE00500B04 /* Cards */,
+				5E6A682B29C64D9200500B04 /* Round Card */,
+				5E6A682C29C64D9B00500B04 /* Game Round Card */,
+				5E6A683129C6533A00500B04 /* Standings */,
 			);
-			path = "Cards Views";
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5ED4723E29CB66CD00D8F664 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4720B29CA2AFB00D8F664 /* ViewModels */,
+				5ED4723D29CB642B00D8F664 /* Views */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		5ED4724329CB799B00D8F664 /* Game Round Card */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4724129CB798500D8F664 /* GameRoundCardViewModel.swift */,
+			);
+			path = "Game Round Card";
+			sourceTree = "<group>";
+		};
+		5ED4724429CB7BE600D8F664 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4722F29CB4D3A00D8F664 /* RoundGamesCollectionView.swift */,
+				5ED4723529CB504700D8F664 /* RoundGameCell.swift */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -750,6 +772,7 @@
 				5ED4723429CB4F7F00D8F664 /* RoundGameCellViewModel.swift in Sources */,
 				5E6A685829C769E500500B04 /* GameSimulation.swift in Sources */,
 				5ED4721A29CAF90A00D8F664 /* RoundGamesViewModel.swift in Sources */,
+				5ED4724229CB798500D8F664 /* GameRoundCardViewModel.swift in Sources */,
 				5ED4721C29CAFC6500D8F664 /* RoundCardCollectionViewModel.swift in Sources */,
 				5ED471F729C8C95500D8F664 /* TeamViewModel.swift in Sources */,
 				5E6A684E29C74B3200500B04 /* AthleticDecay.swift in Sources */,
@@ -786,6 +809,7 @@
 				5E6A67DE29C4D00900500B04 /* SceneDelegate.swift in Sources */,
 				5ED4721E29CB02A800D8F664 /* TeamModel.swift in Sources */,
 				5ED4722329CB0C3800D8F664 /* RoundCardRowViewModel.swift in Sources */,
+				5ED4724029CB68F900D8F664 /* CollectionViewHelper.swift in Sources */,
 				5ED471F529C8C91D00D8F664 /* TeamView.swift in Sources */,
 				5E6A684829C739F100500B04 /* PositionPlays.swift in Sources */,
 				5ED471F029C8BBF300D8F664 /* HudView.swift in Sources */,

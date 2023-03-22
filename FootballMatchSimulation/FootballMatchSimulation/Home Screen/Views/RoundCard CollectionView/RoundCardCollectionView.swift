@@ -60,21 +60,22 @@ class RoundCardCollectionView: UIView {
   }
   
   func setupCollectionView() {
-    
-    let cellWidth = frame.width-24
-    
+
     // CollectionView Layout
-    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    layout.sectionInset = UIEdgeInsets(
-      top: 20, left: 0, bottom: 20, right: 0)
-    layout.minimumLineSpacing = 0
-    layout.itemSize = CGSize(width: cellWidth, height: cellWidth*0.7)
-    
+    let layout = CollectionViewHelper.createLayout(
+      for: frame, andHeight: 0.65)
     
     // Instantiate CollectionView
-    collectionView = UICollectionView(
-      frame: frame, collectionViewLayout: layout)
-    collectionView.backgroundColor = .clear
+    let collectionViewFrame = CGRect(
+      origin: CGPoint.zero, size: frame.size)
+    
+    collectionView = CollectionViewHelper.createCollectionView(
+      with: collectionViewFrame, andLayout: layout)
+    
+    // Style
+    collectionView.showsVerticalScrollIndicator = false
+    
+    // Setup Delegates
     collectionView.dataSource = self
     collectionView.delegate = self
     
@@ -103,8 +104,10 @@ class RoundCardCollectionView: UIView {
   // MARK: - Navigation
   
   func pushRoundGamesViewController(for indexPath: IndexPath) {
+    
     let viewController = RoundGamesViewController()
     viewController.round = rounds[indexPath.row]
+    
     controller.navigationController?.pushViewController(viewController, animated: true)
   }
   
@@ -128,6 +131,7 @@ extension RoundCardCollectionView: UICollectionViewDataSource {
 
     let cell = collectionView.dequeueReusableCell(
       withReuseIdentifier: cellID, for: indexPath) as! RoundCardCell
+    
     cell.viewModel = viewModel.getCellViewModel(at: indexPath)
     
     return cell
@@ -141,22 +145,15 @@ extension RoundCardCollectionView: UICollectionViewDataSource {
 extension RoundCardCollectionView: UICollectionViewDelegate {
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
     pushRoundGamesViewController(for: indexPath)
   }
   
   func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
     
     if let cell = collectionView.cellForItem(at: indexPath) {
-      
-      UIView.animate(withDuration: 0.2, animations: {
-        cell.alpha = 0.5
-      }) { (_) in
-        UIView.animate(withDuration: 0.2) {
-          cell.alpha = 1.0
-        }
-      }
+      ViewHelper.animateHighlight(for: cell)
     }
-    
     return true
   }
   

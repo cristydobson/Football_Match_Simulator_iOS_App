@@ -32,24 +32,8 @@ class RoundCardCollectionViewModel: ObservableObject {
   }
   
   func createCellViewModel(from round: Round) -> RoundCardCellViewModel {
-    var viewModels: [RoundCardRowViewModel] = []
     
-    for match in round.matches {
-      let viewModel = buildCardRowCellViewModel(from: match.teams)
-      viewModels.append(viewModel)
-    }
-    
-    return RoundCardCellViewModel(
-      roundName: round.name, games: viewModels)
-  }
-  
-  func buildCardRowCellViewModel(from teams: [TeamModel]) -> RoundCardRowViewModel {
-    let team1 = teams[0]
-    let team2 = teams[1]
-    
-    return RoundCardRowViewModel(
-      team1Name: team1.name, team1ImageName: team1.imageName, team1Score: 0,
-      team2Name: team2.name, team2ImageName: team2.imageName, team2Score: 0)
+    return RoundCardCellViewModel(roundName: round.name, matches: round.matches)
   }
   
   

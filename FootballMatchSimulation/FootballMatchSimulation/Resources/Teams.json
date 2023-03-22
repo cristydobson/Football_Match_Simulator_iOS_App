@@ -1,6 +1,7 @@
 [
   {
     "name": "Ajax",
+    "shortenedName": "Ajax",
     "stadium": "Johan Cruijff Arena",
     "image_name": "Ajax",
     "keeper": {
@@ -77,7 +78,8 @@
     ]
   },
   {
-    "name": "FC Barcelona",
+    "name": "Barcelona",
+    "shortenedName": "Barcelona",
     "stadium": "Spotify Camp Nou",
     "image_name": "FC_Barcelona",
     "keeper": {
@@ -155,6 +157,7 @@
   },
   {
     "name": "Paris Saint-Germain",
+    "shortenedName": "PSG",
     "stadium": "Parc des Princes",
     "image_name": "Paris_Saint-Germain",
     "keeper": {
@@ -232,6 +235,7 @@
   },
   {
     "name": "Bayern München",
+    "shortenedName": "Bayern",
     "stadium": "Allianz Arena",
     "image_name": "FC_Bayern",
     "keeper": {

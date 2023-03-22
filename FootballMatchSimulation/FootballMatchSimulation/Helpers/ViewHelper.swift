@@ -21,17 +21,51 @@ extension UIView {
     return widthAnchor.constraint(equalToConstant: constant)
   }
   
-  // Add a gradient color to the background view
-  func addGradientBackground() {
+  
+  // MARK: - Add Gradient to Background
+  
+  func addBlueGradientBackground() {
     let gradient = CAGradientLayer()
     gradient.frame = bounds
     gradient.colors = [
       UIColor.darkerBlue.cgColor,
       UIColor.mediumBlue.cgColor,
+      UIColor.darkerBlue.cgColor,
       UIColor.lightBlue.cgColor
     ]
-    gradient.locations = [0.30, 0.70, 1]
+    gradient.locations = [0.25, 0.50, 0.75, 1]
     layer.addSublayer(gradient)
+  }
+  
+  func addGreenGradientBackground() {
+    let gradient = CAGradientLayer()
+    gradient.frame = bounds
+    gradient.colors = [
+      UIColor.darkGreen.cgColor,
+      UIColor.mediumGreen.cgColor,
+      UIColor.darkGreen.cgColor,
+      UIColor.lightGreen.cgColor
+    ]
+    gradient.locations = [0.25, 0.50, 0.75, 1]
+    layer.addSublayer(gradient)
+  }
+  
+  
+  // MARK: - Add Corner Radius
+  
+  //Add corner radius to a view
+  func addCornerRadius(_ cornerRadius: CGFloat) {
+    layer.cornerRadius = cornerRadius
+    layer.masksToBounds = true
+  }
+  
+  
+  // MARK: - Add Border Style
+  
+  // Customize the border of a view
+  func addBorderStyle(borderWidth: CGFloat, borderColor: UIColor) {
+    layer.borderWidth = borderWidth
+    layer.borderColor = borderColor.cgColor
   }
   
 }
@@ -76,6 +110,21 @@ struct ViewHelper {
     newImageView.backgroundColor = .clear
     newImageView.translatesAutoresizingMaskIntoConstraints = false
     return newImageView
+  }
+  
+  // Animate Cell Highlight
+  static func animateHighlight(for cell: UICollectionViewCell) {
+    
+    UIView.animate(withDuration: 0.2, animations: {
+      cell.alpha = 0.5
+    }) { (_) in
+      UIView.animate(withDuration: 0.2) {
+        cell.alpha = 1.0
+      }}
+  }
+  
+  static func getBarHeight(from controller: UINavigationController) -> CGFloat {
+    return controller.navigationBar.frame.height
   }
   
 }

@@ -31,15 +31,42 @@ class GameRoundCard: UIView, ObservableObject {
   @IBOutlet weak var playButton: UIButton!
   
   
+  var viewModel: GameRoundCardViewModel? {
+    didSet {
+      // Team 1
+      team1NameLabel.text = viewModel?.teamName(at: 0)
+      team1ImageView.image = viewModel?.teamImage(at: 0)
+      
+      // Team 2
+      team2NameLabel.text = viewModel?.teamName(at: 1)
+      team2ImageView.image = viewModel?.teamImage(at: 1)
+    }
+  }
+  
+  
   // MARK: - Methods
   
   override func awakeFromNib() {
     super.awakeFromNib()
     
+    setupView()
+    setupButton()
     
   }
   
   
+  // MARK: - Setup Methods
+  
+  func setupView() {
+    backgroundColor = .cardBackgroundColor
+  }
+  
+  func setupButton() {
+    playButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .heavy)
+    playButton.setTitle("START", for: .normal)
+    playButton.backgroundColor = .cardYellowColor
+    playButton.addCornerRadius(5)
+  }
   
   
   // MARK: - Actions
@@ -48,5 +75,4 @@ class GameRoundCard: UIView, ObservableObject {
     playButtonIsTapped = true
   }
   
-
 }

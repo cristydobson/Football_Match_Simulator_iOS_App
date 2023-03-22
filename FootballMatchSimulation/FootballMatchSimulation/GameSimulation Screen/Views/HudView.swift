@@ -38,7 +38,6 @@ class HudView: UIView {
     addViews()
   }
   
-  
   required init?(coder: NSCoder) {
     super.init(coder: coder)
   }
@@ -152,9 +151,6 @@ class HudView: UIView {
     ])
     
   }
-  
-  
-  
   
 }
 

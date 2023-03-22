@@ -65,7 +65,7 @@ class GameSimulationViewController: UIViewController {
   }
   
   func setupBackground() {
-    view.addGradientBackground()
+    view.addGreenGradientBackground()
   }
   
   func addViews() {
