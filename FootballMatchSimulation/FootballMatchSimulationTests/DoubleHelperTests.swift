@@ -19,7 +19,8 @@ final class DoubleHelperTests: XCTestCase {
   override func setUpWithError() throws {
     try super.setUpWithError()
     
-    teams = try? DataLoader.retrieveData([Team].self, from: "Teams")
+    let fileName = JsonFileName.teams.rawValue
+    teams = try? DataLoader.retrieveData([Team].self, from: fileName)
   }
   
   override func tearDownWithError() throws {

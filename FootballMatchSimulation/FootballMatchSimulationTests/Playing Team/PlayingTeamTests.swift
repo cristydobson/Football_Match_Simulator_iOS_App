@@ -23,7 +23,9 @@ final class PlayingTeamTests: XCTestCase {
   
   override func setUpWithError() throws {
     try super.setUpWithError()
-    teams = try? DataLoader.retrieveData([Team].self, from: "Teams")
+    
+    let fileName = JsonFileName.teams.rawValue
+    teams = try? DataLoader.retrieveData([Team].self, from: fileName)
     sut = PlayingTeam(team: firstTeam())
   }
   

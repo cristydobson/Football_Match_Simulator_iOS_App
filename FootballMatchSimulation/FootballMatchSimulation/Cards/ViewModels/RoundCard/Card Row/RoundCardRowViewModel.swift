@@ -32,7 +32,7 @@ class RoundCardRowViewModel {
   }
   
   func teamImage(at index: Int) -> UIImage? {
-    let name = match.teams[index].imageName
+    let name = match.teams[index].imageName 
     return ImageHelper.getImage(name)
   }
   

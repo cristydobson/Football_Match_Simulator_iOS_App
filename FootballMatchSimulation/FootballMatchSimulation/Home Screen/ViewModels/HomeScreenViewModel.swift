@@ -15,6 +15,8 @@ class HomeScreenViewModel: ObservableObject {
   
   // MARK: - Properties
   
+  private var subscriptions = Set<AnyCancellable>()
+  
   var teams: [Team] = [] {
     didSet {
       createTeamModels()
@@ -30,14 +32,14 @@ class HomeScreenViewModel: ObservableObject {
   // MARK: - Methods
   
   func loadTeams() {
-    let fileName = "Teams"
+    let fileName = JsonFileName.teams.rawValue
     
     if let teams = try? DataLoader.loadDataFromDirectory([Team].self, from: fileName) {
       self.teams = teams
     }
     else if let teams = try? DataLoader.loadDataFromBundle([Team].self, from: fileName) {
       self.teams = teams
-      try! DataLoader.save(teams, to: "Teams")
+      try! DataLoader.save(teams, to: fileName)
     }
   }
   
@@ -63,10 +65,62 @@ class HomeScreenViewModel: ObservableObject {
   
   // MARK: - Load Rounds
   
-  func generateRounds(_ models: [TeamModel]) {
+  func generateRounds(_ models: [TeamModel]) -> [Round] {
     let generator = RoundGenerator()
-    rounds = generator.getRounds(with: models)
+    let newRounds = generator.getRounds(with: models)
+    rounds = newRounds
+    return newRounds
   }
   
+  func loadRounds(with teamModels: [TeamModel]) {
+    let fileName = JsonFileName.rounds.rawValue
+    
+    if let newRounds = try? DataLoader.loadDataFromDirectory([Round].self, from: fileName),
+       newRounds.count > 0 {
+      setupRoundBindings(for: newRounds)
+      setupRounds(newRounds)
+    }
+    else if let newRounds = try? DataLoader.loadDataFromBundle([Round].self, from: fileName),
+            newRounds.count > 0 {
+      setupRoundBindings(for: newRounds)
+      setupRounds(newRounds)
+    }
+    else {
+      let newRounds = generateRounds(teamModels)
+      setupRoundBindings(for: newRounds)
+      try! DataLoader.save(newRounds, to: fileName)
+    }
+  }
+  
+  func setupRounds(_ roundModels: [Round]) {
+    for round in roundModels {
+      round.findTeamsForMatches(from: teamModels)
+    }
+    rounds = roundModels
+  }
+  
+  func setupRoundBindings(for roundModels: [Round]) {
+    for round in roundModels {
+      setBinding(for: round)
+    }
+  }
+  
+  func setBinding(for round: Round) {
+    
+    for match in round.matches {
+      match.$saveData.sink { [weak self] flag in
+        if flag {
+          print("SAVING ROUNDS!!!!!")
+          self?.saveToDirectory((self?.rounds)!)
+        }
+      }
+      .store(in: &subscriptions)
+    }
+  }
+  
+  func saveToDirectory(_ rounds: [Round]) {
+    let fileName = JsonFileName.rounds.rawValue
+    try! DataLoader.save(rounds, to: fileName)
+  }
   
 }

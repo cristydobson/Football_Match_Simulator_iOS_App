@@ -42,11 +42,6 @@ class HomeScreenViewController: UIViewController {
     
     setupTitle()
     
-//    if let round = try? DataLoader.retrieveData([Round].self, from: "Rounds"), round.count > 0 {
-//      print("ROUNDS: \(round[0].name)!!!!!")
-//    }
-    
-    
   }
   
   
@@ -166,7 +161,7 @@ class HomeScreenViewController: UIViewController {
       DispatchQueue.main.async {
         if teamModels.count > 0 {
           self?.loadStandings()
-          self?.viewModel.generateRounds(teamModels)
+          self?.viewModel.loadRounds(with: teamModels)
         }
       }
     }.store(in: &subscriptions)

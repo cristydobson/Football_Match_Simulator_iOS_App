@@ -77,6 +77,7 @@
 		5ED4724229CB798500D8F664 /* GameRoundCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4724129CB798500D8F664 /* GameRoundCardViewModel.swift */; };
 		5ED4724929CC772B00D8F664 /* Rounds.json in Resources */ = {isa = PBXBuildFile; fileRef = 5ED4724829CC772B00D8F664 /* Rounds.json */; };
 		5ED4724B29CC920C00D8F664 /* AppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4724A29CC920C00D8F664 /* AppHelper.swift */; };
+		5ED4724D29CCB3F000D8F664 /* JsonFileNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4724C29CCB3F000D8F664 /* JsonFileNames.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,7 @@
 		5ED4724129CB798500D8F664 /* GameRoundCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoundCardViewModel.swift; sourceTree = "<group>"; };
 		5ED4724829CC772B00D8F664 /* Rounds.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Rounds.json; sourceTree = "<group>"; };
 		5ED4724A29CC920C00D8F664 /* AppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHelper.swift; sourceTree = "<group>"; };
+		5ED4724C29CCB3F000D8F664 /* JsonFileNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonFileNames.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +276,7 @@
 				5E6A681A29C5D6C500500B04 /* PlayerPosition.swift */,
 				5ED4721D29CB02A800D8F664 /* TeamModel.swift */,
 				5ED4722A29CB16EE00D8F664 /* RoundModel.swift */,
+				5ED4724C29CCB3F000D8F664 /* JsonFileNames.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				5E6A681B29C5D6C500500B04 /* PlayerPosition.swift in Sources */,
 				5ED4722E29CB2EC500D8F664 /* RoundGenerator.swift in Sources */,
 				5E6A684629C7395600500B04 /* FoulChecker.swift in Sources */,
+				5ED4724D29CCB3F000D8F664 /* JsonFileNames.swift in Sources */,
 				5E6A682029C5DF2500500B04 /* HomeScreenViewModel.swift in Sources */,
 				5E6A67E029C4D00900500B04 /* HomeScreenViewController.swift in Sources */,
 				5E6A683B29C66E5000500B04 /* RoundCardRow.swift in Sources */,
