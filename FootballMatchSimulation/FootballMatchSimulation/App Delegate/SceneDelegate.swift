@@ -27,8 +27,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     navigationController.navigationBar.tintColor = .white
     
-    
-    
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {
@@ -59,8 +57,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // to restore the scene back to its current state.
   }
   
-  
-
 
 }
 

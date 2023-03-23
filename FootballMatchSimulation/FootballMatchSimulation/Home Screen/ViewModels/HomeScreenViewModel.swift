@@ -30,8 +30,14 @@ class HomeScreenViewModel: ObservableObject {
   // MARK: - Methods
   
   func loadTeams() {
-    if let teams = try? DataLoader.retrieveData([Team].self, from: "Teams") {
+    let fileName = "Teams"
+    
+    if let teams = try? DataLoader.loadDataFromDirectory([Team].self, from: fileName) {
       self.teams = teams
+    }
+    else if let teams = try? DataLoader.loadDataFromBundle([Team].self, from: fileName) {
+      self.teams = teams
+      try! DataLoader.save(teams, to: "Teams")
     }
   }
   
@@ -47,7 +53,8 @@ class HomeScreenViewModel: ObservableObject {
   
   func buildTeamModel(from team: Team) -> TeamModel {
     return TeamModel(
-      name: team.name, stadium: team.stadium,
+      name: team.name, shortenedName: team.shortened_name,
+      id: team.id, stadium: team.stadium,
       imageName: team.image_name,
       keeper: team.keeper, defenders: team.defenders,
       midfielders: team.midfielders, attackers: team.attackers)
@@ -60,7 +67,6 @@ class HomeScreenViewModel: ObservableObject {
     let generator = RoundGenerator()
     rounds = generator.getRounds(with: models)
   }
-  
   
   
 }

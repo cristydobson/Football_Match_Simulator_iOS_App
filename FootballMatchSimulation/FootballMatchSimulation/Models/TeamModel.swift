@@ -15,6 +15,8 @@ class TeamModel {
   // MARK: - Properties
   
   private(set) var name: String
+  private(set) var shortenedName: String
+  private(set) var id: String
   private(set) var stadium: String
   private(set) var imageName: String
   
@@ -28,8 +30,10 @@ class TeamModel {
   
   // MARK: - Init Method
   
-  init(name: String, stadium: String, imageName: String, keeper: Player, defenders: [Player], midfielders: [Player], attackers: [Player]) {
+  init(name: String, shortenedName: String, id: String, stadium: String, imageName: String, keeper: Player, defenders: [Player], midfielders: [Player], attackers: [Player]) {
     self.name = name
+    self.shortenedName = shortenedName
+    self.id = id
     self.stadium = stadium
     self.imageName = imageName
     self.keeper = keeper

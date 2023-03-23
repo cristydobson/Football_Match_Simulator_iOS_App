@@ -14,7 +14,7 @@ class RoundGamesViewController: UIViewController, ObservableObject {
   
   
   // MARK: - Properties
-    
+  
   private let viewModel = RoundGamesViewModel()
   
   @Published var updatedScores = false
@@ -30,7 +30,7 @@ class RoundGamesViewController: UIViewController, ObservableObject {
     
     setupBackground()
     addViews()
-        
+    
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +67,7 @@ class RoundGamesViewController: UIViewController, ObservableObject {
   }
   
   func addViews() {
-
+    
     /*
      Collection View
      */
@@ -76,8 +76,40 @@ class RoundGamesViewController: UIViewController, ObservableObject {
     collectionView.round = round
     view.addSubview(collectionView)
     
+    createJsonFile()
+    
+  }
+  
+  
+  func createJsonFile() {
+    
+    var jsonResult: Data!
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = .prettyPrinted
+    do {
+      let result = try encoder.encode(round)
+      jsonResult = result
+      if let jsonString = String(data: result, encoding: .utf8) {
+        print("JSON: \(jsonString)!!!!")
+      }
+    }
+    catch {
+      print("ERROR ENCODING - error: \(error)!!!!!")
+    }
+    
+//    let pathDirectory = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask)[0]
+//    let pathDirectory = Bundle.main.url(forResource: "Rounds", withExtension: "json")
+    
+//    try? FileManager().createDirectory(at: pathDirectory, withIntermediateDirectories: true)
+    
+//    let filePath = pathDirectory.appending(path: "Rounds").appendingPathExtension("json")
+    
+   try! save()
   }
   
 
+  func save() throws {
+    try DataLoader.save(round, to: "Rounds")
+  }
   
 }

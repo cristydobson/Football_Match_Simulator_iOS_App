@@ -27,7 +27,7 @@ class HomeScreenViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     setupBackground()
     addViews()
     
@@ -41,6 +41,12 @@ class HomeScreenViewController: UIViewController {
     super.viewWillAppear(animated)
     
     setupTitle()
+    
+//    if let round = try? DataLoader.retrieveData([Round].self, from: "Rounds"), round.count > 0 {
+//      print("ROUNDS: \(round[0].name)!!!!!")
+//    }
+    
+    
   }
   
   

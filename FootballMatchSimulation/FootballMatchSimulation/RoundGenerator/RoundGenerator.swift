@@ -29,14 +29,24 @@ class RoundGenerator {
       var rest = teams
       rest.removeLast()
       
-      matches.append(Round.Match(teams: [last, rest.first!], scores: [0, 0]))
+//      matches.append(Round.Match(teams: [last, rest.first!], scores: [0, 0]))
+      let match = Round.Match()
+      match.teams = [last, rest.first!]
+      match.team_ids = [last.id, rest.first!.id]
+      match.scores = [0, 0]
+      matches.append(match)
       rest.removeFirst()
       
       if rest.count > 2 {
         getMatch(from: rest)
       }
       else {
-        matches.append(Round.Match(teams: rest, scores: [0, 0]))
+//        matches.append(Round.Match(teams: rest, scores: [0, 0]))
+        let lastMatch = Round.Match()
+        lastMatch.teams = rest
+        lastMatch.team_ids = [rest[0].id, rest[1].id]
+        lastMatch.scores = [0, 0]
+        matches.append(lastMatch)
       }
       
     }
@@ -70,14 +80,24 @@ class RoundGenerator {
       rest.removeLast()
       let next = rest.last!
       
-      matches.append(Round.Match(teams: [last, next], scores: [0, 0]))
+//      matches.append(Round.Match(teams: [last, next], scores: [0, 0]))
+      let match = Round.Match()
+      match.teams = [last, next]
+      match.team_ids = [last.id, next.id]
+      match.scores = [0, 0]
+      matches.append(match)
       rest.removeLast()
       
       if rest.count > 2 {
         getMatch(from: rest)
       }
       else {
-        matches.append(Round.Match(teams: rest, scores: [0, 0]))
+//        matches.append(Round.Match(teams: rest, scores: [0, 0]))
+        let lastMatch = Round.Match()
+        lastMatch.teams = rest
+        lastMatch.team_ids = [rest[0].id, rest[1].id]
+        lastMatch.scores = [0, 0]
+        matches.append(lastMatch)
       }
       
     }

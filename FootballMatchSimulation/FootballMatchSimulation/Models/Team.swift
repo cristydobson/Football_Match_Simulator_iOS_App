@@ -12,6 +12,8 @@ import Foundation
 class Team: Codable {
   
   let name: String
+  let shortened_name: String
+  let id: String
   let stadium: String
   let image_name: String
   let keeper: Player

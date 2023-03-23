@@ -9,7 +9,32 @@
 import Foundation
 
 
-class Round {
+class Round: Codable {
+  
+  class Match: Codable {
+    
+    var teams: [TeamModel] = []
+    
+    var team_ids: [String] = []
+    var scores: [Int] = []
+    var gameIsPlayed = false
+    
+    
+    private enum CodingKeys: String, CodingKey {
+      case team_ids
+      case scores
+      case gameIsPlayed
+    }
+    
+    init() { }
+    
+    required init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.team_ids = try container.decode([String].self, forKey: .team_ids)
+      self.scores = try container.decode([Int].self, forKey: .scores)
+      self.gameIsPlayed = try container.decode(Bool.self, forKey: .gameIsPlayed)
+    }
+  }
   
   let name: String
   let matches: [Match]
@@ -19,14 +44,4 @@ class Round {
     self.matches = matches
   }
   
-  class Match {
-    let teams: [TeamModel]
-    var scores: [Int]
-    var gameIsPlayed = false
-    
-    init(teams: [TeamModel], scores: [Int]) {
-      self.teams = teams
-      self.scores = scores
-    }
-  }
 }
