@@ -11,7 +11,7 @@ import UIKit
 import Combine
 
 
-class RoundGameCell: UICollectionViewCell {
+class RoundGameCell: UICollectionViewCell, ObservableObject {
   
   
   // MARK: - Properties
@@ -44,6 +44,12 @@ class RoundGameCell: UICollectionViewCell {
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
+  }
+  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    
+    cellTapped = false
   }
   
   
@@ -79,6 +85,7 @@ class RoundGameCell: UICollectionViewCell {
       DispatchQueue.main.async {
         if flag {
           self?.cellTapped = true
+          print("TAPPED!!!!!!")
         }
       }
     }.store(in: &subscriptions)

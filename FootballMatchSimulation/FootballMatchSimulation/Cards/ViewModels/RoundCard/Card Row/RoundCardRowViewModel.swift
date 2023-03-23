@@ -37,7 +37,7 @@ class RoundCardRowViewModel {
   }
   
   func teamScore(at index: Int) -> String {
-    return "0"
+    return "\(match.scores[index])"
   }
   
 }

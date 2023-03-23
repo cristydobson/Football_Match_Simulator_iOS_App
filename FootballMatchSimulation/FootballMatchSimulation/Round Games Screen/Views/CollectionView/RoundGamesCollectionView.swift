@@ -26,6 +26,8 @@ class RoundGamesCollectionView: UIView {
   private var viewModel = RoundGamesCollectionViewModel()
   var round: Round!
   
+  var updatedScores = false
+  
   
   // MARK: - Init Method
   
@@ -44,9 +46,7 @@ class RoundGamesCollectionView: UIView {
     
     setupView()
     setupCollectionView()
-    
-    setupBindings()
-    
+        
     viewModel.loadCellViewModels(from: round)
   }
   
@@ -83,17 +83,6 @@ class RoundGamesCollectionView: UIView {
   }
   
   
-  func setupBindings() {
-    
-    viewModel.$cellViewModels.sink { [weak self] _ in
-      DispatchQueue.main.async {
-        self?.collectionView.reloadData()
-      }
-    }.store(in: &subscriptions)
-    
-  }
-  
-  
   // MARK: - Navigation
   
   func presentGameViewController(for indexPath: IndexPath) {
@@ -106,10 +95,22 @@ class RoundGamesCollectionView: UIView {
     let team2 = PlayingTeam(team: match.teams[1])
     
     viewController.teams = [team1, team2]
-    
+
+    // Subscribe to receive the final score
+    viewController.$goals.sink { [weak self] teamGoals in
+      DispatchQueue.main.async {
+        if let goals = teamGoals {
+          self?.viewModel.setGameScore(goals, at: indexPath)
+          self?.subscriptions.removeAll()
+          self?.collectionView.reloadData()
+          self?.updatedScores = true
+        }
+      }
+    }
+    .store(in: &subscriptions)
+
     controller.present(viewController, animated: true)
   }
-  
   
 }
 
@@ -127,7 +128,7 @@ extension RoundGamesCollectionView: UICollectionViewDataSource, UICollectionView
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
+        
     let cell = collectionView.dequeueReusableCell(
       withReuseIdentifier: cellID, for: indexPath) as! RoundGameCell
     
@@ -139,7 +140,9 @@ extension RoundGamesCollectionView: UICollectionViewDataSource, UICollectionView
           self?.presentGameViewController(for: indexPath)
         }
       }
-    }.store(in: &subscriptions)
+    }
+    .store(in: &subscriptions)
+    
     
     return cell
   }

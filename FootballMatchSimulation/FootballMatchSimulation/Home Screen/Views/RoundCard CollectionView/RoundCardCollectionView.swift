@@ -102,11 +102,23 @@ class RoundCardCollectionView: UIView {
   
   
   // MARK: - Navigation
+  var controllerSubStored = false
   
   func pushRoundGamesViewController(for indexPath: IndexPath) {
     
     let viewController = RoundGamesViewController()
     viewController.round = rounds[indexPath.row]
+    
+    if !controllerSubStored {
+      viewController.$updatedScores.sink { [weak self] flag in
+        DispatchQueue.main.async {
+          if flag {
+            self?.controllerSubStored = true
+            self?.collectionView.reloadData()
+          }
+        }
+      }.store(in: &subscriptions)
+    }
     
     controller.navigationController?.pushViewController(viewController, animated: true)
   }

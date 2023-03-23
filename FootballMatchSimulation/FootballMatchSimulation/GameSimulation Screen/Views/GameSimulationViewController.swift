@@ -11,7 +11,7 @@ import UIKit
 import Combine
 
 
-class GameSimulationViewController: UIViewController {
+class GameSimulationViewController: UIViewController, ObservableObject {
   
   
   // MARK: - Properties
@@ -27,6 +27,10 @@ class GameSimulationViewController: UIViewController {
   var hudView: HudView!
   var teamView: TeamView!
   var updatesLabel: UILabel!
+  var dismissControllerButton: UIButton!
+  
+  // Game Finished
+  @Published var goals: [Int]!
   
   
   // MARK: - View Controller's Life Cycle
@@ -60,17 +64,19 @@ class GameSimulationViewController: UIViewController {
   // MARK: - Swetup Methods
   
   func transitionToLandscape() {
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    appDelegate.appOrientation = .landscape
+    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+      appDelegate.appOrientation = .landscape
+    }
   }
   
   func setupBackground() {
-    view.addGreenGradientBackground()
+    view.addBlueGradientBackground()
   }
   
   func addViews() {
     
     let safeArea = view.safeAreaLayoutGuide
+    
     
     /*
      HUD View
@@ -120,6 +126,35 @@ class GameSimulationViewController: UIViewController {
       updatesLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
     ])
     
+    
+    /*
+     Dismiss ViewController button
+     */
+    dismissControllerButton = createDismissButton()
+    
+    NSLayoutConstraint.activate([
+      dismissControllerButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 24),
+      dismissControllerButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 24),
+      dismissControllerButton.setWidthContraint(by: 60),
+      dismissControllerButton.heightAnchor.constraint(equalTo: dismissControllerButton.widthAnchor, multiplier: 1)
+    ])
+    
+  }
+  
+  func createDismissButton() -> UIButton {
+    let button = UIButton()
+    button.setTitle("X", for: .normal)
+    
+    button.addTarget(
+      self, action: #selector(dismissControllerAction),
+      for: .touchUpInside)
+    
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.isHidden = true
+    
+    view.addSubview(button)
+    
+    return button
   }
   
   
@@ -151,6 +186,8 @@ class GameSimulationViewController: UIViewController {
           case .halfTime:
             print("\n GAME AT HALFTIME!!!!!!!\n")
           case .finished:
+            self?.dismissControllerButton.isHidden = false
+            self?.goals = [(self?.teams[0].goals)!, (self?.teams[1].goals)!]
             print("\n GAME IS FINISHED!!!!!!\n")
           default:
             print("\n GAME ABOUT TO START!!!!!\n")
@@ -159,6 +196,13 @@ class GameSimulationViewController: UIViewController {
       }
     }.store(in: &subscriptions)
     
+  }
+  
+  
+  // MARK: - Button Actions
+  
+  @objc func dismissControllerAction() {
+    dismiss(animated: true)
   }
   
   

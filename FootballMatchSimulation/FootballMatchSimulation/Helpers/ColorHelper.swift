@@ -25,14 +25,14 @@ extension UIColor {
   
   
   // Green Gradient
-  static let lightGreen = UIColor(
-    red: 125/255, green: 179/255, blue: 77/255, alpha: 1)
-  
-  static let mediumGreen = UIColor(
-    red: 89/255, green: 151/255, blue: 34/255, alpha: 1)
-  
-  static let darkGreen = UIColor(
-    red: 56/255, green: 116/255, blue: 2, alpha: 1)
+//  static let lightGreen = UIColor(
+//    red: 125/255, green: 179/255, blue: 77/255, alpha: 1)
+//  
+//  static let mediumGreen = UIColor(
+//    red: 89/255, green: 151/255, blue: 34/255, alpha: 1)
+//  
+//  static let darkGreen = UIColor(
+//    red: 56/255, green: 116/255, blue: 2, alpha: 1)
   
   
   // Header Blue

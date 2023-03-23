@@ -33,5 +33,8 @@ class GameRoundCardViewModel {
     return ImageHelper.getImage(name)
   }
   
+  func teamsFinalScore() -> String {
+    return "\(match.scores[0]) - \(match.scores[1])"
+  }
   
 }

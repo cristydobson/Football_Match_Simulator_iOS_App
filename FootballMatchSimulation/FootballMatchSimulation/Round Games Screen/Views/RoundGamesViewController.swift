@@ -8,14 +8,16 @@
 
 import Foundation
 import UIKit
+import Combine
 
-
-class RoundGamesViewController: UIViewController {
+class RoundGamesViewController: UIViewController, ObservableObject {
   
   
   // MARK: - Properties
-  
+    
   private let viewModel = RoundGamesViewModel()
+  
+  @Published var updatedScores = false
   
   var round: Round!
   var collectionView: RoundGamesCollectionView!
@@ -28,7 +30,26 @@ class RoundGamesViewController: UIViewController {
     
     setupBackground()
     addViews()
+        
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     
+    transitionToPortrait()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    updatedScores = collectionView.updatedScores
+  }
+  
+  func transitionToPortrait() {
+    if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+       appDelegate.appOrientation == .landscape {
+      appDelegate.appOrientation = .portrait
+    }
   }
   
   
@@ -46,24 +67,7 @@ class RoundGamesViewController: UIViewController {
   }
   
   func addViews() {
-    
-    /*
-     Title
-     */
-//    let titleLabel = ViewHelper.createLabel(
-//      with: .white, text: "\(round.name)",
-//      alignment: .center,
-//      font: UIFont.systemFont(ofSize: 26, weight: .semibold))
-//    navigationController?.navigationBar.addSubview(titleLabel)
-//
-//    NSLayoutConstraint.activate([
-//      titleLabel.centerXAnchor.constraint(
-//        equalTo: (navigationController?.navigationBar.centerXAnchor)!),
-//      titleLabel.bottomAnchor.constraint(
-//        equalTo: (navigationController?.navigationBar.bottomAnchor)!)
-//    ])
-    
-    
+
     /*
      Collection View
      */
@@ -73,10 +77,7 @@ class RoundGamesViewController: UIViewController {
     view.addSubview(collectionView)
     
   }
-
-  
   
 
-  
   
 }

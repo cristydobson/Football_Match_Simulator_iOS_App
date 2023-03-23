@@ -42,5 +42,11 @@ class RoundGamesCollectionViewModel: ObservableObject {
     return cellViewModels[indexPath.row]
   }
   
+  func setGameScore(_ scores: [Int], at indexPath: IndexPath) {
+    let viewModel = cellViewModels[indexPath.row]
+    viewModel.match.scores = scores
+    viewModel.match.gameIsPlayed = true
+  }
+  
   
 }

@@ -29,14 +29,14 @@ class RoundGenerator {
       var rest = teams
       rest.removeLast()
       
-      matches.append(Round.Match(teams: [last, rest.first!]))
+      matches.append(Round.Match(teams: [last, rest.first!], scores: [0, 0]))
       rest.removeFirst()
       
       if rest.count > 2 {
         getMatch(from: rest)
       }
       else {
-        matches.append(Round.Match(teams: rest))
+        matches.append(Round.Match(teams: rest, scores: [0, 0]))
       }
       
     }
@@ -70,14 +70,14 @@ class RoundGenerator {
       rest.removeLast()
       let next = rest.last!
       
-      matches.append(Round.Match(teams: [last, next]))
+      matches.append(Round.Match(teams: [last, next], scores: [0, 0]))
       rest.removeLast()
       
       if rest.count > 2 {
         getMatch(from: rest)
       }
       else {
-        matches.append(Round.Match(teams: rest))
+        matches.append(Round.Match(teams: rest, scores: [0, 0]))
       }
       
     }

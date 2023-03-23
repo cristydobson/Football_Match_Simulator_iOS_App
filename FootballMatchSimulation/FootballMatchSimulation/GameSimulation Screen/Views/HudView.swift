@@ -62,7 +62,7 @@ class HudView: UIView {
     // HUD Header Title One
     teamOneNameLabel = ViewHelper.createLabel(
       with: .white, text: "",
-      alignment: .center, font: UIFont.systemFont(ofSize: 20, weight: .medium))
+      alignment: .center, font: UIFont.systemFont(ofSize: 21, weight: .medium))
     hudHeaderTeamTitleOneContainer.addSubview(teamOneNameLabel)
     
     
@@ -81,7 +81,7 @@ class HudView: UIView {
     // HUD Header Title Two
     teamTwoNameLabel = ViewHelper.createLabel(
       with: .white, text: "",
-      alignment: .center, font: UIFont.systemFont(ofSize: 20, weight: .medium))
+      alignment: .center, font: UIFont.systemFont(ofSize: 21, weight: .medium))
     hudHeaderTeamTitleTwoContainer.addSubview(teamTwoNameLabel)
     
     
@@ -122,7 +122,7 @@ class HudView: UIView {
       hudHeaderTeamTitleOne.bottomAnchor.constraint(equalTo: hudHeaderTeamTitleOneContainer.bottomAnchor),
       
       // HUD Header Title One Label
-      teamOneNameLabel.leadingAnchor.constraint(equalTo: hudHeaderTeamTitleOneContainer.leadingAnchor, constant: 24),
+      teamOneNameLabel.leadingAnchor.constraint(equalTo: hudHeaderTeamTitleOneContainer.leadingAnchor, constant: 36),
       teamOneNameLabel.topAnchor.constraint(equalTo: hudHeaderTeamTitleOneContainer.topAnchor),
       teamOneNameLabel.bottomAnchor.constraint(equalTo: hudHeaderTeamTitleOneContainer.bottomAnchor),
       
@@ -136,7 +136,7 @@ class HudView: UIView {
       hudHeaderTeamTitleTwo.bottomAnchor.constraint(equalTo: hudHeaderTeamTitleTwoContainer.bottomAnchor),
       
       // HUD Header Title One Label
-      teamTwoNameLabel.trailingAnchor.constraint(equalTo: hudHeaderTeamTitleTwoContainer.trailingAnchor, constant: -24),
+      teamTwoNameLabel.trailingAnchor.constraint(equalTo: hudHeaderTeamTitleTwoContainer.trailingAnchor, constant: -36),
       teamTwoNameLabel.topAnchor.constraint(equalTo: hudHeaderTeamTitleTwoContainer.topAnchor),
       teamTwoNameLabel.bottomAnchor.constraint(equalTo: hudHeaderTeamTitleTwoContainer.bottomAnchor),
       

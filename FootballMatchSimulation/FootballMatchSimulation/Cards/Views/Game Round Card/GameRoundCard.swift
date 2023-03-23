@@ -27,6 +27,9 @@ class GameRoundCard: UIView, ObservableObject {
   @IBOutlet weak var team2ImageView: UIImageView!
   @IBOutlet weak var team2NameLabel: UILabel!
   
+  // Scores
+  @IBOutlet weak var scoresLabel: UILabel!
+  
   // Play Button
   @IBOutlet weak var playButton: UIButton!
   
@@ -40,6 +43,11 @@ class GameRoundCard: UIView, ObservableObject {
       // Team 2
       team2NameLabel.text = viewModel?.teamName(at: 1)
       team2ImageView.image = viewModel?.teamImage(at: 1)
+      
+      // Scores
+      if let vm = viewModel, vm.match.gameIsPlayed {
+        scoresLabel.text = viewModel?.teamsFinalScore()
+      }
     }
   }
   
