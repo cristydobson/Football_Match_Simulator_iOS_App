@@ -37,17 +37,11 @@ class GameSimulationViewController: UIViewController, ObservableObject {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-        
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-
+    
     setupBackground()
     addViews()
-    gameSimulation = GameSimulation(homeTeam: teams[0], visitorTeam: teams[1])
-    setupBindings()
-    gameSimulation.startFirstTimeSimulation()
+    
+    setupGameSimulation()
   }
   
   
@@ -61,13 +55,10 @@ class GameSimulationViewController: UIViewController, ObservableObject {
     
     let safeArea = view.safeAreaLayoutGuide
     
-    
     /*
      HUD View
      */
-    hudView = HudView()
-    hudView.translatesAutoresizingMaskIntoConstraints = false
-    hudView.viewModel = viewModel.loadHudViewModel(for: teams)
+    hudView = createHudView()
     view.addSubview(hudView)
     
     NSLayoutConstraint.activate([
@@ -81,9 +72,7 @@ class GameSimulationViewController: UIViewController, ObservableObject {
     /*
      TeamsContainerView
      */
-    teamView = TeamView()
-    teamView.translatesAutoresizingMaskIntoConstraints = false
-    teamView.viewModel = viewModel.loadTeamViewModel(for: teams)
+    teamView = createTeamView()
     view.addSubview(teamView)
     
     NSLayoutConstraint.activate([
@@ -97,10 +86,7 @@ class GameSimulationViewController: UIViewController, ObservableObject {
     /*
      Updates Label
      */
-    
-    updatesLabel = ViewHelper.createLabel(
-      with: .black, text: "", //Blowing the whistle...
-      alignment: .center, font: UIFont.systemFont(ofSize: 24, weight: .medium))
+    updatesLabel = createUpdatesLabel()
     view.addSubview(updatesLabel)
     
     NSLayoutConstraint.activate([
@@ -125,12 +111,39 @@ class GameSimulationViewController: UIViewController, ObservableObject {
     
   }
   
+  func createHudView() -> HudView {
+    let newView = HudView()
+    newView.translatesAutoresizingMaskIntoConstraints = false
+    newView.viewModel = viewModel.loadHudViewModel(for: teams)
+    
+    return newView
+  }
+  
+  func createTeamView() -> TeamView {
+    let newView = TeamView()
+    newView.translatesAutoresizingMaskIntoConstraints = false
+    newView.viewModel = viewModel.loadTeamViewModel(for: teams)
+    
+    return newView
+  }
+  
+  func createUpdatesLabel() -> UILabel {
+    let label = ViewHelper.createLabel(
+      with: .black,
+      text: "",
+      alignment: .center,
+      font: UIFont.systemFont(ofSize: 24, weight: .medium))
+    
+    return label
+  }
+  
   func createDismissButton() -> UIButton {
     let button = UIButton()
     button.setTitle("X", for: .normal)
     
     button.addTarget(
-      self, action: #selector(dismissControllerAction),
+      self,
+      action: #selector(dismissControllerAction),
       for: .touchUpInside)
     
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -143,6 +156,14 @@ class GameSimulationViewController: UIViewController, ObservableObject {
   
   
   // MARK: - Bindings
+  
+  func setupGameSimulation() {
+    gameSimulation = GameSimulation(
+      homeTeam: teams[0], visitorTeam: teams[1])
+    
+    setupBindings()
+    gameSimulation.startFirstTimeSimulation()
+  }
   
   func setupBindings() {
     
@@ -172,7 +193,6 @@ class GameSimulationViewController: UIViewController, ObservableObject {
           case .finished:
             self?.dismissControllerButton.isHidden = false
             self?.goals = [(self?.teams[0].goals)!, (self?.teams[1].goals)!]
-            print("\n GAME IS FINISHED!!!!!!\n")
           default:
             print("\n GAME ABOUT TO START!!!!!\n")
         }
@@ -188,7 +208,6 @@ class GameSimulationViewController: UIViewController, ObservableObject {
   @objc func dismissControllerAction() {
     dismiss(animated: true)
   }
-  
   
 }
 

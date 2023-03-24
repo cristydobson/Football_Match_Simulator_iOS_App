@@ -63,12 +63,7 @@ class RoundCardCollectionView: UIView {
   func setupCollectionView() {
 
     // CollectionView Layout
-    let cellWidth = frame.width
-    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    layout.sectionInset = UIEdgeInsets.zero
-    layout.minimumLineSpacing = 0
-    layout.itemSize = CGSize(width: cellWidth, height: cellWidth*0.65)
-    
+    let layout = getCollectionViewLayout()
     
     // Instantiate CollectionView
     let collectionViewFrame = CGRect(
@@ -92,14 +87,25 @@ class RoundCardCollectionView: UIView {
 
   }
   
+  func getCollectionViewLayout() -> UICollectionViewFlowLayout {
+    let cellWidth = frame.width
+    
+    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    layout.sectionInset = UIEdgeInsets.zero
+    layout.minimumLineSpacing = 0
+    layout.itemSize = CGSize(width: cellWidth, height: cellWidth*0.65)
+    
+    return layout
+  }
+  
   
   // MARK: - Bindings
   
   func setupBindings() {
 
     viewModel.$cellViewModels.sink { [weak self] viewModels in
-      DispatchQueue.main.async {
-        if viewModels.count > 0 {
+      if viewModels.count > 0 {
+        DispatchQueue.main.async {
           self?.collectionView.reloadData()
         }
       }
@@ -111,7 +117,6 @@ class RoundCardCollectionView: UIView {
   // MARK: - Navigation
   
   func pushRoundGamesViewController(for indexPath: IndexPath) {
-    
     let viewController = RoundGamesViewController()
     
     let round = rounds[indexPath.row]
@@ -160,7 +165,6 @@ extension RoundCardCollectionView: UICollectionViewDataSource {
 extension RoundCardCollectionView: UICollectionViewDelegate {
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
     pushRoundGamesViewController(for: indexPath)
   }
   

@@ -14,6 +14,7 @@ class Players {
   
   // MARK: - Properties
   
+  // Players
   private(set) var keeper: Player
   private(set) var defenders: [Player]
   private(set) var midfielders: [Player]

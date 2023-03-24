@@ -47,58 +47,27 @@ class HudView: UIView {
   
   func addViews() {
     
-    /*
-     HUD Header Title One -->
-     */
-    // HUD Header Title One Container
-    let hudHeaderTeamTitleOneContainer = ViewHelper.createEmptyView()
+    // Title One Container
+    let hudHeaderTeamTitleOneContainer = getEmptyView()
     addSubview(hudHeaderTeamTitleOneContainer)
     
-    // HUD Header Title One Image
-    let hudHeaderTeamTitleOne = ViewHelper.createImageView(contentMode: .scaleAspectFill)
-    hudHeaderTeamTitleOne.image = UIImage(named: "Hud-Header-Team-Title-Right")
-    hudHeaderTeamTitleOneContainer.addSubview(hudHeaderTeamTitleOne)
-    
-    // HUD Header Title One
-    teamOneNameLabel = ViewHelper.createLabel(
-      with: .white, text: "",
-      alignment: .center, font: UIFont.systemFont(ofSize: 21, weight: .medium))
-    hudHeaderTeamTitleOneContainer.addSubview(teamOneNameLabel)
+    setLeftTitleView(on: hudHeaderTeamTitleOneContainer)
     
     
-    /*
-     HUD Header Title Two -->
-     */
-    // HUD Header Title Two Container
-    let hudHeaderTeamTitleTwoContainer = ViewHelper.createEmptyView()
+    // Title Two Container
+    let hudHeaderTeamTitleTwoContainer = getEmptyView()
     addSubview(hudHeaderTeamTitleTwoContainer)
     
-    // HUD Header Title Two Image
-    let hudHeaderTeamTitleTwo = ViewHelper.createImageView(contentMode: .scaleAspectFill)
-    hudHeaderTeamTitleTwo.image = UIImage(named: "Hud-Header-Team-Title-Left")
-    hudHeaderTeamTitleTwoContainer.addSubview(hudHeaderTeamTitleTwo)
-    
-    // HUD Header Title Two
-    teamTwoNameLabel = ViewHelper.createLabel(
-      with: .white, text: "",
-      alignment: .center, font: UIFont.systemFont(ofSize: 21, weight: .medium))
-    hudHeaderTeamTitleTwoContainer.addSubview(teamTwoNameLabel)
+    setRightTitleView(on: hudHeaderTeamTitleTwoContainer)
     
     
-    /*
-     HUD Header Plays Counter Label -->
-     */
-    playsCounter = ViewHelper.createLabel(
-      with: .black, text: "0",
-      alignment: .center, font: UIFont.systemFont(ofSize: 34, weight: .heavy))
+    // Plays Counter Label
+    playsCounter = getPlaysCounterLabel()
     addSubview(playsCounter)
     
     
-    /*
-     HUD Stack View -->
-     */
-    let hudStackView = ViewHelper.createStackView(
-      .horizontal, distribution: .fill)
+    // Container Stack View
+    let hudStackView = getStackView()
     addSubview(hudStackView)
     
     hudStackView.addArrangedSubview(hudHeaderTeamTitleOneContainer)
@@ -108,48 +77,131 @@ class HudView: UIView {
     
     NSLayoutConstraint.activate([
       
-      // HUD Header Title Containers
-      hudHeaderTeamTitleOneContainer.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.42),
-      hudHeaderTeamTitleTwoContainer.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.42),
+      // Header Title Containers
+      hudHeaderTeamTitleOneContainer.widthAnchor.constraint(
+        equalTo: widthAnchor, multiplier: 0.42),
+      hudHeaderTeamTitleTwoContainer.widthAnchor.constraint(
+        equalTo: widthAnchor, multiplier: 0.42),
       
-      /*
-       HUD Header Title One
-       */
-      // HUD Header Title One Image
-      hudHeaderTeamTitleOne.leadingAnchor.constraint(equalTo: hudHeaderTeamTitleOneContainer.leadingAnchor),
-      hudHeaderTeamTitleOne.trailingAnchor.constraint(equalTo: hudHeaderTeamTitleOneContainer.trailingAnchor),
-      hudHeaderTeamTitleOne.topAnchor.constraint(equalTo: hudHeaderTeamTitleOneContainer.topAnchor),
-      hudHeaderTeamTitleOne.bottomAnchor.constraint(equalTo: hudHeaderTeamTitleOneContainer.bottomAnchor),
-      
-      // HUD Header Title One Label
-      teamOneNameLabel.leadingAnchor.constraint(equalTo: hudHeaderTeamTitleOneContainer.leadingAnchor, constant: 36),
-      teamOneNameLabel.topAnchor.constraint(equalTo: hudHeaderTeamTitleOneContainer.topAnchor),
-      teamOneNameLabel.bottomAnchor.constraint(equalTo: hudHeaderTeamTitleOneContainer.bottomAnchor),
-      
-      /*
-       HUD Header Title Two
-       */
-      // HUD Header Title Two Image
-      hudHeaderTeamTitleTwo.leadingAnchor.constraint(equalTo: hudHeaderTeamTitleTwoContainer.leadingAnchor),
-      hudHeaderTeamTitleTwo.trailingAnchor.constraint(equalTo: hudHeaderTeamTitleTwoContainer.trailingAnchor),
-      hudHeaderTeamTitleTwo.topAnchor.constraint(equalTo: hudHeaderTeamTitleTwoContainer.topAnchor),
-      hudHeaderTeamTitleTwo.bottomAnchor.constraint(equalTo: hudHeaderTeamTitleTwoContainer.bottomAnchor),
-      
-      // HUD Header Title One Label
-      teamTwoNameLabel.trailingAnchor.constraint(equalTo: hudHeaderTeamTitleTwoContainer.trailingAnchor, constant: -36),
-      teamTwoNameLabel.topAnchor.constraint(equalTo: hudHeaderTeamTitleTwoContainer.topAnchor),
-      teamTwoNameLabel.bottomAnchor.constraint(equalTo: hudHeaderTeamTitleTwoContainer.bottomAnchor),
-      
-      /*
-       HUD Header Containers
-       */
-      // HUD Stack View
+      // Container Stack View
       hudStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
       hudStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
       hudStackView.topAnchor.constraint(equalTo: topAnchor),
       hudStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
     ])
     
+  }
+  
+  
+  func setLeftTitleView(on container: UIView) {
+    
+    // HUD Header Title One Image
+    let titleHeaderBackgroundView = getImageView(
+      for: "Hud-Header-Team-Title-Right")
+    container.addSubview(titleHeaderBackgroundView)
+    
+    // HUD Header Title One
+    teamOneNameLabel = getTeamLabel()
+    container.addSubview(teamOneNameLabel)
+    
+    
+    NSLayoutConstraint.activate([
+      
+      // HUD Header Title One Image
+      titleHeaderBackgroundView.leadingAnchor.constraint(
+        equalTo: container.leadingAnchor),
+      titleHeaderBackgroundView.trailingAnchor.constraint(
+        equalTo: container.trailingAnchor),
+      titleHeaderBackgroundView.topAnchor.constraint(
+        equalTo: container.topAnchor),
+      titleHeaderBackgroundView.bottomAnchor.constraint(
+        equalTo: container.bottomAnchor),
+      
+      // HUD Header Title One Label
+      teamOneNameLabel.leadingAnchor.constraint(
+        equalTo: container.leadingAnchor, constant: 36),
+      teamOneNameLabel.topAnchor.constraint(
+        equalTo: container.topAnchor),
+      teamOneNameLabel.bottomAnchor.constraint(
+        equalTo: container.bottomAnchor)
+    ])
+    
+  }
+  
+  func setRightTitleView(on container: UIView) {
+    
+    // HUD Header Title Two Image
+    let titleHeaderBackgroundView = getImageView(
+      for: "Hud-Header-Team-Title-Left")
+    container.addSubview(titleHeaderBackgroundView)
+    
+    // HUD Header Title Two
+    teamTwoNameLabel = getTeamLabel()
+    container.addSubview(teamTwoNameLabel)
+    
+    
+    NSLayoutConstraint.activate([
+      
+      // HUD Header Title Two Image
+      titleHeaderBackgroundView.leadingAnchor.constraint(
+        equalTo: container.leadingAnchor),
+      titleHeaderBackgroundView.trailingAnchor.constraint(
+        equalTo: container.trailingAnchor),
+      titleHeaderBackgroundView.topAnchor.constraint(
+        equalTo: container.topAnchor),
+      titleHeaderBackgroundView.bottomAnchor.constraint(
+        equalTo: container.bottomAnchor),
+      
+      // HUD Header Title One Label
+      teamTwoNameLabel.trailingAnchor.constraint(
+        equalTo: container.trailingAnchor, constant: -36),
+      teamTwoNameLabel.topAnchor.constraint(
+        equalTo: container.topAnchor),
+      teamTwoNameLabel.bottomAnchor.constraint(
+        equalTo: container.bottomAnchor)
+    ])
+    
+  }
+  
+  
+  
+  // MARK: - View Helper Methods
+  
+  func getEmptyView() -> UIView {
+    return ViewHelper.createEmptyView()
+  }
+  
+  func getImageView(for image: String) -> UIImageView {
+    let imageView = ViewHelper.createImageView(
+      contentMode: .scaleAspectFill)
+    imageView.image = UIImage(named: image)
+    
+    return imageView
+  }
+  
+  func getTeamLabel() -> UILabel {
+    let label = ViewHelper.createLabel(
+      with: .white,
+      text: "",
+      alignment: .center,
+      font: UIFont.systemFont(ofSize: 21, weight: .medium))
+    
+    return label
+  }
+  
+  func getPlaysCounterLabel() -> UILabel {
+    let label = ViewHelper.createLabel(
+      with: .black,
+      text: "0",
+      alignment: .center,
+      font: UIFont.systemFont(ofSize: 34, weight: .heavy))
+    
+    return label
+  }
+  
+  func getStackView() -> UIStackView {
+    return ViewHelper.createStackView(
+      .horizontal, distribution: .fill)
   }
   
 }

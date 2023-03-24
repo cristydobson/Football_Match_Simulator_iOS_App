@@ -30,7 +30,6 @@ extension UIView {
     gradient.colors = [
       UIColor.darkerBlue.cgColor,
       UIColor.mediumBlue.cgColor,
-//      UIColor.darkerBlue.cgColor,
       UIColor.lightBlue.cgColor
     ]
     gradient.locations = [0.25, 0.50, 0.75, 1]
@@ -71,7 +70,7 @@ extension UIView {
   
   // MARK: - Drop-down Shadow
   
-  // Add a drop down shadow to a view
+  // Add drop down shadow to a view
   func addDropShadow(opacity: Float, radius: CGFloat, offset: CGSize, color: UIColor) {
     
     self.layer.masksToBounds = false
@@ -134,10 +133,6 @@ struct ViewHelper {
       UIView.animate(withDuration: 0.2) {
         cell.alpha = 1.0
       }}
-  }
-  
-  static func getBarHeight(from controller: UINavigationController) -> CGFloat {
-    return controller.navigationBar.frame.height
   }
   
 }

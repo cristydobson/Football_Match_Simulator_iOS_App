@@ -33,31 +33,22 @@ class StandingsCard: UIView {
     super.awakeFromNib()
     
     addViews()
-    
   }
   
 
   
   func addViews() {
     
-    row1 = UINib(nibName: "StandingsCardRow", bundle: nil)
-      .instantiate(withOwner: nil)[0] as? StandingsCardRow
-    row2 = UINib(nibName: "StandingsCardRow", bundle: nil)
-      .instantiate(withOwner: nil)[0] as? StandingsCardRow
-    row3 = UINib(nibName: "StandingsCardRow", bundle: nil)
-      .instantiate(withOwner: nil)[0] as? StandingsCardRow
-    row4 = UINib(nibName: "StandingsCardRow", bundle: nil)
-      .instantiate(withOwner: nil)[0] as? StandingsCardRow
-    
+    row1 = createCardRow()
+    row2 = createCardRow()
+    row3 = createCardRow()
+    row4 = createCardRow()
     
     let rows = [row1, row2, row3, row4]
     
     rows.forEach {
-      $0?.translatesAutoresizingMaskIntoConstraints = false
       addSubview($0!)
     }
-    
-    addSubview(row1)
     
     
     NSLayoutConstraint.activate([
@@ -78,6 +69,15 @@ class StandingsCard: UIView {
       row4.topAnchor.constraint(equalTo: row3.bottomAnchor, constant: 8)
     ])
     
+  }
+  
+  func createCardRow() -> StandingsCardRow? {
+    let cardRow = UINib(nibName: "StandingsCardRow", bundle: nil)
+      .instantiate(withOwner: nil)[0] as? StandingsCardRow
+    
+    cardRow?.translatesAutoresizingMaskIntoConstraints = false
+    
+    return cardRow
   }
   
   

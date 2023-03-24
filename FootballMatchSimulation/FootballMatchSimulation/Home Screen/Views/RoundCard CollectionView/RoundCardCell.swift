@@ -31,7 +31,6 @@ class RoundCardCell: UICollectionViewCell {
     
     addViews()
     setupView()
-    
   }
   
   required init?(coder: NSCoder) {
@@ -44,18 +43,15 @@ class RoundCardCell: UICollectionViewCell {
   func setupView() {
     addDropShadow()
     roundCard.addCornerRadius(5)
-    roundCard.addBorderStyle(borderWidth: 1, borderColor: .alphaDarkBlue)
+    roundCard.addBorderStyle(
+      borderWidth: 1, borderColor: .alphaDarkBlue)
   }
   
   func addViews() {
     
-    roundCard = UINib(nibName: "RoundCard", bundle: nil)
-      .instantiate(withOwner: nil)[0] as? RoundCard
-    roundCard.translatesAutoresizingMaskIntoConstraints = false
-    
+    roundCard = getRoundCard()
     addSubview(roundCard)
-    
-    
+
     NSLayoutConstraint.activate([
       roundCard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
       roundCard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
@@ -63,6 +59,15 @@ class RoundCardCell: UICollectionViewCell {
       roundCard.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24)
     ])
     
+  }
+  
+  func getRoundCard() -> RoundCard? {
+    let card = UINib(nibName: "RoundCard", bundle: nil)
+      .instantiate(withOwner: nil)[0] as? RoundCard
+    
+    card?.translatesAutoresizingMaskIntoConstraints = false
+    
+    return card
   }
   
   func addDropShadow() {

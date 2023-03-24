@@ -12,6 +12,8 @@ import Foundation
 class DataLoader {
 
   
+  // MARK: - Save Data
+  
   static func save<T: Codable>(_ object: T, to fileName: String) throws {
     
     let url = getDocumentURL(for: fileName)
@@ -26,6 +28,9 @@ class DataLoader {
     }
   }
   
+  
+  // MARK: - Retrieve Data
+  
   static func loadDataFromDirectory<T: Codable>(_ type: T.Type, from fileName: String) throws -> T? {
     let url = getDocumentURL(for: fileName)
     return try loadData(T.self, from: url)
@@ -37,7 +42,6 @@ class DataLoader {
     }
     return nil
   }
-  
   
   static func loadData<T: Codable>(_ type: T.Type, from url: URL) throws -> T? {
     
@@ -51,6 +55,8 @@ class DataLoader {
     }
   }
   
+  
+  // MARK: - Create Document URL
   
   static func getDocumentURL(for fileName: String) -> URL {
     

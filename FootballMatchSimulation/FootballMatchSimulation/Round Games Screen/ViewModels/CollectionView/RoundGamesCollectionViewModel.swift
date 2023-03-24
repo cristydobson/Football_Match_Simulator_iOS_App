@@ -25,7 +25,6 @@ class RoundGamesCollectionViewModel: ObservableObject {
   }
   
   func createCellViewModels(from round: Round) -> [RoundGameCellViewModel] {
-    
     var viewModels: [RoundGameCellViewModel] = []
     
     for match in round.matches {
@@ -42,11 +41,10 @@ class RoundGamesCollectionViewModel: ObservableObject {
     return cellViewModels[indexPath.row]
   }
   
-  func setGameScore(_ scores: [Int], at indexPath: IndexPath) {
+  func setNewGameScore(_ scores: [Int], at indexPath: IndexPath) {
     let viewModel = cellViewModels[indexPath.row]
     viewModel.match.gameIsPlayed = true
     viewModel.match.scores = scores
   }
-  
   
 }

@@ -17,11 +17,9 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
   // MARK: - Properties
   
   private var subscriptions = Set<AnyCancellable>()
-  
   @Published var cellTapped = false
   
   var gameCard: GameRoundCard!
-  
   
   var viewModel: RoundGameCellViewModel? {
     didSet {
@@ -48,7 +46,6 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
   
   override func prepareForReuse() {
     super.prepareForReuse()
-    
     cellTapped = false
   }
   
@@ -63,9 +60,7 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
   
   func addViews() {
     
-    gameCard = UINib(nibName: "GameRoundCard", bundle: nil)
-      .instantiate(withOwner: nil)[0] as? GameRoundCard
-    gameCard.translatesAutoresizingMaskIntoConstraints = false
+    gameCard = getGameCard()
     addSubview(gameCard)
     
     NSLayoutConstraint.activate([
@@ -75,6 +70,15 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
       gameCard.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24)
     ])
     
+  }
+  
+  func getGameCard() -> GameRoundCard? {
+    let card = UINib(nibName: "GameRoundCard", bundle: nil)
+      .instantiate(withOwner: nil)[0] as? GameRoundCard
+    
+    card?.translatesAutoresizingMaskIntoConstraints = false
+    
+    return card
   }
   
   func addDropShadow() {
@@ -91,10 +95,9 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
   func setupBindings() {
     
     gameCard.$playButtonIsTapped.sink { [weak self] flag in
-      DispatchQueue.main.async {
-        if flag {
+      if flag {
+        DispatchQueue.main.async {
           self?.cellTapped = true
-          print("TAPPED!!!!!!")
         }
       }
     }.store(in: &subscriptions)

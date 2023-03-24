@@ -14,11 +14,13 @@ class TeamView: UIView {
   
   
   // MARK: - Properties
+  
   var team1ImageView: UIImageView!
   var team2ImageView: UIImageView!
   
   var team1ScoreLabel: UILabel!
   var team2ScoreLabel: UILabel!
+  
   
   var viewModel: TeamViewModel? {
     didSet {
@@ -48,61 +50,37 @@ class TeamView: UIView {
   
   func addViews() {
     
-    /*
-     Team 1 Logo
-     */
-    team1ImageView = ViewHelper.createImageView(contentMode: .scaleAspectFit)
+    // Team 1 Logo
+    team1ImageView = getLogoImageView()
     addSubview(team1ImageView)
     
     
-    /*
-     Team 2 Logo
-     */
-    team2ImageView = ViewHelper.createImageView(contentMode: .scaleAspectFit)
+    // Team 2 Logo
+    team2ImageView = getLogoImageView()
     addSubview(team2ImageView)
     
     
-    /*
-     Team Score Container View
-     */
-    let scoreView = ViewHelper.createEmptyView()
+    // Team Score Container View
+    let scoreView = getEmptyView()
     addSubview(scoreView)
     
     
-    /*
-     Team 1 Score Label
-     */
-    team1ScoreLabel = ViewHelper.createLabel(
-      with: .black, text: "0",
-      alignment: .center,
-      font: UIFont.systemFont(ofSize: 94, weight: .heavy))
+    // Team 1 Score Label
+    team1ScoreLabel = getScoreLabel("0")
     scoreView.addSubview(team1ScoreLabel)
     
     
-    /*
-     Team 2 Score Label
-     */
-    team2ScoreLabel = ViewHelper.createLabel(
-      with: .black, text: "0",
-      alignment: .center,
-      font: UIFont.systemFont(ofSize: 94, weight: .heavy))
+    // Team 2 Score Label
+    team2ScoreLabel = getScoreLabel("0")
     scoreView.addSubview(team2ScoreLabel)
     
-    /*
-     Team Score Dash Label
-     */
-    let dashLabel = ViewHelper.createLabel(
-      with: .black, text: "-",
-      alignment: .center,
-      font: UIFont.systemFont(ofSize: 94, weight: .heavy))
+    // Team Score Dash Label
+    let dashLabel = getScoreLabel("-")
     scoreView.addSubview(dashLabel)
     
     
-    /*
-     Team Score Labels StackView
-     */
-    let teamScoreStackView = ViewHelper.createStackView(
-      .horizontal, distribution: .fill)
+    // Team Score Labels StackView
+    let teamScoreStackView = getStackView()
     teamScoreStackView.spacing = 4
     scoreView.addSubview(teamScoreStackView)
     
@@ -111,11 +89,8 @@ class TeamView: UIView {
     teamScoreStackView.addArrangedSubview(team2ScoreLabel)
     
     
-    /*
-     Container Stack View
-     */
-    let containerStackView = ViewHelper.createStackView(
-      .horizontal, distribution: .fill)
+    // Container Stack View
+    let containerStackView = getStackView()
     addSubview(containerStackView)
     
     containerStackView.addArrangedSubview(team1ImageView)
@@ -145,6 +120,29 @@ class TeamView: UIView {
   }
   
   
+  // MARK: - View Helper Methods
+  
+  func getLogoImageView() -> UIImageView {
+    return ViewHelper.createImageView(contentMode: .scaleAspectFit)
+  }
+  
+  func getEmptyView() -> UIView {
+    return ViewHelper.createEmptyView()
+  }
+  
+  func getScoreLabel(_ text: String) -> UILabel {
+    let label = ViewHelper.createLabel(
+      with: .black,
+      text: text,
+      alignment: .center,
+      font: UIFont.systemFont(ofSize: 94, weight: .heavy))
+    
+    return label
+  }
+  
+  func getStackView() -> UIStackView {
+    return ViewHelper.createStackView(.horizontal, distribution: .fill)
+  }
   
   
 }

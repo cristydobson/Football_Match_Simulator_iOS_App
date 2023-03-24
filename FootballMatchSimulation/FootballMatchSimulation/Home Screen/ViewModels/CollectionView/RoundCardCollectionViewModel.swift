@@ -32,7 +32,6 @@ class RoundCardCollectionViewModel: ObservableObject {
   }
   
   func createCellViewModel(from round: Round) -> RoundCardCellViewModel {
-    
     return RoundCardCellViewModel(roundName: round.name, matches: round.matches)
   }
   
@@ -42,6 +41,5 @@ class RoundCardCollectionViewModel: ObservableObject {
   func getCellViewModel(at indexPath: IndexPath) -> RoundCardCellViewModel {
     return cellViewModels[indexPath.row]
   }
-  
   
 }

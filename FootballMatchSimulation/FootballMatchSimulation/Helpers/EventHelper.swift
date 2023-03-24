@@ -18,6 +18,7 @@ enum Event {
   case halfTime
   case matchFinished
   
+  
   func string() -> String {
     switch self {
       case .foul:
@@ -42,12 +43,16 @@ struct EventHelper {
   
   static func eventString(for event: Event, andTeam team: PlayingTeam?) -> String {
     switch event {
+        
       case .foul:
         return event.string() + team!.name
+        
       case .takesBall, .keepsBall:
         return team!.name + "'s " + team!.currentPosition.rawValue + event.string()
+        
       case .goal:
         return event.string() + team!.name
+        
       case .halfTime, .matchFinished:
         return event.string()
     }

@@ -52,18 +52,15 @@ class RoundCard: UIView {
   
   func addViews() {
     
-    row1 = UINib(nibName: "RoundCardRow", bundle: nil)
-      .instantiate(withOwner: nil)[0] as? RoundCardRow
-    row2 = UINib(nibName: "RoundCardRow", bundle: nil)
-      .instantiate(withOwner: nil)[0] as? RoundCardRow
+    row1 = createCardRow()
+    row2 = createCardRow()
     
-    [row1, row2].forEach {
-      $0?.translatesAutoresizingMaskIntoConstraints = false
-      addSubview($0!)
-    }
+    addSubview(row1)
+    addSubview(row2)
     
     
     NSLayoutConstraint.activate([
+      
       row1.leadingAnchor.constraint(equalTo: leadingAnchor),
       row1.trailingAnchor.constraint(equalTo: trailingAnchor),
       row1.topAnchor.constraint(equalTo: headerContainerView.bottomAnchor, constant: 12),
@@ -73,9 +70,22 @@ class RoundCard: UIView {
       row2.trailingAnchor.constraint(equalTo: trailingAnchor),
       row2.topAnchor.constraint(equalTo: row1.bottomAnchor, constant: 24),
       row2.setHeightContraint(by: 50)
+      
     ])
     
   }
+  
+  func createCardRow() -> RoundCardRow? {
+    let cardRow = UINib(nibName: "RoundCardRow", bundle: nil)
+      .instantiate(withOwner: nil)[0] as? RoundCardRow
+    
+    cardRow?.translatesAutoresizingMaskIntoConstraints = false
+    
+    return cardRow
+  }
+  
+  
+  // MARK: Helper Methods
 
   func loadRows(withModels models: [RoundCardRowViewModel]?) {
     if let models = models {

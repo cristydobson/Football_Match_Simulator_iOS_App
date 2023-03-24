@@ -59,7 +59,6 @@ class GameRoundCard: UIView, ObservableObject {
     
     setupView()
     setupButton()
-    
   }
   
   

@@ -11,6 +11,7 @@ import Foundation
 
 protocol CurrentTeam {
   
+  
   // MARK: - Properties
   
   var name: String { get }

@@ -148,11 +148,7 @@ class GameSimulation: ObservableObject {
    */
   func handleFinishedMatch(for teamOne: PlayingTeam, vs teamTwo: PlayingTeam) {
     gameState = .finished
-    
     updateCurrentEvent(for: .matchFinished, andTeam: nil)
-
-    print("MATCH IS FINISHED!!!!!")
-    print("GOALS: \(teamOne.name)(\(teamOne.goals)) - \(teamTwo.name)(\(teamTwo.goals))")
   }
   
   
@@ -162,8 +158,6 @@ class GameSimulation: ObservableObject {
     
     let teamOneSkillPower = team1.playersSkillPower()
     let teamTwoSkillPower = team2.playersSkillPower()
-    
-    print("\(team1.name) as \(team1.currentPosition.rawValue) (POWER: \(teamOneSkillPower)) VS. \(team2.name) as \(team2.currentPosition.rawValue) (POWER: \(teamTwoSkillPower)) \n")
     
     return teamTwoSkillPower >= teamOneSkillPower
   }
@@ -233,7 +227,6 @@ extension GameSimulation {
   
   func handleFoulBy(_ teamOne: PlayingTeam, against teamTwo: PlayingTeam) {
     let foul = teamOne.getFoulPenaltyType()
-    print("FOUL: \(foul)!!!!")
     teamOne.handleCommittedFoul(foul)
     teamTwo.handleReceivedFoul(foul)
   }

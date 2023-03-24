@@ -18,15 +18,13 @@ class HomeScreenViewModel: ObservableObject {
   private var subscriptions = Set<AnyCancellable>()
   
   @Published var rounds: [Round] = []
-  
   @Published var teams: [Team] = []
   
   @Published var standingsViewModel: StandingsViewModel!
-  
   @Published var updateStandings = false
   
   
-  // MARK: - Methods
+  // MARK: - Load Teams
   
   func loadTeams() {
     let fileName = JsonFileName.teams.rawValue
@@ -43,31 +41,24 @@ class HomeScreenViewModel: ObservableObject {
   
   // MARK: - Load Rounds
   
-  func generateRounds(_ models: [Team]) -> [Round] {
-    let generator = RoundGenerator()
-    let newRounds = generator.getRounds(with: models)
-    rounds = newRounds
-    return newRounds
-  }
-  
   func loadRounds(with teamModels: [Team]) {
     let fileName = JsonFileName.rounds.rawValue
     
     if let newRounds = try? DataLoader.loadDataFromDirectory([Round].self, from: fileName),
        newRounds.count > 0 {
-      setupRoundBindings(for: newRounds)
-      setupRounds(newRounds)
-    }
-    else if let newRounds = try? DataLoader.loadDataFromBundle([Round].self, from: fileName),
-            newRounds.count > 0 {
-      setupRoundBindings(for: newRounds)
-      setupRounds(newRounds)
+      setupExistingRounds(newRounds)
     }
     else {
-      let newRounds = generateRounds(teamModels)
-      setupRoundBindings(for: newRounds)
-      try! DataLoader.save(newRounds, to: fileName)
+      createNewRounds(with: teamModels, andFileName: fileName)
     }
+  }
+  
+  
+  // MARK: Setup Existing Rounds
+  
+  func setupExistingRounds(_ newRounds: [Round]) {
+    setupRoundBindings(for: newRounds)
+    setupRounds(newRounds)
   }
   
   func setupRounds(_ roundModels: [Round]) {
@@ -77,6 +68,26 @@ class HomeScreenViewModel: ObservableObject {
     rounds = roundModels
   }
   
+  
+  // MARK: - Create New Rounds
+  
+  func createNewRounds(with teamModels: [Team], andFileName fileName: String) {
+    let newRounds = generateRounds(teamModels)
+    setupRoundBindings(for: newRounds)
+    try! DataLoader.save(newRounds, to: fileName)
+  }
+  
+  // Generate rounds for the first time
+  func generateRounds(_ models: [Team]) -> [Round] {
+    let generator = RoundGenerator()
+    let newRounds = generator.getRounds(with: models)
+    rounds = newRounds
+    return newRounds
+  }
+  
+  
+  // MARK: - Setup Bindings for Rounds
+  
   func setupRoundBindings(for roundModels: [Round]) {
     for round in roundModels {
       setBindings(for: round)
@@ -84,34 +95,36 @@ class HomeScreenViewModel: ObservableObject {
   }
   
   func setBindings(for round: Round) {
-    
     for match in round.matches {
-      
-      match.$saveRounds.sink { [weak self] flag in
-        if flag {
-          DispatchQueue.main.async {
-            self?.saveRounds()
-          }
-        }
-      }.store(in: &subscriptions)
-      
-      match.$saveTeams.sink { [weak self] flag in
-        if flag {
-          DispatchQueue.main.async {
-            self?.saveTeams()
-          }
-        }
-      }.store(in: &subscriptions)
-      
-      match.$didReplayGame.sink { [weak self] flag in
-        if flag {
-          DispatchQueue.main.async {
-            self?.recalculateStandingsAfterGameReplay()
-          }
-        }
-      }.store(in: &subscriptions)
+      setBindings(for: match)
     }
+  }
+  
+  func setBindings(for match: Round.Match) {
     
+    match.$saveRounds.sink { [weak self] flag in
+      if flag {
+        DispatchQueue.main.async {
+          self?.saveRounds()
+        }
+      }
+    }.store(in: &subscriptions)
+    
+    match.$saveTeams.sink { [weak self] flag in
+      if flag {
+        DispatchQueue.main.async {
+          self?.saveTeams()
+        }
+      }
+    }.store(in: &subscriptions)
+    
+    match.$didReplayGame.sink { [weak self] flag in
+      if flag {
+        DispatchQueue.main.async {
+          self?.recalculateStandingsAfterGameReplay()
+        }
+      }
+    }.store(in: &subscriptions)
   }
   
   
@@ -133,16 +146,13 @@ class HomeScreenViewModel: ObservableObject {
   
   func saveTeams() {
     let fileName = JsonFileName.teams.rawValue
-    if let _ = try? DataLoader.save(teams, to: fileName) {
-      updateStandings = true
-    }
+    try! DataLoader.save(teams, to: fileName)
+    updateStandings = true
   }
   
   func saveRounds() {
     let fileName = JsonFileName.rounds.rawValue
     try! DataLoader.save(rounds, to: fileName)
   }
-  
-
   
 }

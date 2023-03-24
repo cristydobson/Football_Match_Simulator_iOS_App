@@ -29,6 +29,4 @@ class RoundCardCellViewModel {
     return RoundCardViewModel(title: roundName, matches: matches)
   }
   
-  
-  
 }

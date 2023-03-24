@@ -9,6 +9,8 @@
 import Foundation
 
 
+// MARK: - Team Model
+
 class Team: Codable {
   
   let name: String
@@ -23,6 +25,8 @@ class Team: Codable {
   
   var standings: Standings!
   
+  
+  // MARK: - Standings Model
   
   class Standings: Codable {
     
@@ -79,12 +83,12 @@ class Team: Codable {
       points = 0
       games_played = 0
     }
-    
   }
   
 }
 
 
+// MARK: - Player Model
 
 class Player: Codable {
   

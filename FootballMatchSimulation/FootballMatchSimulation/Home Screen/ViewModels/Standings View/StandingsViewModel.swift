@@ -14,8 +14,6 @@ class StandingsViewModel {
   
   // MARK: - Properties
     
-  let teamStandings = TeamStandings()
-  
   let teams: [Team]
   
   
@@ -30,13 +28,9 @@ class StandingsViewModel {
     return StandingsCardViewModel(teams: sortedTeams)
   }
   
-  func updatedTeamStandings() -> [Team] {
+  func sortTeamsByStandings() -> [Team] {
     let sortedTeams = TeamStandings.sortTeamsByStandings(teams)
     return sortedTeams
-  }
-  
-  func updateTeamStandingsAfterReplay() {
-    
   }
   
 }

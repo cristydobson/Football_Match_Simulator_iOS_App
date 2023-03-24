@@ -30,6 +30,7 @@ class StandingsCardViewModel {
     return createRowViewModels()
   }
   
+  
   func createRowViewModels() -> [StandingsCardRowViewModel] {
     
     var viewModels: [StandingsCardRowViewModel] = []
@@ -42,6 +43,7 @@ class StandingsCardViewModel {
     }
     return viewModels
   }
+  
   
   func buildRowViewModel(from team: Team, at index: Int) -> StandingsCardRowViewModel {
     return StandingsCardRowViewModel(team: team, position: index)

@@ -45,12 +45,8 @@ class StandingsView: UIView {
     /*
      Standings Card
      */
-    standingsCard = UINib(nibName: "StandingsCard", bundle: nil)
-      .instantiate(withOwner: nil)[0] as? StandingsCard
-    standingsCard.translatesAutoresizingMaskIntoConstraints = false
-    
+    standingsCard = getStandingsCard()
     addSubview(standingsCard)
-    
     
     NSLayoutConstraint.activate([
       standingsCard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
@@ -61,12 +57,21 @@ class StandingsView: UIView {
     
   }
   
+  func getStandingsCard() -> StandingsCard? {
+    let card = UINib(nibName: "StandingsCard", bundle: nil)
+      .instantiate(withOwner: nil)[0] as? StandingsCard
+    
+    card?.translatesAutoresizingMaskIntoConstraints = false
+    
+    return card
+  }
+  
   
   // MARK: - Helper Methods
   
   func updateStandings() {
-    if let newTeams = viewModel?.updatedTeamStandings() {
-
+    if let newTeams = viewModel?.sortTeamsByStandings() {
+  
       let cardViewModel = standingsCard.viewModel
       cardViewModel?.teams = newTeams
       standingsCard.viewModel = cardViewModel

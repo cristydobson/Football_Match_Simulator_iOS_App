@@ -36,11 +36,6 @@ class HomeScreenViewController: UIViewController {
     viewModel.loadTeams()
     
   }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-        
-  }
  
   
   // MARK: - Setup Methods
@@ -51,23 +46,23 @@ class HomeScreenViewController: UIViewController {
   
   func addViews() {
     
-    
     let safeArea = view.safeAreaLayoutGuide
-    let viewFrame = view.frame
+    let viewWidth = view.frame.width
+    let viewHeight = view.frame.height
     
     /*
      Standings View
      */
     let standingsContainerView = ViewHelper.createEmptyView()
-    setupStandingsCard(for: standingsContainerView)
+    styleStandingsContainer(standingsContainerView)
     view.addSubview(standingsContainerView)
 
     let standingsViewFrame = CGRect(
       origin: CGPoint.zero,
-      size: CGSize(width: viewFrame.width*0.5,
-                   height: viewFrame.height*0.7))
+      size: CGSize(width: viewWidth*0.5, height: viewHeight*0.7))
     standingsView = StandingsView(frame: standingsViewFrame)
     standingsContainerView.addSubview(standingsView)
+    
     
     NSLayoutConstraint.activate([
       
@@ -90,11 +85,9 @@ class HomeScreenViewController: UIViewController {
     let collectionContainerView = ViewHelper.createEmptyView()
     view.addSubview(collectionContainerView)
 
-    let roundCollectionViewHeight = view.frame.height
-
     let collectionViewFrame = CGRect(
       origin: CGPoint.zero,
-      size: CGSize(width: view.frame.width*0.4, height: roundCollectionViewHeight))
+      size: CGSize(width: viewWidth*0.4, height: viewHeight))
 
     roundCollectionView = RoundCardCollectionView(
       frame: collectionViewFrame, controller: self)
@@ -104,7 +97,8 @@ class HomeScreenViewController: UIViewController {
 
     
     NSLayoutConstraint.activate([
-      collectionContainerView.leadingAnchor.constraint(equalTo: standingsContainerView.trailingAnchor, constant: 12),
+      collectionContainerView.leadingAnchor.constraint(
+        equalTo: standingsContainerView.trailingAnchor, constant: 12),
       collectionContainerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
       collectionContainerView.topAnchor.constraint(equalTo: view.topAnchor),
       collectionContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -112,12 +106,13 @@ class HomeScreenViewController: UIViewController {
     
   }
   
-  func setupStandingsCard(for cardView: UIView) {
+  func styleStandingsContainer(_ cardView: UIView) {
     cardView.addDropShadow(
       opacity: 0.5,
       radius: 4,
       offset: CGSize.zero,
       color: .darkBlue)
+    
     cardView.addCornerRadius(15)
     cardView.addBorderStyle(borderWidth: 1, borderColor: .alphaDarkBlue)
     cardView.backgroundColor = .standingsColor
@@ -129,9 +124,8 @@ class HomeScreenViewController: UIViewController {
   func setupBindings() {
     
     viewModel.$teams.sink { [weak self] teams in
-      
-      DispatchQueue.main.async {
-        if teams.count > 0 {
+      if teams.count > 0 {
+        DispatchQueue.main.async {
           self?.viewModel.loadRounds(with: teams)
           self?.viewModel.createStandingsViewModel()
         }
@@ -140,9 +134,8 @@ class HomeScreenViewController: UIViewController {
 
     
     viewModel.$rounds.sink { [weak self] rounds in
-      
-      DispatchQueue.main.async {
-        if rounds.count > 0 {
+      if rounds.count > 0 {
+        DispatchQueue.main.async {
           self?.roundCollectionView.rounds = rounds
         }
       }
@@ -150,8 +143,8 @@ class HomeScreenViewController: UIViewController {
     
     
     viewModel.$standingsViewModel.sink { [weak self] stViewModel in
-      DispatchQueue.main.async {
-        if let standingsVm = stViewModel {
+      if let standingsVm = stViewModel {
+        DispatchQueue.main.async {
           self?.setStandingsViewModel(with: standingsVm)
         }
       }
@@ -159,10 +152,8 @@ class HomeScreenViewController: UIViewController {
     
     
     viewModel.$updateStandings.sink { [weak self] flag in
-      DispatchQueue.main.async {
-        print("UPDATE SATANDINGS Hvc outer: \(flag)!!!!!!!!!")
-        if flag {
-          print("UPDATE SATANDINGS Hvc inner: \(flag)!!!!!!!!!")
+      if flag {
+        DispatchQueue.main.async {
           self?.standingsView.updateStandings()
           self?.roundCollectionView.reloadCollectionView()
         }
@@ -177,18 +168,6 @@ class HomeScreenViewController: UIViewController {
   func setStandingsViewModel(with viewModel: StandingsViewModel) {
     standingsView.viewModel = viewModel
   }
-  
-//  func setupStandings(from rounds: [Round]) {
-//
-//    let teams = viewModel.setupTeamStandings(from: rounds)
-//
-//    standingsCard.viewModel = StandingsCardViewModel(teams: teams)
-//  }
-  
-//  func setupStandings(from teams: [Team]) {
-//    let sortedTeams = viewModel.sortTeamsByStandings(teams)
-//    standingsCard.viewModel = StandingsCardViewModel(teams: sortedTeams)
-//  }
 
   
 }

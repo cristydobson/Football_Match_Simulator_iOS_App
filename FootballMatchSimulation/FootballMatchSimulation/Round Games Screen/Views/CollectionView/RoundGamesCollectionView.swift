@@ -58,11 +58,7 @@ class RoundGamesCollectionView: UIView {
   func setupCollectionView() {
 
     // CollectionView Layout
-    let cellWidth = frame.width*0.45
-    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    layout.sectionInset = UIEdgeInsets(
-      top: 0, left: 40, bottom: 0, right: 40)
-    layout.itemSize = CGSize(width: cellWidth, height: cellWidth*0.8)
+    let layout = getCollectionViewLayout()
     
     // Instantiate CollectionView
     collectionView = CollectionViewHelper.createCollectionView(
@@ -83,6 +79,17 @@ class RoundGamesCollectionView: UIView {
     
   }
   
+  func getCollectionViewLayout() -> UICollectionViewFlowLayout {
+    let cellWidth = frame.width*0.45
+    
+    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    layout.sectionInset = UIEdgeInsets(
+      top: 0, left: 40, bottom: 0, right: 40)
+    layout.itemSize = CGSize(width: cellWidth, height: cellWidth*0.8)
+    
+    return layout
+  }
+  
   
   // MARK: - Navigation
   
@@ -92,32 +99,41 @@ class RoundGamesCollectionView: UIView {
     viewController.modalPresentationStyle = .fullScreen
     
     let match = round.matches[indexPath.row]
-    let team1 = PlayingTeam(team: match.teams[0])
-    let team2 = PlayingTeam(team: match.teams[1])
+    viewController.teams = createPlayingTeams(for: match)
     
     let didReplayGame = match.gameIsPlayed
-    viewController.teams = [team1, team2]
-
+    
     // Subscribe to receive the final score
     viewController.$goals.sink { [weak self] teamGoals in
-      DispatchQueue.main.async {
-        if let goals = teamGoals {
-          self?.viewModel.setGameScore(goals, at: indexPath)
-          self?.subscriptions.removeAll()
-          self?.collectionView.reloadData()
-          
-          if !didReplayGame {
-            match.updateTeamStandings()
-          }
-          else {
-            match.gameReplayed()
-          }
+      if let goals = teamGoals {
+        DispatchQueue.main.async {
+          self?.updateGameScores(goals, for: match,
+                                 at: indexPath, onReplay: didReplayGame)
         }
       }
-    }
-    .store(in: &subscriptions)
+    }.store(in: &subscriptions)
 
     controller.present(viewController, animated: true)
+  }
+  
+  func createPlayingTeams(for match: Round.Match) -> [PlayingTeam] {
+    let team1 = PlayingTeam(team: match.teams[0])
+    let team2 = PlayingTeam(team: match.teams[1])
+    return [team1, team2]
+  }
+  
+  func updateGameScores(_ scores: [Int], for match: Round.Match, at indexPath: IndexPath, onReplay: Bool) {
+    
+    viewModel.setNewGameScore(scores, at: indexPath)
+    subscriptions.removeAll()
+    collectionView.reloadData()
+    
+    if !onReplay {
+      match.updateTeamStandings()
+    }
+    else {
+      match.gameReplayed()
+    }
   }
   
 }
@@ -143,14 +159,12 @@ extension RoundGamesCollectionView: UICollectionViewDataSource, UICollectionView
     cell.viewModel = viewModel.getCellViewModel(at: indexPath)
     
     cell.$cellTapped.sink { [weak self] flag in
-      DispatchQueue.main.async {
-        if flag {
+      if flag {
+        DispatchQueue.main.async {
           self?.presentGameViewController(for: indexPath)
         }
       }
-    }
-    .store(in: &subscriptions)
-    
+    }.store(in: &subscriptions)
     
     return cell
   }

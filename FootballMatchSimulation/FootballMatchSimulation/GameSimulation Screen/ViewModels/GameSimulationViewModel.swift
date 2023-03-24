@@ -11,11 +11,7 @@ import Foundation
 
 class GameSimulationViewModel {
   
-  
-  // MARK: - Properties
-  
-    
-  
+
   // MARK: - Methods
   
   func loadHudViewModel(for teams: [PlayingTeam]) -> HudViewModel {
@@ -27,6 +23,5 @@ class GameSimulationViewModel {
     return TeamViewModel(team1ImageName: teams[0].team.image_name,
                          team2ImageName: teams[1].team.image_name)
   }
-  
   
 }

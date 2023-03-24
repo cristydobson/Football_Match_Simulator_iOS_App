@@ -14,9 +14,7 @@ class RoundGamesViewController: UIViewController {
   
   
   // MARK: - Properties
-  
-  private let viewModel = RoundGamesViewModel()
-    
+      
   var round: Round!
   var collectionView: RoundGamesCollectionView!
   
@@ -28,7 +26,6 @@ class RoundGamesViewController: UIViewController {
     
     setupBackground()
     addViews()
-    
   }
   
   
@@ -38,11 +35,14 @@ class RoundGamesViewController: UIViewController {
     view.addBlueGradientBackground()
     
     for view in navigationController!.navigationBar.subviews {
-      if let titleLabel = view as? UILabel {
-        titleLabel.text = "\(round.name)"
-      }
+      setViewTitle(on: view)
     }
-    
+  }
+  
+  func setViewTitle(on label: UIView) {
+    if let titleLabel = label as? UILabel {
+      titleLabel.text = "\(round.name)"
+    }
   }
   
   func addViews() {
@@ -63,6 +63,4 @@ class RoundGamesViewController: UIViewController {
         
   }
 
-  
-  
 }

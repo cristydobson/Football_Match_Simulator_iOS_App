@@ -57,6 +57,4 @@ class StandingsCardRow: UIView {
     super.awakeFromNib()
   }
   
-  
-  
 }

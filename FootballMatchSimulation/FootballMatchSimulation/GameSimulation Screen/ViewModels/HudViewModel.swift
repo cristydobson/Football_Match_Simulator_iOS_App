@@ -25,8 +25,6 @@ class HudViewModel {
     self.team2Name = team2Name
   }
   
-  
-  
 }
 
 

@@ -17,6 +17,7 @@ class RoundCardRow: UIView {
   @IBOutlet weak var teamOneLogo: UIImageView!
   @IBOutlet weak var teamOneScoreLabel: UILabel!
   
+  
   // Team Two
   @IBOutlet weak var teamTwoLogo: UIImageView!
   @IBOutlet weak var teamTwoNameLabel: UILabel!
@@ -44,5 +45,4 @@ class RoundCardRow: UIView {
     super.awakeFromNib()
   }
   
-
 }

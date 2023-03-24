@@ -10,13 +10,22 @@ import Foundation
 import Combine
 
 
+// MARK: - Round Model
+
 class Round: Codable {
+  
+  
+  // MARK: - Match Model
   
   class Match: Codable {
     
-    var teams: [Team] = []
+    @Published var saveRounds = false
+    @Published var saveTeams = false
+    @Published var didReplayGame = false
     
+    var teams: [Team] = []
     var team_ids: [String] = []
+    var gameIsPlayed = false
     
     var scores: [Int] = [] {
       didSet {
@@ -24,11 +33,6 @@ class Round: Codable {
       }
     }
     
-    var gameIsPlayed = false
-    
-    @Published var saveRounds = false
-    @Published var saveTeams = false
-    @Published var didReplayGame = false
     
     private enum CodingKeys: String, CodingKey {
       case team_ids
@@ -44,6 +48,9 @@ class Round: Codable {
       self.scores = try container.decode([Int].self, forKey: .scores)
       self.gameIsPlayed = try container.decode(Bool.self, forKey: .gameIsPlayed)
     }
+    
+    
+    // MARK: - Helper Methods
     
     func getTeams(from allTeams: [Team]) {
       var teamModels: [Team] = []

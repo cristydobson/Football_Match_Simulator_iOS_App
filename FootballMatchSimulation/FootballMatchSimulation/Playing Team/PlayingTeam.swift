@@ -18,6 +18,7 @@ enum TeamType {
 
 class PlayingTeam: CurrentTeam, ObservableObject {
 
+  
   // MARK: - Properties
   
   // Team
@@ -41,7 +42,6 @@ class PlayingTeam: CurrentTeam, ObservableObject {
   var isGoalKeeper: Bool {
     return currentPosition == .keeper
   }
-  
   
   
   // MARK: - Init Method

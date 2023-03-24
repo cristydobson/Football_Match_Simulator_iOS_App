@@ -10,7 +10,7 @@ import Foundation
 
 
 /*
- Each Play equals 1 minute
+ Each Play signifies 1 minute on the field
  */
 class PositionPlays {
   

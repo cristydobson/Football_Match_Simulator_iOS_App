@@ -70,13 +70,6 @@ class StandingsCardRowViewModel {
     }
   }
   
-  
-  
-  
-  
-  
-  
-  
 }
 
 
