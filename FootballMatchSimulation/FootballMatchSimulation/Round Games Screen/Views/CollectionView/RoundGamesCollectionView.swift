@@ -41,7 +41,7 @@ class RoundGamesCollectionView: UIView {
     self.init(frame: frame)
     self.controller = controller
     self.round = round
-    
+  
     setupView()
     setupCollectionView()
         

@@ -40,6 +40,9 @@ class HomeScreenViewController: UIViewController {
   
   // MARK: - Setup Methods
   
+  var viewWidth: CGFloat!
+  var viewHeight: CGFloat!
+  
   func setupBackground() {
     view.addBlueGradientBackground()
   }
@@ -47,20 +50,18 @@ class HomeScreenViewController: UIViewController {
   func addViews() {
     
     let safeArea = view.safeAreaLayoutGuide
-    let viewWidth = view.frame.width
-    let viewHeight = view.frame.height
+    viewWidth = view.frame.width
+    viewHeight = view.frame.height
+    
     
     /*
      Standings View
      */
-    let standingsContainerView = ViewHelper.createEmptyView()
-    styleStandingsContainer(standingsContainerView)
+    let standingsContainerView = getEmptyView()
+    styleContainerView(standingsContainerView)
     view.addSubview(standingsContainerView)
 
-    let standingsViewFrame = CGRect(
-      origin: CGPoint.zero,
-      size: CGSize(width: viewWidth*0.5, height: viewHeight*0.7))
-    standingsView = StandingsView(frame: standingsViewFrame)
+    standingsView = createStandingsView()
     standingsContainerView.addSubview(standingsView)
     
     
@@ -71,28 +72,45 @@ class HomeScreenViewController: UIViewController {
       standingsView.topAnchor.constraint(equalTo: standingsContainerView.topAnchor),
       standingsView.bottomAnchor.constraint(equalTo: standingsContainerView.bottomAnchor),
       
-      standingsContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 48),
+      standingsContainerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 48),
       standingsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
-      standingsContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
-      standingsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+      standingsContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.70),
+      standingsContainerView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
 
     ])
     
     
     /*
+     Title View
+     */
+//    let titleView = getEmptyView()
+//    styleContainerView(titleView)
+//    view.addSubview(titleView)
+//
+//    let titleLabel = getTitleLabel()
+//    titleView.addSubview(titleLabel)
+    
+//    NSLayoutConstraint.activate([
+//      
+//      titleLabel.leadingAnchor.constraint(equalTo: titleView.leadingAnchor),
+//      titleLabel.trailingAnchor.constraint(equalTo: titleView.trailingAnchor),
+//      titleLabel.topAnchor.constraint(equalTo: titleView.topAnchor),
+//      titleLabel.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
+//      
+//      titleView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 48),
+//      titleView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+//      titleView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
+//      titleView.bottomAnchor.constraint(equalTo: standingsContainerView.topAnchor, constant: -12)
+//    ])
+    
+    
+    /*
      Round Card Collection View
      */
-    let collectionContainerView = ViewHelper.createEmptyView()
+    let collectionContainerView = getEmptyView()
     view.addSubview(collectionContainerView)
 
-    let collectionViewFrame = CGRect(
-      origin: CGPoint.zero,
-      size: CGSize(width: viewWidth*0.4, height: viewHeight))
-
-    roundCollectionView = RoundCardCollectionView(
-      frame: collectionViewFrame, controller: self)
-
-    roundCollectionView.translatesAutoresizingMaskIntoConstraints = false
+    roundCollectionView = createRoundCardCollectionView()
     collectionContainerView.addSubview(roundCollectionView)
 
     
@@ -106,16 +124,57 @@ class HomeScreenViewController: UIViewController {
     
   }
   
-  func styleStandingsContainer(_ cardView: UIView) {
-    cardView.addDropShadow(
+  
+  // MARK: - View Helper Methods
+  
+  func getEmptyView() -> UIView {
+    return ViewHelper.createEmptyView()
+  }
+  
+  func createStandingsView() -> StandingsView {
+    let standingsViewFrame = CGRect(
+      origin: CGPoint.zero,
+      size: CGSize(width: viewWidth*0.5, height: viewHeight*0.7))
+    
+    let standingsView = StandingsView(frame: standingsViewFrame)
+    
+    return standingsView
+  }
+  
+  func createRoundCardCollectionView() -> RoundCardCollectionView {
+    let collectionViewFrame = CGRect(
+      origin: CGPoint.zero,
+      size: CGSize(width: viewWidth*0.4, height: viewHeight))
+    
+    let collectionView = RoundCardCollectionView(
+      frame: collectionViewFrame, controller: self)
+    
+    collectionView.translatesAutoresizingMaskIntoConstraints = false
+    
+    return collectionView
+  }
+
+  func getTitleLabel() -> UILabel {
+    let label = ViewHelper.createLabel(
+      with: .white,
+      text: "Standings",
+      alignment: .center,
+      font: UIFont.systemFont(ofSize: 28, weight: .bold))
+    
+    return label
+  }
+  
+  func styleContainerView(_ containerView: UIView) {
+    containerView.addDropShadow(
       opacity: 0.5,
       radius: 4,
       offset: CGSize.zero,
       color: .darkBlue)
     
-    cardView.addCornerRadius(15)
-    cardView.addBorderStyle(borderWidth: 1, borderColor: .alphaDarkBlue)
-    cardView.backgroundColor = .standingsColor
+    containerView.addCornerRadius(10)
+    containerView.addBorderStyle(borderWidth: 1, borderColor: .alphaDarkBlue)
+    
+    containerView.backgroundColor = .standingsColor
   }
   
   

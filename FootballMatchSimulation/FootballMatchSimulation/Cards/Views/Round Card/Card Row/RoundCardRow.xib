@@ -19,7 +19,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="169" height="59"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team One" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90b-YH-v5v">
-                                    <rect key="frame" x="12" y="23.333333333333336" width="102" height="20.333333333333336"/>
+                                    <rect key="frame" x="12" y="23.333333333333336" width="98" height="20.333333333333336"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -36,7 +36,7 @@
                                 <constraint firstAttribute="trailing" secondItem="dPP-y9-OKb" secondAttribute="trailing" constant="4" id="EuV-mF-Ek4"/>
                                 <constraint firstAttribute="bottom" secondItem="dPP-y9-OKb" secondAttribute="bottom" constant="4" id="J7U-wI-n2i"/>
                                 <constraint firstItem="90b-YH-v5v" firstAttribute="leading" secondItem="HQ5-pq-Q1p" secondAttribute="leading" constant="12" id="NE1-Tv-3xf"/>
-                                <constraint firstItem="dPP-y9-OKb" firstAttribute="leading" secondItem="90b-YH-v5v" secondAttribute="trailing" constant="8" id="Pcv-Wc-KqE"/>
+                                <constraint firstItem="dPP-y9-OKb" firstAttribute="leading" secondItem="90b-YH-v5v" secondAttribute="trailing" constant="12" id="Pcv-Wc-KqE"/>
                                 <constraint firstItem="dPP-y9-OKb" firstAttribute="top" secondItem="HQ5-pq-Q1p" secondAttribute="top" constant="12" id="k5q-ur-IgQ"/>
                                 <constraint firstItem="90b-YH-v5v" firstAttribute="centerY" secondItem="dPP-y9-OKb" secondAttribute="centerY" id="ugt-K7-KhO"/>
                             </constraints>
@@ -83,7 +83,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Two" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tn9-4L-XbR">
-                                    <rect key="frame" x="55" y="23.333333333333336" width="102" height="20.333333333333336"/>
+                                    <rect key="frame" x="59" y="23.333333333333336" width="98" height="20.333333333333336"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -93,7 +93,7 @@
                             <constraints>
                                 <constraint firstItem="Tn9-4L-XbR" firstAttribute="centerY" secondItem="fGL-wC-AR8" secondAttribute="centerY" id="J7o-59-xq2"/>
                                 <constraint firstItem="fGL-wC-AR8" firstAttribute="top" secondItem="Ug6-ij-dR6" secondAttribute="top" constant="12" id="JNK-Uu-Ssd"/>
-                                <constraint firstItem="Tn9-4L-XbR" firstAttribute="leading" secondItem="fGL-wC-AR8" secondAttribute="trailing" constant="8" id="Pv8-tc-7eF"/>
+                                <constraint firstItem="Tn9-4L-XbR" firstAttribute="leading" secondItem="fGL-wC-AR8" secondAttribute="trailing" constant="12" id="Pv8-tc-7eF"/>
                                 <constraint firstAttribute="trailing" secondItem="Tn9-4L-XbR" secondAttribute="trailing" constant="12" id="Xml-31-x18"/>
                                 <constraint firstItem="fGL-wC-AR8" firstAttribute="leading" secondItem="Ug6-ij-dR6" secondAttribute="leading" constant="4" id="lZv-ao-mrB"/>
                                 <constraint firstAttribute="bottom" secondItem="fGL-wC-AR8" secondAttribute="bottom" constant="4" id="uvD-SW-VFl"/>

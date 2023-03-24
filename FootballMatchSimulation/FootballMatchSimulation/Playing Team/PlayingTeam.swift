@@ -114,7 +114,7 @@ class PlayingTeam: CurrentTeam, ObservableObject {
     players.updatePlays(for: currentPosition)
     
     let totalSkillPower = totalSkillPower(for: currentPosition)
-    print("TOTAL SKILL: \(totalSkillPower)!!!!")
+
     /*
      Get a random number in the range (0.0...totalSkillPower)
      to use in the head-to-head battle for the ball
@@ -169,17 +169,13 @@ extension PlayingTeam {
    - Do nothing.
    */
   func handleCommittedFoul(_ foulPenalty: FoulPenalty) {
-    print("HANDLE FOUL BY: \(name)!!!!!!")
     
     switch foulPenalty {
         
       case .yellowCard:
-        print("YELLOW CARD!!!!!")
         players.addYellowCard(for: currentPosition)
         
       case .redCard:
-        print("RED CARD!!!!!")
-        
         players.removePlayer(from: currentPosition)
         
       default:
@@ -189,9 +185,7 @@ extension PlayingTeam {
   
   
   // Handle the team receiving the foul
-  func handleReceivedFoul(_ foulPenalty: FoulPenalty) {
-    print("HANDLE FOUL ON: \(name)!!!!!!")
-    
+  func handleReceivedFoul(_ foulPenalty: FoulPenalty) {    
     /*
      Receiving a foul affects the players fitness
      negatively

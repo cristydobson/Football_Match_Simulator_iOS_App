@@ -53,10 +53,10 @@ class RoundCardCell: UICollectionViewCell {
     addSubview(roundCard)
 
     NSLayoutConstraint.activate([
-      roundCard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-      roundCard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-      roundCard.topAnchor.constraint(equalTo: topAnchor, constant: 24),
-      roundCard.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24)
+      roundCard.leadingAnchor.constraint(equalTo: leadingAnchor),
+      roundCard.trailingAnchor.constraint(equalTo: trailingAnchor),
+      roundCard.topAnchor.constraint(equalTo: topAnchor),
+      roundCard.bottomAnchor.constraint(equalTo: bottomAnchor)
     ])
     
   }

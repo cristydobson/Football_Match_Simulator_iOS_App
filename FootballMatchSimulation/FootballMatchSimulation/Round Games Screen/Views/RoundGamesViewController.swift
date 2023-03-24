@@ -24,12 +24,17 @@ class RoundGamesViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    setupNavBar()
     setupBackground()
     addViews()
   }
   
   
   // MARK: - Setup Methods
+  
+  func setupNavBar() {
+    navigationController?.navigationBar.topItem?.backButtonTitle = ""
+  }
   
   func setupBackground() {
     view.addBlueGradientBackground()
@@ -55,12 +60,11 @@ class RoundGamesViewController: UIViewController {
     collectionView.round = round
     
     view.addSubview(collectionView)
-    
-    NSLayoutConstraint.activate([
-      collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      collectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-    ])
         
+  }
+  
+  func getEmptyView() -> UIView {
+    return ViewHelper.createEmptyView()
   }
 
 }

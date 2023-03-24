@@ -17,7 +17,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4U-dt-KxD">
-                            <rect key="frame" x="24" y="15.666666666666666" width="63" height="26.333333333333336"/>
+                            <rect key="frame" x="165" y="15.666666666666666" width="63" height="26.333333333333336"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -27,8 +27,8 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="J4U-dt-KxD" secondAttribute="bottom" constant="8" id="PSq-bA-mwQ"/>
                         <constraint firstAttribute="height" constant="50" id="Uao-uM-qFa"/>
+                        <constraint firstItem="J4U-dt-KxD" firstAttribute="centerX" secondItem="uWh-lV-fzH" secondAttribute="centerX" id="dFa-IX-Ttl"/>
                         <constraint firstItem="J4U-dt-KxD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uWh-lV-fzH" secondAttribute="top" id="hCd-GS-8c1"/>
-                        <constraint firstItem="J4U-dt-KxD" firstAttribute="leading" secondItem="uWh-lV-fzH" secondAttribute="leading" constant="24" id="xe0-wN-vCi"/>
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txI-eR-yxH">
