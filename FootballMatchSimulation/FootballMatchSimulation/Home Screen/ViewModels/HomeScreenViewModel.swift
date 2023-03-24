@@ -17,16 +17,13 @@ class HomeScreenViewModel: ObservableObject {
   
   private var subscriptions = Set<AnyCancellable>()
   
-  var teams: [Team] = [] {
-    didSet {
-      createTeamModels()
-    }
-  }
-  
-  @Published var teamModels: [TeamModel] = []
-  
   @Published var rounds: [Round] = []
   
+  @Published var teams: [Team] = []
+  
+  @Published var standingsViewModel: StandingsViewModel!
+  
+  @Published var updateStandings = false
   
   
   // MARK: - Methods
@@ -43,36 +40,17 @@ class HomeScreenViewModel: ObservableObject {
     }
   }
   
-  func createTeamModels() {
-    var models: [TeamModel] = []
-    
-    for team in teams {
-      let model = buildTeamModel(from: team)
-      models.append(model)
-    }
-    teamModels = models
-  }
-  
-  func buildTeamModel(from team: Team) -> TeamModel {
-    return TeamModel(
-      name: team.name, shortenedName: team.shortened_name,
-      id: team.id, stadium: team.stadium,
-      imageName: team.image_name,
-      keeper: team.keeper, defenders: team.defenders,
-      midfielders: team.midfielders, attackers: team.attackers)
-  }
-  
   
   // MARK: - Load Rounds
   
-  func generateRounds(_ models: [TeamModel]) -> [Round] {
+  func generateRounds(_ models: [Team]) -> [Round] {
     let generator = RoundGenerator()
     let newRounds = generator.getRounds(with: models)
     rounds = newRounds
     return newRounds
   }
   
-  func loadRounds(with teamModels: [TeamModel]) {
+  func loadRounds(with teamModels: [Team]) {
     let fileName = JsonFileName.rounds.rawValue
     
     if let newRounds = try? DataLoader.loadDataFromDirectory([Round].self, from: fileName),
@@ -94,33 +72,77 @@ class HomeScreenViewModel: ObservableObject {
   
   func setupRounds(_ roundModels: [Round]) {
     for round in roundModels {
-      round.findTeamsForMatches(from: teamModels)
+      round.findTeamsForMatches(from: teams)
     }
     rounds = roundModels
   }
   
   func setupRoundBindings(for roundModels: [Round]) {
     for round in roundModels {
-      setBinding(for: round)
+      setBindings(for: round)
     }
   }
   
-  func setBinding(for round: Round) {
+  func setBindings(for round: Round) {
     
     for match in round.matches {
-      match.$saveData.sink { [weak self] flag in
+      
+      match.$saveRounds.sink { [weak self] flag in
         if flag {
-          print("SAVING ROUNDS!!!!!")
-          self?.saveToDirectory((self?.rounds)!)
+          DispatchQueue.main.async {
+            self?.saveRounds()
+          }
         }
-      }
-      .store(in: &subscriptions)
+      }.store(in: &subscriptions)
+      
+      match.$saveTeams.sink { [weak self] flag in
+        if flag {
+          DispatchQueue.main.async {
+            self?.saveTeams()
+          }
+        }
+      }.store(in: &subscriptions)
+      
+      match.$didReplayGame.sink { [weak self] flag in
+        if flag {
+          DispatchQueue.main.async {
+            self?.recalculateStandingsAfterGameReplay()
+          }
+        }
+      }.store(in: &subscriptions)
+    }
+    
+  }
+  
+  
+  // MARK: - Standings
+  
+  func createStandingsViewModel() {
+    let viewModel = StandingsViewModel(teams: teams)
+    standingsViewModel = viewModel
+  }
+ 
+  func recalculateStandingsAfterGameReplay() {
+    TeamStandings.resetStandings(for: teams)
+    TeamStandings.updateStandings(for: rounds)
+    saveTeams()
+  }
+  
+  
+  // MARK: - Save Data
+  
+  func saveTeams() {
+    let fileName = JsonFileName.teams.rawValue
+    if let _ = try? DataLoader.save(teams, to: fileName) {
+      updateStandings = true
     }
   }
   
-  func saveToDirectory(_ rounds: [Round]) {
+  func saveRounds() {
     let fileName = JsonFileName.rounds.rawValue
     try! DataLoader.save(rounds, to: fileName)
   }
+  
+
   
 }

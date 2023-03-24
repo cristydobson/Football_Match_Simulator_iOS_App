@@ -32,12 +32,15 @@ class RoundCardRowViewModel {
   }
   
   func teamImage(at index: Int) -> UIImage? {
-    let name = match.teams[index].imageName 
+    let name = match.teams[index].image_name
     return ImageHelper.getImage(name)
   }
   
   func teamScore(at index: Int) -> String {
-    return "\(match.scores[index])"
+    if match.scores.count > 0 {
+      return "\(match.scores[index])"
+    }
+    return "0"
   }
   
 }

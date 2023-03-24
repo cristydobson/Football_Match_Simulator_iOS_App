@@ -30,7 +30,7 @@ extension UIView {
     gradient.colors = [
       UIColor.darkerBlue.cgColor,
       UIColor.mediumBlue.cgColor,
-      UIColor.darkerBlue.cgColor,
+//      UIColor.darkerBlue.cgColor,
       UIColor.lightBlue.cgColor
     ]
     gradient.locations = [0.25, 0.50, 0.75, 1]
@@ -66,6 +66,19 @@ extension UIView {
   func addBorderStyle(borderWidth: CGFloat, borderColor: UIColor) {
     layer.borderWidth = borderWidth
     layer.borderColor = borderColor.cgColor
+  }
+  
+  
+  // MARK: - Drop-down Shadow
+  
+  // Add a drop down shadow to a view
+  func addDropShadow(opacity: Float, radius: CGFloat, offset: CGSize, color: UIColor) {
+    
+    self.layer.masksToBounds = false
+    self.layer.shadowOpacity = opacity
+    self.layer.shadowRadius = radius
+    self.layer.shadowOffset = offset
+    self.layer.shadowColor = color.cgColor
   }
   
 }

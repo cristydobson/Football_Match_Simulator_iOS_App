@@ -42,6 +42,7 @@ class RoundCardCell: UICollectionViewCell {
   // MARK: - Setup Methods
   
   func setupView() {
+    addDropShadow()
     roundCard.addCornerRadius(5)
     roundCard.addBorderStyle(borderWidth: 1, borderColor: .alphaDarkBlue)
   }
@@ -51,6 +52,7 @@ class RoundCardCell: UICollectionViewCell {
     roundCard = UINib(nibName: "RoundCard", bundle: nil)
       .instantiate(withOwner: nil)[0] as? RoundCard
     roundCard.translatesAutoresizingMaskIntoConstraints = false
+    
     addSubview(roundCard)
     
     
@@ -62,6 +64,13 @@ class RoundCardCell: UICollectionViewCell {
     ])
     
   }
-
+  
+  func addDropShadow() {
+    addDropShadow(
+      opacity: 0.5,
+      radius: 4,
+      offset: CGSize.zero,
+      color: .darkBlue)
+  }
 
 }

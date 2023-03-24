@@ -19,7 +19,7 @@ class HomeScreenViewController: UIViewController {
   private let viewModel = HomeScreenViewModel()
   
   // Cards
-  var standingsCard: StandingsCard!
+  var standingsView: StandingsView!
   var roundCollectionView: RoundCardCollectionView!
   
   
@@ -39,21 +39,11 @@ class HomeScreenViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
-    setupTitle()
-    
+        
   }
-  
+ 
   
   // MARK: - Setup Methods
-  
-  func setupTitle() {
-    for view in navigationController!.navigationBar.subviews {
-      if let titleLabel = view as? UILabel {
-        titleLabel.text = "Tournament"
-      }
-    }
-  }
   
   func setupBackground() {
     view.addBlueGradientBackground()
@@ -63,63 +53,34 @@ class HomeScreenViewController: UIViewController {
     
     
     let safeArea = view.safeAreaLayoutGuide
-    let standingsContainerViewHeight = view.frame.height*0.3
-    
-    
-    /*
-     Title
-     */
-    let titleLabel = ViewHelper.createLabel(
-      with: .white, text: "Tournament",
-      alignment: .center,
-      font: UIFont.systemFont(ofSize: 26, weight: .semibold))
-    navigationController?.navigationBar.addSubview(titleLabel)
-
-    NSLayoutConstraint.activate([
-      titleLabel.centerXAnchor.constraint(
-        equalTo: (navigationController?.navigationBar.centerXAnchor)!),
-      titleLabel.bottomAnchor.constraint(
-        equalTo: (navigationController?.navigationBar.bottomAnchor)!)
-    ])
-    
+    let viewFrame = view.frame
     
     /*
-     Header View
+     Standings View
      */
-    let headerBackgroundView = ViewHelper.createEmptyView()
-    headerBackgroundView.backgroundColor = .alphaDarkBlue
-    view.addSubview(headerBackgroundView)
-    
-    
-    /*
-     Standings Card
-     */
-    
     let standingsContainerView = ViewHelper.createEmptyView()
+    setupStandingsCard(for: standingsContainerView)
     view.addSubview(standingsContainerView)
-      
-    standingsCard = UINib(nibName: "StandingsCard", bundle: nil)
-      .instantiate(withOwner: nil)[0] as? StandingsCard
-    standingsCard.translatesAutoresizingMaskIntoConstraints = false
-    standingsContainerView.addSubview(standingsCard)
 
+    let standingsViewFrame = CGRect(
+      origin: CGPoint.zero,
+      size: CGSize(width: viewFrame.width*0.5,
+                   height: viewFrame.height*0.7))
+    standingsView = StandingsView(frame: standingsViewFrame)
+    standingsContainerView.addSubview(standingsView)
     
     NSLayoutConstraint.activate([
-      standingsCard.leadingAnchor.constraint(equalTo: standingsContainerView.leadingAnchor),
-      standingsCard.trailingAnchor.constraint(equalTo: standingsContainerView.trailingAnchor),
-      standingsCard.topAnchor.constraint(equalTo: standingsContainerView.topAnchor),
-      standingsCard.bottomAnchor.constraint(equalTo: standingsContainerView.topAnchor),
       
-      headerBackgroundView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-      headerBackgroundView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-      headerBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
-      headerBackgroundView.bottomAnchor.constraint(equalTo: standingsContainerView.bottomAnchor),
+      standingsView.leadingAnchor.constraint(equalTo: standingsContainerView.leadingAnchor),
+      standingsView.trailingAnchor.constraint(equalTo: standingsContainerView.trailingAnchor),
+      standingsView.topAnchor.constraint(equalTo: standingsContainerView.topAnchor),
+      standingsView.bottomAnchor.constraint(equalTo: standingsContainerView.bottomAnchor),
       
-      standingsContainerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-      standingsContainerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-      standingsContainerView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-      standingsContainerView.setHeightContraint(by: standingsContainerViewHeight)
-      
+      standingsContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 48),
+      standingsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+      standingsContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
+      standingsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+
     ])
     
     
@@ -128,28 +89,38 @@ class HomeScreenViewController: UIViewController {
      */
     let collectionContainerView = ViewHelper.createEmptyView()
     view.addSubview(collectionContainerView)
-    
-    let navBarHeight = ViewHelper.getBarHeight(from: navigationController!)
-    let roundCollectionViewHeight = view.frame.height-standingsContainerViewHeight
-    
+
+    let roundCollectionViewHeight = view.frame.height
+
     let collectionViewFrame = CGRect(
       origin: CGPoint.zero,
-      size: CGSize(width: view.frame.width, height: roundCollectionViewHeight-navBarHeight))
-    
+      size: CGSize(width: view.frame.width*0.4, height: roundCollectionViewHeight))
+
     roundCollectionView = RoundCardCollectionView(
       frame: collectionViewFrame, controller: self)
-    
+
     roundCollectionView.translatesAutoresizingMaskIntoConstraints = false
     collectionContainerView.addSubview(roundCollectionView)
-    
+
     
     NSLayoutConstraint.activate([
-      collectionContainerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+      collectionContainerView.leadingAnchor.constraint(equalTo: standingsContainerView.trailingAnchor, constant: 12),
       collectionContainerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-      collectionContainerView.topAnchor.constraint(equalTo: standingsContainerView.bottomAnchor),
+      collectionContainerView.topAnchor.constraint(equalTo: view.topAnchor),
       collectionContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
     
+  }
+  
+  func setupStandingsCard(for cardView: UIView) {
+    cardView.addDropShadow(
+      opacity: 0.5,
+      radius: 4,
+      offset: CGSize.zero,
+      color: .darkBlue)
+    cardView.addCornerRadius(15)
+    cardView.addBorderStyle(borderWidth: 1, borderColor: .alphaDarkBlue)
+    cardView.backgroundColor = .standingsColor
   }
   
   
@@ -157,30 +128,68 @@ class HomeScreenViewController: UIViewController {
   
   func setupBindings() {
     
-    viewModel.$teamModels.sink { [weak self] teamModels in
+    viewModel.$teams.sink { [weak self] teams in
+      
       DispatchQueue.main.async {
-        if teamModels.count > 0 {
-          self?.loadStandings()
-          self?.viewModel.loadRounds(with: teamModels)
+        if teams.count > 0 {
+          self?.viewModel.loadRounds(with: teams)
+          self?.viewModel.createStandingsViewModel()
         }
       }
     }.store(in: &subscriptions)
+
     
     viewModel.$rounds.sink { [weak self] rounds in
+      
       DispatchQueue.main.async {
         if rounds.count > 0 {
           self?.roundCollectionView.rounds = rounds
         }
       }
     }.store(in: &subscriptions)
-   
-  }
+    
+    
+    viewModel.$standingsViewModel.sink { [weak self] stViewModel in
+      DispatchQueue.main.async {
+        if let standingsVm = stViewModel {
+          self?.setStandingsViewModel(with: standingsVm)
+        }
+      }
+    }.store(in: &subscriptions)
+    
+    
+    viewModel.$updateStandings.sink { [weak self] flag in
+      DispatchQueue.main.async {
+        print("UPDATE SATANDINGS Hvc outer: \(flag)!!!!!!!!!")
+        if flag {
+          print("UPDATE SATANDINGS Hvc inner: \(flag)!!!!!!!!!")
+          self?.standingsView.updateStandings()
+          self?.roundCollectionView.reloadCollectionView()
+        }
+      }
+    }.store(in: &subscriptions)
 
-
-  func loadStandings() {
-    print("LOADING Standings with Team Models!!!!!!!\n")
   }
   
+  
+  // MARK: - Setup Standings
+  
+  func setStandingsViewModel(with viewModel: StandingsViewModel) {
+    standingsView.viewModel = viewModel
+  }
+  
+//  func setupStandings(from rounds: [Round]) {
+//
+//    let teams = viewModel.setupTeamStandings(from: rounds)
+//
+//    standingsCard.viewModel = StandingsCardViewModel(teams: teams)
+//  }
+  
+//  func setupStandings(from teams: [Team]) {
+//    let sortedTeams = viewModel.sortTeamsByStandings(teams)
+//    standingsCard.viewModel = StandingsCardViewModel(teams: sortedTeams)
+//  }
+
   
 }
 

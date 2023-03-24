@@ -23,6 +23,7 @@ class RoundCardCollectionView: UIView {
   let cellID = "RoundCardCell"
   
   private var viewModel = RoundCardCollectionViewModel()
+  
      
   var rounds: [Round]! {
     didSet {
@@ -62,8 +63,12 @@ class RoundCardCollectionView: UIView {
   func setupCollectionView() {
 
     // CollectionView Layout
-    let layout = CollectionViewHelper.createLayout(
-      for: frame, andHeight: 0.65)
+    let cellWidth = frame.width
+    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    layout.sectionInset = UIEdgeInsets.zero
+    layout.minimumLineSpacing = 0
+    layout.itemSize = CGSize(width: cellWidth, height: cellWidth*0.65)
+    
     
     // Instantiate CollectionView
     let collectionViewFrame = CGRect(
@@ -92,9 +97,11 @@ class RoundCardCollectionView: UIView {
   
   func setupBindings() {
 
-    viewModel.$cellViewModels.sink { [weak self] _ in
+    viewModel.$cellViewModels.sink { [weak self] viewModels in
       DispatchQueue.main.async {
-        self?.collectionView.reloadData()
+        if viewModels.count > 0 {
+          self?.collectionView.reloadData()
+        }
       }
     }.store(in: &subscriptions)
     
@@ -106,19 +113,19 @@ class RoundCardCollectionView: UIView {
   func pushRoundGamesViewController(for indexPath: IndexPath) {
     
     let viewController = RoundGamesViewController()
-    viewController.round = rounds[indexPath.row]
     
-    viewController.$updatedScores.sink { [weak self] flag in
-      DispatchQueue.main.async {
-        if flag {
-          self?.collectionView.reloadData()
-        }
-      }
-    }.store(in: &subscriptions)
+    let round = rounds[indexPath.row]
+    viewController.round = round
     
     controller.navigationController?.pushViewController(viewController, animated: true)
   }
   
+  
+  // MARK: - Helper Methods
+  
+  func reloadCollectionView() {
+    collectionView.reloadData()
+  }
   
 }
 

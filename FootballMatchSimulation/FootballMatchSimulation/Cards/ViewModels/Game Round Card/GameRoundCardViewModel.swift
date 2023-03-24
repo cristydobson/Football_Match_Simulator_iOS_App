@@ -29,7 +29,7 @@ class GameRoundCardViewModel {
   }
   
   func teamImage(at index: Int) -> UIImage? {
-    let name = match.teams[index].imageName 
+    let name = match.teams[index].image_name
     return ImageHelper.getImage(name)
   }
   

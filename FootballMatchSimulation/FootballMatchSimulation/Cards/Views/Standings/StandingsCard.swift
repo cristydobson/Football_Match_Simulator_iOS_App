@@ -19,6 +19,13 @@ class StandingsCard: UIView {
   var row3: StandingsCardRow!
   var row4: StandingsCardRow!
   
+  
+  var viewModel: StandingsCardViewModel? {
+    didSet {
+      loadRows()
+    }
+  }
+  
 
   // MARK: - Methods
   
@@ -71,6 +78,19 @@ class StandingsCard: UIView {
       row4.topAnchor.constraint(equalTo: row3.bottomAnchor, constant: 8)
     ])
     
+  }
+  
+  
+  // MARK: - Load Rows
+  
+  func loadRows() {
+    
+    let rowViewModels = viewModel?.loadRowViewModels()
+    let rows = [row1, row2, row3, row4]
+    
+    for i in 0..<rows.count {
+      rows[i]?.viewModel = rowViewModels![i]
+    }
   }
   
 

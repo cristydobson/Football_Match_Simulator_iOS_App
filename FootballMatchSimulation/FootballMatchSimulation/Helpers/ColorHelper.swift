@@ -39,6 +39,16 @@ extension UIColor {
   static let alphaDarkBlue = UIColor(
     red: 0, green: 0, blue: 103/255, alpha: 0.6)
   
+  static let darkBlue = UIColor(
+    red: 0, green: 0, blue: 82/255, alpha: 1)
+  
+  
+//  static let standingsColor = UIColor(
+//    red: 160/255, green: 24/255, blue: 0, alpha: 1)
+  
+  static let standingsColor = UIColor(
+    red: 131/255, green: 14/255, blue: 4/255, alpha: 0.9)
+  
   
   // Card Colors
   static let cardBackgroundColor = UIColor(

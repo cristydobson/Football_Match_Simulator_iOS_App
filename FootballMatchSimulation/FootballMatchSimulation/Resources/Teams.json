@@ -76,7 +76,16 @@
         "position": "attacker",
         "skillPower": 7.66
       }
-    ]
+    ],
+    "standings": {
+      "points": 0,
+      "games_played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goals_for": 0,
+      "goals_against": 0
+    }
   },
   {
     "name": "Barcelona",
@@ -155,7 +164,16 @@
         "position": "attacker",
         "skillPower": 7.34
       }
-    ]
+    ],
+    "standings": {
+      "points": 0,
+      "games_played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goals_for": 0,
+      "goals_against": 0
+    }
   },
   {
     "name": "Paris Saint-Germain",
@@ -234,7 +252,16 @@
         "position": "attacker",
         "skillPower": 6.83
       }
-    ]
+    ],
+    "standings": {
+      "points": 0,
+      "games_played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goals_for": 0,
+      "goals_against": 0
+    }
   },
   {
     "name": "Bayern München",
@@ -313,7 +340,16 @@
         "position": "attacker",
         "skillPower": 7.39
       }
-    ]
+    ],
+    "standings": {
+      "points": 0,
+      "games_played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goals_for": 0,
+      "goals_against": 0
+    }
   }
 ]
 

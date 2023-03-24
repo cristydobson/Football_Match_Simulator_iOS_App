@@ -19,11 +19,11 @@ class RoundGenerator {
   
   
   
-  func firstRound(with teams: [TeamModel]) -> Round {
+  func firstRound(with teams: [Team]) -> Round {
     
     var matches: [Round.Match] = []
     
-    func getMatch(from teams: [TeamModel]) {
+    func getMatch(from teams: [Team]) {
       
       let last = teams.last!
       var rest = teams
@@ -33,7 +33,6 @@ class RoundGenerator {
       let match = Round.Match()
       match.teams = [last, rest.first!]
       match.team_ids = [last.id, rest.first!.id]
-      match.scores = [0, 0]
       matches.append(match)
       rest.removeFirst()
       
@@ -45,7 +44,6 @@ class RoundGenerator {
         let lastMatch = Round.Match()
         lastMatch.teams = rest
         lastMatch.team_ids = [rest[0].id, rest[1].id]
-        lastMatch.scores = [0, 0]
         matches.append(lastMatch)
       }
       
@@ -68,12 +66,12 @@ class RoundGenerator {
   
   
   
-  func otherRounds(with teams: [TeamModel]) -> Round {
+  func otherRounds(with teams: [Team]) -> Round {
     
     
     var matches: [Round.Match] = []
     
-    func getMatch(from teams: [TeamModel]) {
+    func getMatch(from teams: [Team]) {
       
       let last = teams.last!
       var rest = teams
@@ -84,7 +82,6 @@ class RoundGenerator {
       let match = Round.Match()
       match.teams = [last, next]
       match.team_ids = [last.id, next.id]
-      match.scores = [0, 0]
       matches.append(match)
       rest.removeLast()
       
@@ -96,7 +93,6 @@ class RoundGenerator {
         let lastMatch = Round.Match()
         lastMatch.teams = rest
         lastMatch.team_ids = [rest[0].id, rest[1].id]
-        lastMatch.scores = [0, 0]
         matches.append(lastMatch)
       }
       
@@ -120,7 +116,7 @@ class RoundGenerator {
   
   
   
-  func getRounds(with teams: [TeamModel]) -> [Round] {
+  func getRounds(with teams: [Team]) -> [Round] {
 
     var arrangedTeams = teams
 

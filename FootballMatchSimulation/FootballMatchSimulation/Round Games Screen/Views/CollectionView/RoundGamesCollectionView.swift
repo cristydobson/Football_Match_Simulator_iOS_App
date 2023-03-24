@@ -25,9 +25,7 @@ class RoundGamesCollectionView: UIView {
   
   private var viewModel = RoundGamesCollectionViewModel()
   var round: Round!
-  
-  var updatedScores = false
-  
+    
   
   // MARK: - Init Method
   
@@ -60,8 +58,11 @@ class RoundGamesCollectionView: UIView {
   func setupCollectionView() {
 
     // CollectionView Layout
-    let layout = CollectionViewHelper.createLayout(
-      for: frame, andHeight: 0.8)
+    let cellWidth = frame.width*0.45
+    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    layout.sectionInset = UIEdgeInsets(
+      top: 0, left: 40, bottom: 0, right: 40)
+    layout.itemSize = CGSize(width: cellWidth, height: cellWidth*0.8)
     
     // Instantiate CollectionView
     collectionView = CollectionViewHelper.createCollectionView(
@@ -94,6 +95,7 @@ class RoundGamesCollectionView: UIView {
     let team1 = PlayingTeam(team: match.teams[0])
     let team2 = PlayingTeam(team: match.teams[1])
     
+    let didReplayGame = match.gameIsPlayed
     viewController.teams = [team1, team2]
 
     // Subscribe to receive the final score
@@ -103,7 +105,13 @@ class RoundGamesCollectionView: UIView {
           self?.viewModel.setGameScore(goals, at: indexPath)
           self?.subscriptions.removeAll()
           self?.collectionView.reloadData()
-          self?.updatedScores = true
+          
+          if !didReplayGame {
+            match.updateTeamStandings()
+          }
+          else {
+            match.gameReplayed()
+          }
         }
       }
     }

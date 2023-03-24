@@ -56,6 +56,7 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
   // MARK: - Setup Methods
   
   func setupView() {
+    addDropShadow()
     gameCard.addCornerRadius(5)
     gameCard.addBorderStyle(borderWidth: 1, borderColor: .alphaDarkBlue)
   }
@@ -74,6 +75,14 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
       gameCard.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24)
     ])
     
+  }
+  
+  func addDropShadow() {
+    addDropShadow(
+      opacity: 0.5,
+      radius: 4,
+      offset: CGSize.zero,
+      color: .darkBlue)
   }
   
   

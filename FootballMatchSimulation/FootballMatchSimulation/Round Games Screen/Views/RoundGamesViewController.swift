@@ -8,17 +8,15 @@
 
 import Foundation
 import UIKit
-import Combine
 
-class RoundGamesViewController: UIViewController, ObservableObject {
+
+class RoundGamesViewController: UIViewController {
   
   
   // MARK: - Properties
   
   private let viewModel = RoundGamesViewModel()
-  
-  @Published var updatedScores = false
-  
+    
   var round: Round!
   var collectionView: RoundGamesCollectionView!
   
@@ -31,25 +29,6 @@ class RoundGamesViewController: UIViewController, ObservableObject {
     setupBackground()
     addViews()
     
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    
-    transitionToPortrait()
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    
-    updatedScores = collectionView.updatedScores
-  }
-  
-  func transitionToPortrait() {
-    if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-       appDelegate.appOrientation == .landscape {
-      appDelegate.appOrientation = .portrait
-    }
   }
   
   
@@ -74,36 +53,16 @@ class RoundGamesViewController: UIViewController, ObservableObject {
     collectionView = RoundGamesCollectionView(
       frame: view.frame, controller: self, round: round)
     collectionView.round = round
+    
     view.addSubview(collectionView)
     
-//    createJsonFile()
-    
+    NSLayoutConstraint.activate([
+      collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      collectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+    ])
+        
   }
-  
-  
-//  func createJsonFile() {
-//
-//    var jsonResult: Data!
-//    let encoder = JSONEncoder()
-//    encoder.outputFormatting = .prettyPrinted
-//    do {
-//      let result = try encoder.encode(round)
-//      jsonResult = result
-//      if let jsonString = String(data: result, encoding: .utf8) {
-//        print("JSON: \(jsonString)!!!!")
-//      }
-//    }
-//    catch {
-//      print("ERROR ENCODING - error: \(error)!!!!!")
-//    }
-//
-//
-//    try! DataLoader.save([round], to: "Rounds")
-//
-//
-//
-//  }
-  
 
+  
   
 }

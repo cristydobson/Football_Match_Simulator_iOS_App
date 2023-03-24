@@ -14,19 +14,21 @@ class Round: Codable {
   
   class Match: Codable {
     
-    var teams: [TeamModel] = []
+    var teams: [Team] = []
     
     var team_ids: [String] = []
     
     var scores: [Int] = [] {
       didSet {
-        saveData = true
+        saveRounds = true
       }
     }
     
     var gameIsPlayed = false
     
-    @Published var saveData = false
+    @Published var saveRounds = false
+    @Published var saveTeams = false
+    @Published var didReplayGame = false
     
     private enum CodingKeys: String, CodingKey {
       case team_ids
@@ -43,8 +45,8 @@ class Round: Codable {
       self.gameIsPlayed = try container.decode(Bool.self, forKey: .gameIsPlayed)
     }
     
-    func getTeams(from allTeams: [TeamModel]) {
-      var teamModels: [TeamModel] = []
+    func getTeams(from allTeams: [Team]) {
+      var teamModels: [Team] = []
       
       for id in team_ids {
         for team in allTeams {
@@ -56,6 +58,19 @@ class Round: Codable {
       }
       teams = teamModels
     }
+    
+    
+    // MARK: - Update Team Standings
+    
+    func updateTeamStandings() {
+      TeamStandings.updateStandings(for: self)
+      saveTeams = true
+    }
+    
+    func gameReplayed() {
+      didReplayGame = true
+    }
+    
   }
   
   let name: String
@@ -66,7 +81,7 @@ class Round: Codable {
     self.matches = matches
   }
   
-  func findTeamsForMatches(from allTeams: [TeamModel]) {
+  func findTeamsForMatches(from allTeams: [Team]) {
     for match in matches {
       match.getTeams(from: allTeams)
     }

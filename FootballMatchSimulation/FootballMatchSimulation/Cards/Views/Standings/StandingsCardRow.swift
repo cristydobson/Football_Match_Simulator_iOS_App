@@ -14,8 +14,8 @@ class StandingsCardRow: UIView {
   
   // Team Info Labels
   @IBOutlet weak var positionLabel: UILabel!
-  @IBOutlet weak var teamLogo: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var teamLogo: UIImageView!
   
   // Matches Labels
   @IBOutlet weak var matchesLabel: UILabel!
@@ -30,13 +30,31 @@ class StandingsCardRow: UIView {
   @IBOutlet weak var pointsLabel: UILabel!
   
   
+  var viewModel: StandingsCardRowViewModel? {
+    didSet {
+      positionLabel.text = viewModel?.positionString
+      nameLabel.text = viewModel?.team.shortened_name
+      teamLogo.image = viewModel?.teamImage()
+     
+      matchesLabel.text = viewModel?.getString(for: .gamesPlayed)
+      
+      winsLabel.text = viewModel?.getString(for: .wins)
+      drawsLabel.text = viewModel?.getString(for: .draws)
+      losesLabel.text = viewModel?.getString(for: .losses)
+      
+      goalsForLabel.text = viewModel?.getString(for: .goalsFor)
+      goalsAgainstLabel.text = viewModel?.getString(for: .goalsAgainst)
+      goalDifferenceLabel.text = viewModel?.getString(for: .goalsDifference)
+      
+      pointsLabel.text = viewModel?.getString(for: .points)
+    }
+  }
+  
   
   // MARK: - Methods
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    
-    
   }
   
   

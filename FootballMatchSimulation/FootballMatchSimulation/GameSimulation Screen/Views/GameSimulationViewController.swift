@@ -37,17 +37,7 @@ class GameSimulationViewController: UIViewController, ObservableObject {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    transitionToLandscape()
-    
-  }
-  
-  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-    super.viewWillTransition(to: size, with: coordinator)
-  }
-  
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
+        
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -61,13 +51,7 @@ class GameSimulationViewController: UIViewController, ObservableObject {
   }
   
   
-  // MARK: - Swetup Methods
-  
-  func transitionToLandscape() {
-    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-      appDelegate.appOrientation = .landscape
-    }
-  }
+  // MARK: - Setup Methods
   
   func setupBackground() {
     view.addBlueGradientBackground()
