@@ -64,7 +64,7 @@ class GameSimulationViewController: UIViewController, ObservableObject {
     NSLayoutConstraint.activate([
       hudView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 40),
       hudView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -40),
-      hudView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 24),
+      hudView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
       hudView.setHeightContraint(by: 50)
     ])
     
@@ -147,7 +147,7 @@ class GameSimulationViewController: UIViewController, ObservableObject {
       for: .touchUpInside)
     
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.isHidden = true
+//    button.isHidden = true
     
     view.addSubview(button)
     

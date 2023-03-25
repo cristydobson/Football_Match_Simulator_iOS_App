@@ -73,9 +73,9 @@ class HomeScreenViewController: UIViewController {
       standingsView.bottomAnchor.constraint(equalTo: standingsContainerView.bottomAnchor),
       
       standingsContainerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 48),
+      standingsContainerView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
       standingsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
-      standingsContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.70),
-      standingsContainerView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+      standingsContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.70)
 
     ])
     
@@ -83,25 +83,26 @@ class HomeScreenViewController: UIViewController {
     /*
      Title View
      */
-//    let titleView = getEmptyView()
-//    styleContainerView(titleView)
-//    view.addSubview(titleView)
-//
-//    let titleLabel = getTitleLabel()
-//    titleView.addSubview(titleLabel)
+    let titleView = getEmptyView()
+    styleContainerView(titleView)
+    view.addSubview(titleView)
+
+    let titleLabel = getTitleLabel()
+    titleView.addSubview(titleLabel)
     
-//    NSLayoutConstraint.activate([
-//      
-//      titleLabel.leadingAnchor.constraint(equalTo: titleView.leadingAnchor),
-//      titleLabel.trailingAnchor.constraint(equalTo: titleView.trailingAnchor),
-//      titleLabel.topAnchor.constraint(equalTo: titleView.topAnchor),
-//      titleLabel.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
-//      
-//      titleView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 48),
-//      titleView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
-//      titleView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
-//      titleView.bottomAnchor.constraint(equalTo: standingsContainerView.topAnchor, constant: -12)
-//    ])
+    NSLayoutConstraint.activate([
+      
+      titleLabel.leadingAnchor.constraint(equalTo: titleView.leadingAnchor),
+      titleLabel.trailingAnchor.constraint(equalTo: titleView.trailingAnchor),
+      titleLabel.topAnchor.constraint(equalTo: titleView.topAnchor),
+      titleLabel.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
+      
+      titleView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 48),
+      titleView.bottomAnchor.constraint(equalTo: standingsContainerView.topAnchor, constant: -12),
+      titleView.widthAnchor.constraint(equalTo: standingsContainerView.widthAnchor, multiplier: 1),
+      titleView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24)
+      
+    ])
     
     
     /*
@@ -148,8 +149,6 @@ class HomeScreenViewController: UIViewController {
     
     let collectionView = RoundCardCollectionView(
       frame: collectionViewFrame, controller: self)
-    
-    collectionView.translatesAutoresizingMaskIntoConstraints = false
     
     return collectionView
   }

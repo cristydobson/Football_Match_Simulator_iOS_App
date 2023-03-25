@@ -64,10 +64,10 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
     addSubview(gameCard)
     
     NSLayoutConstraint.activate([
-      gameCard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-      gameCard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-      gameCard.topAnchor.constraint(equalTo: topAnchor, constant: 24),
-      gameCard.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24)
+      gameCard.leadingAnchor.constraint(equalTo: leadingAnchor),
+      gameCard.trailingAnchor.constraint(equalTo: trailingAnchor),
+      gameCard.topAnchor.constraint(equalTo: topAnchor),
+      gameCard.bottomAnchor.constraint(equalTo: bottomAnchor)
     ])
     
   }

@@ -35,6 +35,8 @@ class Team: Codable {
       case draw
     }
     
+    var hasPlayedHome = false
+    
     var games_played = 0
     var points = 0
     
@@ -63,6 +65,16 @@ class Team: Codable {
     }
     
     
+    private enum CodingKeys: String, CodingKey {
+      case games_played
+      case wins
+      case draws
+      case losses
+      case goals_for
+      case goals_against
+    }
+    
+    
     // MARK: - Methods
     
     func calculatePoints(for result: GameResult) {
@@ -84,6 +96,7 @@ class Team: Codable {
       games_played = 0
     }
   }
+  
   
 }
 

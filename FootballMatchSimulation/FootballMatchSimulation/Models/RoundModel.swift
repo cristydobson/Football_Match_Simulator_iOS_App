@@ -41,7 +41,7 @@ class Round: Codable {
     }
     
     init() { }
-    
+       
     required init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.team_ids = try container.decode([String].self, forKey: .team_ids)
@@ -70,7 +70,7 @@ class Round: Codable {
     // MARK: - Update Team Standings
     
     func updateTeamStandings() {
-      TeamStandings.updateStandings(for: self)
+      TeamStandings.updateTeamStandings(from: self)
       saveTeams = true
     }
     

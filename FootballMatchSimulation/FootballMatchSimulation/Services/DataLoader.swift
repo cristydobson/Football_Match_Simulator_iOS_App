@@ -12,14 +12,18 @@ import Foundation
 class DataLoader {
 
   
+  static let encoder = JSONEncoder()
+  static let decoder = JSONDecoder()
+  
+  
   // MARK: - Save Data
   
   static func save<T: Codable>(_ object: T, to fileName: String) throws {
-    
+
     let url = getDocumentURL(for: fileName)
-    
+
     do {
-      let data = try JSONEncoder().encode(object)
+      let data = try encoder.encode(object)
       try data.write(to: url, options: .atomic)
     }
     catch {
@@ -27,6 +31,25 @@ class DataLoader {
       throw error
     }
   }
+  
+//  static func save<T: Codable>(_ object: T, to fileName: String) throws {
+//
+//    let url = getDocumentURL(for: fileName)
+//    let encoder = JSONEncoder()
+//    encoder.outputFormatting = .prettyPrinted
+//    do {
+//      if let data = try? encoder.encode(object) {
+//        let json = String(data: data, encoding: .utf8)
+//        print(json!)
+//        try data.write(to: url, options: .atomic)
+//      }
+//
+//    }
+//    catch {
+//      print("Failed to save JSON data with error: \(error)!!")
+//      throw error
+//    }
+//  }
   
   
   // MARK: - Retrieve Data
@@ -47,7 +70,7 @@ class DataLoader {
     
     do {
       let data = try Data(contentsOf: url)
-      return try JSONDecoder().decode(T.self, from: data)
+      return try decoder.decode(T.self, from: data)
     }
     catch {
       print("Failed to retrieve JSON data with error: \(error)!!")

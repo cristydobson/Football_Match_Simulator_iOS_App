@@ -23,7 +23,7 @@ final class GameSimulationTests: XCTestCase {
   override func setUpWithError() throws {
     try super.setUpWithError()
     
-//    teams = loadTeams()
+    teams = loadTeams()
     sut = GameSimulation(homeTeam: teams.first!,
                          visitorTeam: teams.last!)
   }
@@ -38,19 +38,19 @@ final class GameSimulationTests: XCTestCase {
   
   // MARK: - Helper Methods
   
-//  func loadTeams() }-> [MockedPlayingTeam] {
-//    var playingTeams: [MockedPlayingTeam] = []
-//
-//    if let teams = try? DataLoader.loadDataFromDirectory([Team].self, from: "Teams") {
-//
-//      for team in teams {
-//        let playingTeam = MockedPlayingTeam(team: team)
-//        playingTeams.append(playingTeam)
-//      }
-//      return playingTeams
-//    }
-//    return []
-//  }
+  func loadTeams() -> [MockedPlayingTeam] {
+    var playingTeams: [MockedPlayingTeam] = []
+    
+    if let teams = try? MockDataLoader.loadDataFromBundle([Team].self, from: "TestTeams") {
+
+      for team in teams {
+        let playingTeam = MockedPlayingTeam(team: team)
+        playingTeams.append(playingTeam)
+      }
+      return playingTeams
+    }
+    return []
+  }
   
   func getEventString(for event: Event, andTeam team: MockedPlayingTeam?) -> String {
     return EventHelper.eventString(for: event, andTeam: team)

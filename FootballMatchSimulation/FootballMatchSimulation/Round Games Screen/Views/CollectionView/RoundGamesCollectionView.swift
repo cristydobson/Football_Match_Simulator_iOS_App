@@ -41,7 +41,7 @@ class RoundGamesCollectionView: UIView {
     self.init(frame: frame)
     self.controller = controller
     self.round = round
-  
+
     setupView()
     setupCollectionView()
         
@@ -63,7 +63,7 @@ class RoundGamesCollectionView: UIView {
     // Instantiate CollectionView
     collectionView = CollectionViewHelper.createCollectionView(
       with: frame, andLayout: layout)
-    
+        
     // Style
     collectionView.showsVerticalScrollIndicator = false
     
@@ -83,8 +83,9 @@ class RoundGamesCollectionView: UIView {
     let cellWidth = frame.width*0.45
     
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    layout.sectionInset = UIEdgeInsets(
-      top: 0, left: 40, bottom: 0, right: 40)
+    layout.sectionInset = UIEdgeInsets(top: 24, left: 0, bottom: 0, right: 0)
+    layout.minimumLineSpacing = 12
+    layout.minimumInteritemSpacing = 12
     layout.itemSize = CGSize(width: cellWidth, height: cellWidth*0.8)
     
     return layout
@@ -96,7 +97,7 @@ class RoundGamesCollectionView: UIView {
   func presentGameViewController(for indexPath: IndexPath) {
     
     let viewController = GameSimulationViewController()
-    viewController.modalPresentationStyle = .fullScreen
+//    viewController.modalPresentationStyle = .fullScreen
     
     let match = round.matches[indexPath.row]
     viewController.teams = createPlayingTeams(for: match)
@@ -155,7 +156,7 @@ extension RoundGamesCollectionView: UICollectionViewDataSource, UICollectionView
         
     let cell = collectionView.dequeueReusableCell(
       withReuseIdentifier: cellID, for: indexPath) as! RoundGameCell
-    
+    print("CELL SIZE: \(cell.frame)!!!!!!")
     cell.viewModel = viewModel.getCellViewModel(at: indexPath)
     
     cell.$cellTapped.sink { [weak self] flag in

@@ -24,8 +24,8 @@ final class PlayingTeamTests: XCTestCase {
   override func setUpWithError() throws {
     try super.setUpWithError()
     
-    let fileName = JsonFileName.teams.rawValue
-    teams = try? DataLoader.retrieveData([Team].self, from: fileName)
+   
+    teams = loadTeams()
     sut = PlayingTeam(team: firstTeam())
   }
   
@@ -38,6 +38,14 @@ final class PlayingTeamTests: XCTestCase {
   
   
   // MARK: - Helper Methods
+  
+  func loadTeams() -> [Team] {
+    
+    if let teams = try? MockDataLoader.loadDataFromBundle([Team].self, from: "TestTeams") {
+      return teams
+    }
+    return []
+  }
   
   func firstTeam() -> Team {
     return teams.first!

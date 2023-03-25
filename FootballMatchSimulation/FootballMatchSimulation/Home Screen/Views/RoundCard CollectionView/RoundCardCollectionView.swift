@@ -96,7 +96,7 @@ class RoundCardCollectionView: UIView {
     layout.itemSize = CGSize(width: cellWidth, height: cellWidth*0.6)
     
     return layout
-  }
+  }   
   
   
   // MARK: - Bindings
@@ -121,8 +121,7 @@ class RoundCardCollectionView: UIView {
     
     let round = rounds[indexPath.row]
     viewController.round = round
-    
-    controller.navigationController?.pushViewController(viewController, animated: true)
+    controller.present(viewController, animated: true)
   }
   
   

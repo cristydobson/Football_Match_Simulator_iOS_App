@@ -21,7 +21,6 @@
 		5E6A681D29C5DA2700500B04 /* PlayerPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A681C29C5DA2700500B04 /* PlayerPositionTests.swift */; };
 		5E6A682029C5DF2500500B04 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A681F29C5DF2500500B04 /* HomeScreenViewModel.swift */; };
 		5E6A682329C5E8BF00500B04 /* DoubleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A682229C5E8BF00500B04 /* DoubleHelper.swift */; };
-		5E6A682529C5EFC800500B04 /* DoubleHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A682429C5EFC800500B04 /* DoubleHelperTests.swift */; };
 		5E6A682729C645DE00500B04 /* RoundCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A682629C645DD00500B04 /* RoundCard.swift */; };
 		5E6A682A29C6460E00500B04 /* RoundCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6A682929C6460E00500B04 /* RoundCard.xib */; };
 		5E6A682E29C64DB000500B04 /* GameRoundCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A682D29C64DB000500B04 /* GameRoundCard.swift */; };
@@ -81,6 +80,11 @@
 		5ED4725329CD977100D8F664 /* TeamStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4725229CD977100D8F664 /* TeamStandings.swift */; };
 		5ED4725529CD987400D8F664 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4725429CD987400D8F664 /* StandingsView.swift */; };
 		5ED4725829CD9B4700D8F664 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4725729CD9B4700D8F664 /* StandingsViewModel.swift */; };
+		5ED4725C29CEE22300D8F664 /* TeamStandingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4725B29CEE22300D8F664 /* TeamStandingsTests.swift */; };
+		5ED4725E29CEE85C00D8F664 /* TestTeams.json in Resources */ = {isa = PBXBuildFile; fileRef = 5ED4725D29CEE85C00D8F664 /* TestTeams.json */; };
+		5ED4726129CEE8B900D8F664 /* TestRounds.json in Resources */ = {isa = PBXBuildFile; fileRef = 5ED4726029CEE8B900D8F664 /* TestRounds.json */; };
+		5ED4726429CEECE800D8F664 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4726329CEECE800D8F664 /* MockDataLoader.swift */; };
+		5ED4726829CF00B100D8F664 /* RoundGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4726729CF00B100D8F664 /* RoundGeneratorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,7 +123,6 @@
 		5E6A681C29C5DA2700500B04 /* PlayerPositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPositionTests.swift; sourceTree = "<group>"; };
 		5E6A681F29C5DF2500500B04 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		5E6A682229C5E8BF00500B04 /* DoubleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleHelper.swift; sourceTree = "<group>"; };
-		5E6A682429C5EFC800500B04 /* DoubleHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleHelperTests.swift; sourceTree = "<group>"; };
 		5E6A682629C645DD00500B04 /* RoundCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCard.swift; sourceTree = "<group>"; };
 		5E6A682929C6460E00500B04 /* RoundCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoundCard.xib; sourceTree = "<group>"; };
 		5E6A682D29C64DB000500B04 /* GameRoundCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoundCard.swift; sourceTree = "<group>"; };
@@ -179,6 +182,11 @@
 		5ED4725229CD977100D8F664 /* TeamStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStandings.swift; sourceTree = "<group>"; };
 		5ED4725429CD987400D8F664 /* StandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsView.swift; sourceTree = "<group>"; };
 		5ED4725729CD9B4700D8F664 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
+		5ED4725B29CEE22300D8F664 /* TeamStandingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStandingsTests.swift; sourceTree = "<group>"; };
+		5ED4725D29CEE85C00D8F664 /* TestTeams.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestTeams.json; sourceTree = "<group>"; };
+		5ED4726029CEE8B900D8F664 /* TestRounds.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestRounds.json; sourceTree = "<group>"; };
+		5ED4726329CEECE800D8F664 /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		5ED4726729CF00B100D8F664 /* RoundGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundGeneratorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,10 +258,13 @@
 		5E6A67F129C4D00C00500B04 /* FootballMatchSimulationTests */ = {
 			isa = PBXGroup;
 			children = (
-				5E6A681C29C5DA2700500B04 /* PlayerPositionTests.swift */,
-				5E6A682429C5EFC800500B04 /* DoubleHelperTests.swift */,
+				5ED4726629CF008F00D8F664 /* Player Position */,
+				5ED4726529CEEF7600D8F664 /* Team Standings */,
+				5ED4726729CF00B100D8F664 /* RoundGeneratorTests.swift */,
 				5E6A685529C75C5700500B04 /* Playing Team */,
 				5ED4720529C9E5F500D8F664 /* Game Simulation */,
+				5ED4726229CEECD500D8F664 /* Service */,
+				5ED4725F29CEE86200D8F664 /* JSON Files */,
 			);
 			path = FootballMatchSimulationTests;
 			sourceTree = "<group>";
@@ -666,6 +677,39 @@
 			path = "Team Standings";
 			sourceTree = "<group>";
 		};
+		5ED4725F29CEE86200D8F664 /* JSON Files */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4725D29CEE85C00D8F664 /* TestTeams.json */,
+				5ED4726029CEE8B900D8F664 /* TestRounds.json */,
+			);
+			path = "JSON Files";
+			sourceTree = "<group>";
+		};
+		5ED4726229CEECD500D8F664 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4726329CEECE800D8F664 /* MockDataLoader.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		5ED4726529CEEF7600D8F664 /* Team Standings */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4725B29CEE22300D8F664 /* TeamStandingsTests.swift */,
+			);
+			path = "Team Standings";
+			sourceTree = "<group>";
+		};
+		5ED4726629CF008F00D8F664 /* Player Position */ = {
+			isa = PBXGroup;
+			children = (
+				5E6A681C29C5DA2700500B04 /* PlayerPositionTests.swift */,
+			);
+			path = "Player Position";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -790,6 +834,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ED4726129CEE8B900D8F664 /* TestRounds.json in Resources */,
+				5ED4725E29CEE85C00D8F664 /* TestTeams.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,9 +916,11 @@
 			files = (
 				5E6A685429C75C4D00500B04 /* PlayingTeamTests.swift in Sources */,
 				5E6A681D29C5DA2700500B04 /* PlayerPositionTests.swift in Sources */,
+				5ED4726429CEECE800D8F664 /* MockDataLoader.swift in Sources */,
 				5ED4720729C9E60F00D8F664 /* GameSimulationTests.swift in Sources */,
 				5ED4720929C9F3CB00D8F664 /* MockedPlayingTeam.swift in Sources */,
-				5E6A682529C5EFC800500B04 /* DoubleHelperTests.swift in Sources */,
+				5ED4726829CF00B100D8F664 /* RoundGeneratorTests.swift in Sources */,
+				5ED4725C29CEE22300D8F664 /* TeamStandingsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

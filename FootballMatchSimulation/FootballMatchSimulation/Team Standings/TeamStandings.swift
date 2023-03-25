@@ -23,22 +23,22 @@ class TeamStandings {
   
   // MARK: - Update Standings
   
-  static func updateStandings(for rounds: [Round]) {
+  static func updateTeamStandings(from rounds: [Round]) {
     for round in rounds {
-      updateStandings(for: round)
+      updateTeamStandings(from: round)
     }
   }
   
-  static func updateStandings(for round: Round) {
+  static func updateTeamStandings(from round: Round) {
     
     for match in round.matches {
       if match.scores.count > 0 {
-        updateStandings(for: match)
+        updateTeamStandings(from: match)
       }
     }
   }
   
-  static func updateStandings(for match: Round.Match) {
+  static func updateTeamStandings(from match: Round.Match) {
     
     let team1Goals = match.scores[0]
     let team2Goals = match.scores[1]

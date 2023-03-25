@@ -80,7 +80,7 @@ class HomeScreenViewModel: ObservableObject {
   // Generate rounds for the first time
   func generateRounds(_ models: [Team]) -> [Round] {
     let generator = RoundGenerator()
-    let newRounds = generator.getRounds(with: models)
+    let newRounds = generator.getRounds(from: models)
     rounds = newRounds
     return newRounds
   }
@@ -137,7 +137,7 @@ class HomeScreenViewModel: ObservableObject {
  
   func recalculateStandingsAfterGameReplay() {
     TeamStandings.resetStandings(for: teams)
-    TeamStandings.updateStandings(for: rounds)
+    TeamStandings.updateTeamStandings(from: rounds)
     saveTeams()
   }
   

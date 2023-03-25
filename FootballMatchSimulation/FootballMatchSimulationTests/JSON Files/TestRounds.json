@@ -1,0 +1,81 @@
+[
+  {
+    "name" : "Round 1",
+    "matches" : [
+      {
+        "team_ids" : [
+          "4",
+          "1"
+        ],
+        "gameIsPlayed" : true,
+        "scores" : [
+          3,
+          3
+        ]
+      },
+      {
+        "team_ids" : [
+          "2",
+          "3"
+        ],
+        "gameIsPlayed" : true,
+        "scores" : [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Round 2",
+    "matches" : [
+      {
+        "team_ids" : [
+          "4",
+          "3"
+        ],
+        "gameIsPlayed" : true,
+        "scores" : [
+          1,
+          0
+        ]
+      },
+      {
+        "team_ids" : [
+          "1",
+          "2"
+        ],
+        "gameIsPlayed" : true,
+        "scores" : [
+          0,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Round 3",
+    "matches" : [
+      {
+        "team_ids" : [
+          "4",
+          "2"
+        ],
+        "gameIsPlayed" : false,
+        "scores" : [
+          
+        ]
+      },
+      {
+        "team_ids" : [
+          "3",
+          "1"
+        ],
+        "gameIsPlayed" : false,
+        "scores" : [
+          
+        ]
+      }
+    ]
+  }
+]

@@ -101,20 +101,20 @@ class TeamView: UIView {
     NSLayoutConstraint.activate([
       
       // Logo Image Views
-      team1ImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3),
-      team1ImageView.heightAnchor.constraint(equalTo: team1ImageView.widthAnchor),
-      team2ImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3),
-      team2ImageView.heightAnchor.constraint(equalTo: team2ImageView.widthAnchor),
+      team1ImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.9),
+      team1ImageView.widthAnchor.constraint(equalTo: team1ImageView.heightAnchor),
+      team2ImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.9),
+      team2ImageView.widthAnchor.constraint(equalTo: team2ImageView.heightAnchor),
       
       // Team Score Stack View
       teamScoreStackView.centerXAnchor.constraint(equalTo: scoreView.centerXAnchor),
       teamScoreStackView.centerYAnchor.constraint(equalTo: scoreView.centerYAnchor),
       
       // Container Stack View
-      containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
       containerStackView.topAnchor.constraint(equalTo: topAnchor),
-      containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+      containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      containerStackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85),
+      containerStackView.centerXAnchor.constraint(equalTo: centerXAnchor)
     ])
     
   }

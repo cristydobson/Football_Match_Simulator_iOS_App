@@ -11,7 +11,7 @@ import Foundation
 
 class RoundGenerator {
   
-  
+       
   // MARK: - Properties
   
   var roundCounter = 0
@@ -19,7 +19,7 @@ class RoundGenerator {
   
   // MARK: - Get Rounds
   
-  func getRounds(with teams: [Team]) -> [Round] {
+  func getRounds(from teams: [Team]) -> [Round] {
     
     var arrangedTeams = teams
     
@@ -75,7 +75,7 @@ class RoundGenerator {
       
       let nextTeam = shouldGetLast ? rest.last! : rest.first!
       
-      let match = getNewMatch(for: [last, nextTeam])
+      let match = getNewMatch(for: [nextTeam, last])
       matches.append(match)
       
       if shouldGetLast { rest.removeLast() }
@@ -100,8 +100,17 @@ class RoundGenerator {
   
   func getNewMatch(for teams: [Team]) -> Round.Match {
     let match = Round.Match()
-    match.teams = teams
-    match.team_ids = [teams[0].id, teams[1].id]
+    var newTeams: [Team] = teams
+    
+    if teams[0].standings.hasPlayedHome {
+      newTeams = [teams[1], teams[0]]
+    }
+    
+    newTeams[0].standings.hasPlayedHome = true
+    
+    match.teams = newTeams
+    match.team_ids = [newTeams[0].id, newTeams[1].id]
+    
     return match
   }
   

@@ -16,6 +16,7 @@ struct CollectionViewHelper {
     
     let collectionView = UICollectionView(
       frame: frame, collectionViewLayout: layout)
+    
     collectionView.backgroundColor = .clear
     
     return collectionView
