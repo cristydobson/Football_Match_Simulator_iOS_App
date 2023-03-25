@@ -24,8 +24,8 @@ class HudView: UIView {
   
   var viewModel: HudViewModel? {
     didSet {
-      teamOneNameLabel.text = viewModel?.team1Name
-      teamTwoNameLabel.text = viewModel?.team2Name
+      teamOneNameLabel.text = viewModel?.getNameCapitalized(at: 0)
+      teamTwoNameLabel.text = viewModel?.getNameCapitalized(at: 1)
     }
   }
   
@@ -47,6 +47,7 @@ class HudView: UIView {
   
   func addViews() {
     
+
     // Title One Container
     let hudHeaderTeamTitleOneContainer = getEmptyView()
     addSubview(hudHeaderTeamTitleOneContainer)
@@ -75,6 +76,12 @@ class HudView: UIView {
     hudStackView.addArrangedSubview(hudHeaderTeamTitleTwoContainer)
     
     
+    // Decoration Black Bar
+    setLongBar(by: hudStackView)
+    setPlaysCounterBackground(by: playsCounter)
+    bringSubviewToFront(hudStackView)
+    
+    
     NSLayoutConstraint.activate([
       
       // Header Title Containers
@@ -88,16 +95,17 @@ class HudView: UIView {
       hudStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
       hudStackView.topAnchor.constraint(equalTo: topAnchor),
       hudStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+      
     ])
     
   }
   
-  
+  // LEFT BAR
   func setLeftTitleView(on container: UIView) {
     
     // HUD Header Title One Image
     let titleHeaderBackgroundView = getImageView(
-      for: "Hud-Header-Team-Title-Right")
+      for: "Hud-Header-Team-Title-Left")
     container.addSubview(titleHeaderBackgroundView)
     
     // HUD Header Title One
@@ -106,7 +114,7 @@ class HudView: UIView {
     
     
     NSLayoutConstraint.activate([
-      
+
       // HUD Header Title One Image
       titleHeaderBackgroundView.leadingAnchor.constraint(
         equalTo: container.leadingAnchor),
@@ -119,21 +127,23 @@ class HudView: UIView {
       
       // HUD Header Title One Label
       teamOneNameLabel.leadingAnchor.constraint(
-        equalTo: container.leadingAnchor, constant: 36),
+        equalTo: container.leadingAnchor, constant: 48),
       teamOneNameLabel.topAnchor.constraint(
-        equalTo: container.topAnchor),
+        equalTo: container.topAnchor, constant: 4),
       teamOneNameLabel.bottomAnchor.constraint(
-        equalTo: container.bottomAnchor)
+        equalTo: container.bottomAnchor, constant: -8)
     ])
     
   }
   
+  // RIGHT BAR
   func setRightTitleView(on container: UIView) {
     
     // HUD Header Title Two Image
     let titleHeaderBackgroundView = getImageView(
-      for: "Hud-Header-Team-Title-Left")
+      for: "Hud-Header-Team-Title-Right")
     container.addSubview(titleHeaderBackgroundView)
+    
     
     // HUD Header Title Two
     teamTwoNameLabel = getTeamLabel()
@@ -154,15 +164,47 @@ class HudView: UIView {
       
       // HUD Header Title One Label
       teamTwoNameLabel.trailingAnchor.constraint(
-        equalTo: container.trailingAnchor, constant: -36),
+        equalTo: container.trailingAnchor, constant: -48),
       teamTwoNameLabel.topAnchor.constraint(
-        equalTo: container.topAnchor),
+        equalTo: container.topAnchor, constant: 4),
       teamTwoNameLabel.bottomAnchor.constraint(
-        equalTo: container.bottomAnchor)
+        equalTo: container.bottomAnchor, constant: -8)
     ])
     
   }
   
+  
+  // MARK: - Decoration Views
+  
+  func setLongBar(by neighborView: UIView) {
+    let barImage = getImageView(for: "Header-Bar")
+    addSubview(barImage)
+    
+    NSLayoutConstraint.activate([
+      barImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+      barImage.trailingAnchor.constraint(equalTo: trailingAnchor),
+      barImage.bottomAnchor.constraint(
+        equalTo: neighborView.bottomAnchor, constant: 20)
+    ])
+    
+  }
+  
+  func setPlaysCounterBackground(by neighborView: UIView) {
+    let playsCounterBackgroundImage = getImageView(for: "Plays_Counter_BG")
+    addSubview(playsCounterBackgroundImage)
+    bringSubviewToFront(playsCounterBackgroundImage)
+    
+    NSLayoutConstraint.activate([
+      playsCounterBackgroundImage.centerXAnchor.constraint(
+        equalTo: neighborView.centerXAnchor),
+      playsCounterBackgroundImage.centerYAnchor.constraint(
+        equalTo: neighborView.centerYAnchor),
+      playsCounterBackgroundImage.widthAnchor.constraint(
+        equalTo: neighborView.widthAnchor, multiplier: 0.9),
+      playsCounterBackgroundImage.heightAnchor.constraint(
+        equalTo: playsCounterBackgroundImage.widthAnchor, multiplier: 1)
+    ])
+  }
   
   
   // MARK: - View Helper Methods
@@ -184,17 +226,17 @@ class HudView: UIView {
       with: .white,
       text: "",
       alignment: .center,
-      font: UIFont.systemFont(ofSize: 21, weight: .medium))
+      font: UIFont.systemFont(ofSize: 22, weight: .semibold))
     
     return label
   }
   
   func getPlaysCounterLabel() -> UILabel {
     let label = ViewHelper.createLabel(
-      with: .black,
+      with: .white,
       text: "0",
       alignment: .center,
-      font: UIFont.systemFont(ofSize: 34, weight: .heavy))
+      font: UIFont.systemFont(ofSize: 48, weight: .heavy))
     
     return label
   }

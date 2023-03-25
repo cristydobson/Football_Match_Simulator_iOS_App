@@ -18,13 +18,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQ5-pq-Q1p">
                             <rect key="frame" x="0.0" y="0.0" width="169" height="59"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team One" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90b-YH-v5v">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team One" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90b-YH-v5v">
                                     <rect key="frame" x="12" y="23.333333333333336" width="98" height="20.333333333333336"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="dPP-y9-OKb">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dPP-y9-OKb">
                                     <rect key="frame" x="122" y="12" width="43" height="43"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="dPP-y9-OKb" secondAttribute="height" multiplier="1:1" id="XHl-q2-HFg"/>
@@ -76,13 +76,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ug6-ij-dR6">
                             <rect key="frame" x="224" y="0.0" width="169" height="59"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="fGL-wC-AR8">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fGL-wC-AR8">
                                     <rect key="frame" x="4" y="12" width="43" height="43"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="fGL-wC-AR8" secondAttribute="height" multiplier="1:1" id="gou-TQ-Hgd"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Two" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tn9-4L-XbR">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Two" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tn9-4L-XbR">
                                     <rect key="frame" x="59" y="23.333333333333336" width="98" height="20.333333333333336"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
@@ -126,7 +126,4 @@
             <point key="canvasLocation" x="139.69465648854961" y="12.323943661971832"/>
         </view>
     </objects>
-    <resources>
-        <image name="Logo_placeholder" width="100" height="100"/>
-    </resources>
 </document>

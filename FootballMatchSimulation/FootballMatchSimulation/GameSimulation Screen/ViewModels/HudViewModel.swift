@@ -25,6 +25,11 @@ class HudViewModel {
     self.team2Name = team2Name
   }
   
+  func getNameCapitalized(at index: Int) -> String {
+    let string = index == 0 ? team1Name : team2Name
+    return string.uppercased()
+  }
+  
 }
 
 

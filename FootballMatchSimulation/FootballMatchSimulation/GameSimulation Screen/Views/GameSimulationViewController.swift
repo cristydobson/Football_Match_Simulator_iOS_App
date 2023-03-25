@@ -27,6 +27,11 @@ class GameSimulationViewController: UIViewController, ObservableObject {
   var hudView: HudView!
   var teamView: TeamView!
   var updatesLabel: UILabel!
+  var goalView: GoalView!
+  var startImageView: UIImageView!
+  var finalResultTitleLabel: UILabel!
+  
+  // Buttons
   var dismissControllerButton: UIButton!
   
   // Game Finished
@@ -64,7 +69,7 @@ class GameSimulationViewController: UIViewController, ObservableObject {
     NSLayoutConstraint.activate([
       hudView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 40),
       hudView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -40),
-      hudView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
+      hudView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 4),
       hudView.setHeightContraint(by: 50)
     ])
     
@@ -86,7 +91,7 @@ class GameSimulationViewController: UIViewController, ObservableObject {
     /*
      Updates Label
      */
-    updatesLabel = createUpdatesLabel()
+    updatesLabel = createEventUpdatesLabel()
     view.addSubview(updatesLabel)
     
     NSLayoutConstraint.activate([
@@ -103,11 +108,17 @@ class GameSimulationViewController: UIViewController, ObservableObject {
     dismissControllerButton = createDismissButton()
     
     NSLayoutConstraint.activate([
-      dismissControllerButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 24),
-      dismissControllerButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 24),
+      dismissControllerButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 48),
+      dismissControllerButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
       dismissControllerButton.setWidthContraint(by: 60),
       dismissControllerButton.heightAnchor.constraint(equalTo: dismissControllerButton.widthAnchor, multiplier: 1)
     ])
+    
+    
+    /*
+     Final Result Title Label
+     */
+    finalResultTitleLabel = createFinalResultTitleLabel()
     
   }
   
@@ -127,19 +138,26 @@ class GameSimulationViewController: UIViewController, ObservableObject {
     return newView
   }
   
-  func createUpdatesLabel() -> UILabel {
+  func createEventUpdatesLabel() -> UILabel {
     let label = ViewHelper.createLabel(
-      with: .black,
+      with: .white,
       text: "",
       alignment: .center,
-      font: UIFont.systemFont(ofSize: 24, weight: .medium))
+      font: UIFont.systemFont(ofSize: 28, weight: .black))
     
     return label
   }
   
   func createDismissButton() -> UIButton {
     let button = UIButton()
-    button.setTitle("X", for: .normal)
+    
+    button.setImage(
+      UIImage(named: "Close_button_default"),
+      for: .normal)
+    
+    button.setImage(
+      UIImage(named: "Close_button_tapped"),
+      for: .selected)
     
     button.addTarget(
       self,
@@ -147,23 +165,141 @@ class GameSimulationViewController: UIViewController, ObservableObject {
       for: .touchUpInside)
     
     button.translatesAutoresizingMaskIntoConstraints = false
-//    button.isHidden = true
+    button.isHidden = true
     
     view.addSubview(button)
     
     return button
   }
   
+  func createFinalResultTitleLabel() -> UILabel {
+    let label = ViewHelper.createLabel(
+      with: .white,
+      text: "Final Result",
+      alignment: .center,
+      font: UIFont.systemFont(ofSize: 38, weight: .bold))
+    
+    label.isHidden = true
+    
+    view.addSubview(label)
+    
+    NSLayoutConstraint.activate([
+      label.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
+      label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+    ])
+    
+    return label
+  }
   
-  // MARK: - Bindings
+  
+  // MARK: - Goal View
+  
+  func setGoalView() {
+   
+    if goalView == nil {
+      
+      let frame = CGRect(
+        origin: CGPoint(x: 0, y: 200),
+        size: CGSize(width: view.frame.width, height: 100))
+      
+      goalView = GoalView(frame: frame)
+      
+      goalView.center.x = view.center.x
+    }
+    
+    animateViewIn(goalView, waitTime: 1.5)
+  }
+  
+  
+  // MARK: - Game About to Start View
+  
+  func setGameAboutToStartView(waitTime: TimeInterval) {
+    
+    if startImageView == nil {
+      
+      startImageView = UIImageView(
+        image: UIImage(named: "Start-ball"))
+      
+      startImageView.center = view.center
+    }
+    
+    animateViewIn(startImageView, waitTime: waitTime)
+  }
+  
+  
+  // MARK: - Half-Time View
+  
+  func setHalfTimeView() {
+    
+    var halfTimeView: HalfTimeView!
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+      halfTimeView = HalfTimeView(frame: self.view.frame)
+      self.view.addSubview(halfTimeView)
+    }
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+      halfTimeView.removeFromSuperview()
+    }
+  }
+  
+  
+  // MARK: - Set Game Finished View
+  
+  func setGameFinishedView() {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+      self.hudView.isHidden = true
+      self.updatesLabel.isHidden = true
+      
+      self.finalResultTitleLabel.isHidden = false
+      self.dismissControllerButton.isHidden = false
+    }
+  }
+  
+  
+  
+  // MARK: - Animate Views In/Out
+  
+  func animateViewIn(_ aView: UIView, waitTime: TimeInterval) {
+    
+    view.addSubview(aView)
+    
+    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+      aView.alpha = 1
+    })
+    { _ in
+      DispatchQueue.main.asyncAfter(deadline: .now() + waitTime) {
+        self.animateViewOut(aView)
+      }
+    }
+  }
+  
+  func animateViewOut(_ aView: UIView) {
+    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+      aView.alpha = 0
+    })
+    { _ in
+      aView.removeFromSuperview()
+    }
+  }
+
+  
+  
+  // MARK: - Game Simulation
   
   func setupGameSimulation() {
     gameSimulation = GameSimulation(
       homeTeam: teams[0], visitorTeam: teams[1])
     
     setupBindings()
-    gameSimulation.startFirstTimeSimulation()
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
+      self.gameSimulation.startFirstTimeSimulation()
+    }
   }
+  
+  
+  // MARK: - Bindings
   
   func setupBindings() {
     
@@ -186,15 +322,22 @@ class GameSimulationViewController: UIViewController, ObservableObject {
       DispatchQueue.main.async {
         
         switch state {
+            
+          case .goalScored:
+            self?.setGoalView()
+            
           case .inProgress:
             print("\n GAME IN PROGRESS!!!!!!\n")
+            
           case .halfTime:
-            print("\n GAME AT HALFTIME!!!!!!!\n")
+            self?.setHalfTimeView()
+            
           case .finished:
-            self?.dismissControllerButton.isHidden = false
+            self?.setGameFinishedView()
             self?.goals = [(self?.teams[0].goals)!, (self?.teams[1].goals)!]
+            
           default:
-            print("\n GAME ABOUT TO START!!!!!\n")
+            self?.setGameAboutToStartView(waitTime: 1.5)
         }
         
       }

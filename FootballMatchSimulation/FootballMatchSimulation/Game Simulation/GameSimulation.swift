@@ -15,6 +15,7 @@ class GameSimulation: ObservableObject {
   
   enum GameState {
     case none
+    case goalScored
     case inProgress
     case halfTime
     case finished
@@ -100,7 +101,7 @@ class GameSimulation: ObservableObject {
   func handleHalfTime() {
     gameState = .halfTime
     
-    updateCurrentEvent(for: .halfTime, andTeam: nil)
+    currentEvent = ""
 
     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
       self.startSecondTimeSimulation()
@@ -148,7 +149,7 @@ class GameSimulation: ObservableObject {
    */
   func handleFinishedMatch(for teamOne: PlayingTeam, vs teamTwo: PlayingTeam) {
     gameState = .finished
-    updateCurrentEvent(for: .matchFinished, andTeam: nil)
+    currentEvent = ""
   }
   
   
@@ -203,7 +204,9 @@ extension GameSimulation {
     teamTwo.nextPosition()
     teamOne.updateGoals()
 
-    nextBattle(teamTwo, vs: teamOne, andWait: 3)
+    gameState = .goalScored
+    
+    nextBattle(teamTwo, vs: teamOne, andWait: 2)
   }
   
   func nextBattle(_ teamOne: PlayingTeam, vs teamTwo: PlayingTeam, andWait time: TimeInterval) {

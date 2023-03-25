@@ -92,7 +92,7 @@
     "shortened_name": "Barcelona",
     "id": "2",
     "stadium": "Spotify Camp Nou",
-    "image_name": "FC_Barcelona",
+    "image_name": "Barcelona",
     "keeper": {
       "name": "Marc-Andre ter Stegen",
       "shirt": 1,
@@ -180,7 +180,7 @@
     "shortened_name": "PSG",
     "id": "3",
     "stadium": "Parc des Princes",
-    "image_name": "Paris_Saint-Germain",
+    "image_name": "PSG",
     "keeper": {
       "name": "Gianluigi Donnarumma",
       "shirt": 99,
@@ -268,7 +268,7 @@
     "shortened_name": "Bayern",
     "id": "4",
     "stadium": "Allianz Arena",
-    "image_name": "FC_Bayern",
+    "image_name": "Bayern",
     "keeper": {
       "name": "Yann Sommer",
       "shirt": 27,

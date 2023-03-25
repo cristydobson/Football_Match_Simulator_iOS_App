@@ -27,14 +27,14 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w0t-AE-6j1">
                                     <rect key="frame" x="28.666666666666657" y="0.0" width="257.33333333333337" height="43"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="9Ta-PO-6lF">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Ta-PO-6lF">
                                             <rect key="frame" x="0.0" y="6.6666666666666679" width="30" height="30.000000000000004"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="Prf-XC-8dv"/>
                                                 <constraint firstAttribute="width" secondItem="9Ta-PO-6lF" secondAttribute="height" multiplier="1:1" id="jjh-7r-hp7"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team One" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQ6-vP-T7M">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team One" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQ6-vP-T7M">
                                             <rect key="frame" x="38.000000000000014" y="13" width="215.33333333333337" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -251,7 +251,4 @@
             <point key="canvasLocation" x="138.93129770992365" y="19.718309859154932"/>
         </view>
     </objects>
-    <resources>
-        <image name="Logo_placeholder" width="100" height="100"/>
-    </resources>
 </document>
