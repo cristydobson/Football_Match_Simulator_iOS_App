@@ -206,6 +206,7 @@ extension PlayingTeam {
       default:
         players.updateAthleticDecayCoefficient(by: 0.001)
     }
+    
   }
   
 }
