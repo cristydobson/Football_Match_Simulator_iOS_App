@@ -53,12 +53,12 @@ The Round creation process:
 
 * In a round-robin tournament, every team play each other once.
 
-* Number of rounds = n-1 where n is teams.count
+* Number of rounds = n-1 where n is the number of teams
 
 * Number of games = (n/2)(n-1)
 
 
-Each Round object contains within a Match model.
+Each Round model contains a Match model.
 
 Every Round can contain any given of matches.
 
@@ -144,15 +144,24 @@ Each Match has five game states:
 
 Every individual player in the line-up has a skillPower value.
 
-1. Get the skillPower from all the players in the same Position. Remembering that the Attackers and the Defenders get help from the Milfielders.
+1. Calculate the skillPower for a Position in the line-up (e.g., the defenders). Keep in mind that the Attackers and the Defenders get help from the Midfielders during the head2head battles. The calculations are as follows:
 
    * Keeper: His skillPower value is multiplied by scoringDifficulty. The scoringDifficulty variable, makes the goal keeper more powerful against the opponent's attackers.
 
+  ![keeper_SP](Assets/Calculations/Keeper_SkillPower.png)<br>
+
+
    * Midfielders: Add up all the midfielders skillPowers, and get the average. Then add +1 for every midfielder in the line-up.
+
+  ![midfielders_SP](Assets/Calculations/MidfieldersSkillPower.png)<br>
 
    * Attackers: Add up all the attackers skillPowers, and get the average. Then add +1 for every attackers in the line-up. Then add + 1/2 midfielders.skillPower.
 
+  ![attackers_SP](Assets/Calculations/AttackersSkillPower.png)<br>
+
    * Defenders: Add up all the defenders skillPowers, and get the average. Then add +1 for every defenders in the line-up. Then add + 1/2 midfielders.skillPower.
+
+  ![defenders_SP](Assets/Calculations/DefendersSkillPower.png)<br>
 
 2. Obtain the final skillPower by subtracting the AthleticDecay to that skillPower.
 
