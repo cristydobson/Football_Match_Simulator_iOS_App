@@ -63,7 +63,8 @@ final class AthleticDecay {
    */
   
   private func getAthleticDecayOverTime(_ plays: Int, decay: Double) -> Double {
-    return decay * Double(plays)
+    
+    return   decay * Double(plays)
   }
   
 }
