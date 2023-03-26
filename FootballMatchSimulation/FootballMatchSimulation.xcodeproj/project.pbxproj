@@ -87,6 +87,8 @@
 		5ED4727829CF403D00D8F664 /* Bayern.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED4727429CF403D00D8F664 /* Bayern.png */; };
 		5ED4727A29CF68C000D8F664 /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4727929CF68C000D8F664 /* GoalView.swift */; };
 		5ED4727C29CF97E300D8F664 /* HalfTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4727B29CF97E300D8F664 /* HalfTimeView.swift */; };
+		5ED4727E29D033FC00D8F664 /* LoadScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED4727D29D033FC00D8F664 /* LoadScreen.swift */; };
+		5ED4728129D0344600D8F664 /* LoadScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED4728029D0344600D8F664 /* LoadScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +193,8 @@
 		5ED4727429CF403D00D8F664 /* Bayern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bayern.png; sourceTree = "<group>"; };
 		5ED4727929CF68C000D8F664 /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
 		5ED4727B29CF97E300D8F664 /* HalfTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfTimeView.swift; sourceTree = "<group>"; };
+		5ED4727D29D033FC00D8F664 /* LoadScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScreen.swift; sourceTree = "<group>"; };
+		5ED4728029D0344600D8F664 /* LoadScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +247,7 @@
 			children = (
 				5E6A680D29C4E0E200500B04 /* App Delegate */,
 				5E6A681829C4F1D400500B04 /* Services */,
+				5ED4728229D05AD900D8F664 /* Enums */,
 				5E6A680E29C4E10000500B04 /* Models */,
 				5ED4722C29CB2EB300D8F664 /* RoundGenerator */,
 				5ED4725A29CDF3CF00D8F664 /* Team Standings */,
@@ -296,8 +301,6 @@
 			children = (
 				5E6A681429C4E1CB00500B04 /* Team.swift */,
 				5ED4722A29CB16EE00D8F664 /* RoundModel.swift */,
-				5E6A681A29C5D6C500500B04 /* PlayerPosition.swift */,
-				5ED4724C29CCB3F000D8F664 /* JsonFileNames.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				5E6A681129C4E14400500B04 /* Launchscreen */,
+				5ED4727F29D0340600D8F664 /* LoadScreen */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -716,6 +720,24 @@
 			path = "Player Position";
 			sourceTree = "<group>";
 		};
+		5ED4727F29D0340600D8F664 /* LoadScreen */ = {
+			isa = PBXGroup;
+			children = (
+				5ED4727D29D033FC00D8F664 /* LoadScreen.swift */,
+				5ED4728029D0344600D8F664 /* LoadScreen.xib */,
+			);
+			path = LoadScreen;
+			sourceTree = "<group>";
+		};
+		5ED4728229D05AD900D8F664 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				5E6A681A29C5D6C500500B04 /* PlayerPosition.swift */,
+				5ED4724C29CCB3F000D8F664 /* JsonFileNames.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -825,6 +847,7 @@
 				5E6A680C29C4D25B00500B04 /* Teams.json in Resources */,
 				5E6A683929C660B800500B04 /* StandingsCardRow.xib in Resources */,
 				5ED4727729CF403D00D8F664 /* Ajax.png in Resources */,
+				5ED4728129D0344600D8F664 /* LoadScreen.xib in Resources */,
 				5ED4724929CC772B00D8F664 /* Rounds.json in Resources */,
 				5ED4727629CF403D00D8F664 /* Barcelona.png in Resources */,
 				5ED4727529CF403D00D8F664 /* PSG.png in Resources */,
@@ -885,6 +908,7 @@
 				5ED4725829CD9B4700D8F664 /* StandingsViewModel.swift in Sources */,
 				5E6A684A29C7425100500B04 /* SkillPower.swift in Sources */,
 				5ED4722029CB0AC200D8F664 /* RoundCardCellViewModel.swift in Sources */,
+				5ED4727E29D033FC00D8F664 /* LoadScreen.swift in Sources */,
 				5E6A685F29C7795200500B04 /* ViewHelper.swift in Sources */,
 				5ED4721729CAF88B00D8F664 /* RoundGamesViewController.swift in Sources */,
 				5E6A682729C645DE00500B04 /* RoundCard.swift in Sources */,

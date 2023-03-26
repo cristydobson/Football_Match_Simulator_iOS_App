@@ -1,9 +1,10 @@
-//
-//  TeamStandings.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/24/23.
-//
+///
+/// TeamStandings.swift
+///
+/// Calculates Team.Standings
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -14,6 +15,10 @@ class TeamStandings {
 
   // MARK: - Reset Team Standings
   
+  /*
+   Wipe clean all Teams standings before recalculating
+   them after a Match has been replayed
+   */
   static func resetStandings(for teams: [Team]) {
     for team in teams {
       team.standings.reset()
@@ -23,12 +28,14 @@ class TeamStandings {
   
   // MARK: - Update Standings
   
+  // Update all Teams standings based on every Round's outcome
   static func updateTeamStandings(from rounds: [Round]) {
     for round in rounds {
       updateTeamStandings(from: round)
     }
   }
   
+  // Update all Teams standings based on every Round.Match's outcome
   static func updateTeamStandings(from round: Round) {
     
     for match in round.matches {
@@ -38,6 +45,7 @@ class TeamStandings {
     }
   }
   
+  // Update the Match.teams standings based on the outcome
   static func updateTeamStandings(from match: Round.Match) {
     
     let team1Goals = match.scores[0]
@@ -62,12 +70,14 @@ class TeamStandings {
     }
   }
   
+  // Update Goals For and Against per Team
   static func updateGoals(for team: Team, with scores: [Int]) {
     team.standings.games_played += 1
     team.standings.goals_for += scores[0]
     team.standings.goals_against += scores[1]
   }
   
+  // Update Wins and Losses for both Teams
   static func updateWins(for teams: [Team]) {
     teams[0].standings.wins += 1
     teams[1].standings.losses += 1
@@ -76,6 +86,7 @@ class TeamStandings {
   
   // MARK: - Sort Teams by Standings
   
+  // Sort Teams by their Standings
   static func sortTeamsByStandings(_ teams: [Team]) -> [Team] {
     var sortedTeams = teams
     
@@ -90,7 +101,10 @@ class TeamStandings {
         }
         else if $0.standings.goalsDifference == $1.standings.goalsDifference {
           
-          // Check Goals_For count
+          /*
+           If both Teams have the same Goal_Difference count,
+           then compare Goals_For count
+           */
           if $0.standings.goals_for > $1.standings.goals_for {
             return $0.standings.goals_for > $1.standings.goals_for
           }
@@ -101,8 +115,6 @@ class TeamStandings {
     
     return sortedTeams
   }
-  
-  
   
 }
 

@@ -84,7 +84,7 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
   func addDropShadow() {
     addDropShadow(
       opacity: 0.5,
-      radius: 4,
+      radius: 8,
       offset: CGSize.zero,
       color: .darkBlue)
   }

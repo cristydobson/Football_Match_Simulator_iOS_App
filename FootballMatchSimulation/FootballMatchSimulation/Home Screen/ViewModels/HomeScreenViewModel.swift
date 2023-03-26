@@ -1,9 +1,11 @@
-//
-//  HomeScreenViewModel.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/18/23.
-//
+///
+/// HomeScreenViewModel.swift
+///
+/// The ViewModel for the Root ViewController.
+/// Contains the Standings and the Rounds.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -17,15 +19,22 @@ class HomeScreenViewModel: ObservableObject {
   
   private var subscriptions = Set<AnyCancellable>()
   
+  // Decoded Round and Team models
   @Published var rounds: [Round] = []
   @Published var teams: [Team] = []
   
+  // The ViewModel to pass to the StandingsView
   @Published var standingsViewModel: StandingsViewModel!
   @Published var updateStandings = false
   
   
   // MARK: - Load Teams
   
+  /*
+   Load the Teams file from the DocumentDirectory
+   if it exists, otherwise, load it from the Bundle
+   and then save it to the DocumentDirectory
+   */
   func loadTeams() {
     let fileName = JsonFileName.teams.rawValue
     
@@ -41,6 +50,11 @@ class HomeScreenViewModel: ObservableObject {
   
   // MARK: - Load Rounds
   
+  /*
+   Load the Rounds file from the DocumentDirectory
+   if it exists, otherwise, generate new Round models
+   and then save them to the DocumentDirectory
+   */
   func loadRounds(with teamModels: [Team]) {
     let fileName = JsonFileName.rounds.rawValue
     
@@ -56,6 +70,10 @@ class HomeScreenViewModel: ObservableObject {
   
   // MARK: Setup Existing Rounds
   
+  /*
+   Add Teams to every existing Round.Match
+   and setup their bindings
+   */
   func setupExistingRounds(_ newRounds: [Round]) {
     setupRoundBindings(for: newRounds)
     setupRounds(newRounds)
@@ -71,6 +89,7 @@ class HomeScreenViewModel: ObservableObject {
   
   // MARK: - Create New Rounds
   
+  // Create new Rounds after first app launch
   func createNewRounds(with teamModels: [Team], andFileName fileName: String) {
     let newRounds = generateRounds(teamModels)
     setupRoundBindings(for: newRounds)
@@ -86,22 +105,24 @@ class HomeScreenViewModel: ObservableObject {
   }
   
   
-  // MARK: - Setup Bindings for Rounds
+  // MARK: - Setup Bindings
   
+  // Setup bindings for for every Round.Match
   func setupRoundBindings(for roundModels: [Round]) {
     for round in roundModels {
-      setBindings(for: round)
+      setupBindings(for: round)
     }
   }
   
-  func setBindings(for round: Round) {
+  func setupBindings(for round: Round) {
     for match in round.matches {
-      setBindings(for: match)
+      setupBindings(for: match)
     }
   }
   
-  func setBindings(for match: Round.Match) {
+  func setupBindings(for match: Round.Match) {
     
+    // Listen to save Rounds to DocumentDirectory
     match.$saveRounds.sink { [weak self] flag in
       if flag {
         DispatchQueue.main.async {
@@ -110,6 +131,7 @@ class HomeScreenViewModel: ObservableObject {
       }
     }.store(in: &subscriptions)
     
+    // Listen to save Teams to DocumentDirectory
     match.$saveTeams.sink { [weak self] flag in
       if flag {
         DispatchQueue.main.async {
@@ -118,6 +140,10 @@ class HomeScreenViewModel: ObservableObject {
       }
     }.store(in: &subscriptions)
     
+    /*
+     Listen to recalculate every Team's standings,
+     and then save Teams to DocumentDirectory
+     */
     match.$didReplayGame.sink { [weak self] flag in
       if flag {
         DispatchQueue.main.async {
@@ -130,11 +156,16 @@ class HomeScreenViewModel: ObservableObject {
   
   // MARK: - Standings
   
+  // Create the ViewModel for the Standings View
   func createStandingsViewModel() {
     let viewModel = StandingsViewModel(teams: teams)
     standingsViewModel = viewModel
   }
  
+  /*
+   Recalculate every Team's standings after
+   replaying a Match
+   */
   func recalculateStandingsAfterGameReplay() {
     TeamStandings.resetStandings(for: teams)
     TeamStandings.updateTeamStandings(from: rounds)
@@ -144,12 +175,14 @@ class HomeScreenViewModel: ObservableObject {
   
   // MARK: - Save Data
   
+  // Save Teams to DocumentDirectory
   func saveTeams() {
     let fileName = JsonFileName.teams.rawValue
     try! DataLoader.save(teams, to: fileName)
     updateStandings = true
   }
   
+  // Save Rounds to DocumentDirectory
   func saveRounds() {
     let fileName = JsonFileName.rounds.rawValue
     try! DataLoader.save(rounds, to: fileName)

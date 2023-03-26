@@ -1,9 +1,10 @@
-//
-//  RoundCardCellViewModel.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/22/23.
-//
+///
+/// RoundCardCellViewModel.swift
+///
+/// Cell for every Round
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -25,6 +26,10 @@ class RoundCardCellViewModel {
     self.matches = matches
   }
   
+  /*
+   Create a ViewModel for the RoundCard
+   being displayed in the cell
+   */
   func createRoundCardViewModel() -> RoundCardViewModel {
     return RoundCardViewModel(title: roundName, matches: matches)
   }

@@ -43,4 +43,9 @@ class RoundCardRowViewModel {
     return "0"
   }
   
+  func scoreLabelColor() -> UIColor {
+    let color: UIColor = match.scores.count > 0 ? .white : .dimmedWhite
+    return color
+  }
+  
 }

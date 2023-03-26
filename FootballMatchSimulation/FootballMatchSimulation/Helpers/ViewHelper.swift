@@ -29,10 +29,10 @@ extension UIView {
     gradient.frame = bounds
     gradient.colors = [
       UIColor.darkerBlue.cgColor,
-      UIColor.mediumBlue.cgColor,
-      UIColor.lightBlue.cgColor
+      UIColor.lightBlue.cgColor,
+      UIColor.mediumBlue.cgColor
     ]
-    gradient.locations = [0.25, 0.50, 0.75, 1]
+    gradient.locations = [0.3, 0.6, 1]
     layer.addSublayer(gradient)
   }
   

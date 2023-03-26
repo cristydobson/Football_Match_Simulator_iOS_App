@@ -1,9 +1,10 @@
-//
-//  GameSimulation.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/19/23.
-//
+///
+/// GameSimulation.swift
+///
+/// It handles a Game/Match between 2 Teams.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -12,9 +13,12 @@ import Combine
 
 class GameSimulation: ObservableObject {
   
-  
+  /*
+   The states a single match
+   goes through
+   */
   enum GameState {
-    case none
+    case aboutToStart
     case goalScored
     case inProgress
     case halfTime
@@ -26,22 +30,26 @@ class GameSimulation: ObservableObject {
   
   private var subscriptions = Set<AnyCancellable>()
   
+  // Teams currently playing
   private let homeTeam: PlayingTeam
   private let visitorTeam: PlayingTeam
   
+  // Game's current state
   @Published private(set) var plays = 0
   @Published private(set) var currentEvent: String = ""
   
   @Published private(set) var team1Goals = 0
   @Published private(set) var team2Goals = 0
   
-  @Published private(set) var gameState = GameState.none
+  @Published private(set) var gameState = GameState.aboutToStart
   
   
+  // At 45 Plays the game enters Half-Time
   private var isHalfTime: Bool {
     return plays == 45
   }
   
+  // At 90 Plays, the game ends
   private var matchInProgress: Bool {
     return plays < 90
   }
@@ -59,14 +67,26 @@ class GameSimulation: ObservableObject {
   
   // MARK: - Start Simulations
   
-  func startFirstTimeSimulation() {
+  /*
+   Start the first half of the game.
+   
+   The HomeTeam kicks-off the game.
+   */
+  func startFirstHalfSimulation() {
     gameState = .inProgress
-    battle(homeTeam, vs: visitorTeam)
+    nextBattle(homeTeam, vs: visitorTeam, andWait: 1.7)
   }
   
-  func startSecondTimeSimulation() {
+  /*
+   Start the second half of the game
+   after half-time.
+   
+   The VisitorTeam kicks off the game now.
+   */
+  func startSecondHalfSimulation() {
     gameState = .inProgress
     
+    // Both teams go back to the midfield
     homeTeam.resetPosition()
     visitorTeam.resetPosition()
     
@@ -103,8 +123,9 @@ class GameSimulation: ObservableObject {
     
     currentEvent = ""
 
+    //Wait before kicking-off the second half of the game
     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-      self.startSecondTimeSimulation()
+      self.startSecondHalfSimulation()
     }
   }
   
@@ -113,14 +134,20 @@ class GameSimulation: ObservableObject {
    */
   func handleGameInProgress(for teamOne: PlayingTeam, vs teamTwo: PlayingTeam) {
     
+    // Team2 wins the Head2Head
     if isMorePowerful(teamTwo, than: teamOne) {
       handleSkillPowerWin(ofTeamTwo: teamTwo, against: teamOne)
     }
-    else { // teamOne > teamTwo
+    else { // Team1 wins the Head2Head
       handleSkillPowerWin(ofTeamOne: teamOne, against: teamTwo)
     }
   }
   
+  /*
+   Determine if Team2 won the Head2Head
+   by committing a foul.
+   Otherwise, it takes the ball back.
+   */
   func handleSkillPowerWin(ofTeamTwo teamTwo: PlayingTeam, against teamOne: PlayingTeam) {
     if notAKeeperCommittedFoul(from: teamTwo) {
       foulBy(teamTwo, against: teamOne)
@@ -130,6 +157,11 @@ class GameSimulation: ObservableObject {
     }
   }
   
+  /*
+   Determine if Team1 won the Head2Head by committing a foul,
+   or if it won against the Keeper, thus scoring a goal.
+   Otherwise, it keeps the ball.
+   */
   func handleSkillPowerWin(ofTeamOne teamOne: PlayingTeam, against teamTwo: PlayingTeam) {
     
     if teamTwo.isGoalKeeper {
@@ -166,6 +198,9 @@ class GameSimulation: ObservableObject {
   
   // MARK: - Bindings
   
+  /*
+   Listen for the teams scoring goals
+   */
   func setupBindings() {
     
     homeTeam.$goals.sink { [weak self] goals in
@@ -180,6 +215,7 @@ class GameSimulation: ObservableObject {
     
   }
   
+  // Update the Current Event string
   func updateCurrentEvent(for event: Event, andTeam team: PlayingTeam?) {
     currentEvent = EventHelper.eventString(for: event, andTeam: team)
   }
@@ -191,6 +227,10 @@ class GameSimulation: ObservableObject {
 
 extension GameSimulation {
   
+  /*
+   Handle one team winning the ball, and
+   the other one losing it
+   */
   func ballPossession(teamOne: PlayingTeam, teamTwo: PlayingTeam, for event: Event) {
     updateCurrentEvent(for: event, andTeam: teamOne)
     teamTwo.fallBackPosition(against: teamOne.currentPosition)
@@ -199,8 +239,10 @@ extension GameSimulation {
     nextBattle(teamOne, vs: teamTwo, andWait: 1)
   }
   
+  // Handle a team scoring a goal
   func goalScoring(from teamOne: PlayingTeam, against teamTwo: PlayingTeam) {
     updateCurrentEvent(for: .goal, andTeam: teamOne)
+    
     teamTwo.nextPosition()
     teamOne.updateGoals()
 
@@ -209,6 +251,7 @@ extension GameSimulation {
     nextBattle(teamTwo, vs: teamOne, andWait: 2)
   }
   
+  // Keep the game going after a certain waiting time
   func nextBattle(_ teamOne: PlayingTeam, vs teamTwo: PlayingTeam, andWait time: TimeInterval) {
     DispatchQueue.main.asyncAfter(deadline: .now() + time) {
       self.battle(teamOne, vs: teamTwo)
@@ -222,6 +265,7 @@ extension GameSimulation {
 
 extension GameSimulation {
   
+  // Handle a foul committed by Team1 on Team2
   func foulBy(_ teamOne: PlayingTeam, against teamTwo: PlayingTeam) {
     updateCurrentEvent(for: .foul, andTeam: teamOne)
     handleFoulBy(teamOne, against: teamTwo)
@@ -234,6 +278,10 @@ extension GameSimulation {
     teamTwo.handleReceivedFoul(foul)
   }
   
+  /*
+   Check that the player that committed the foul
+   is not a Goal Keeper
+   */
   func notAKeeperCommittedFoul(from team: PlayingTeam) -> Bool {
     return team.commitedFoul() && !team.isGoalKeeper
   }

@@ -192,6 +192,19 @@ class GameSimulationViewController: UIViewController, ObservableObject {
   }
   
   
+  // MARK: - Start Game Simulation
+  
+  func setupGameSimulation() {
+    gameSimulation = GameSimulation(
+      homeTeam: teams[0], visitorTeam: teams[1])
+    
+    setupBindings()
+    
+    gameSimulation.startFirstHalfSimulation()
+    
+  }
+  
+  
   // MARK: - Goal View
   
   func setGoalView() {
@@ -283,21 +296,6 @@ class GameSimulationViewController: UIViewController, ObservableObject {
     }
   }
 
-  
-  
-  // MARK: - Game Simulation
-  
-  func setupGameSimulation() {
-    gameSimulation = GameSimulation(
-      homeTeam: teams[0], visitorTeam: teams[1])
-    
-    setupBindings()
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
-      self.gameSimulation.startFirstTimeSimulation()
-    }
-  }
-  
   
   // MARK: - Bindings
   

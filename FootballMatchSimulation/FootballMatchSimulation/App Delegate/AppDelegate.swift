@@ -1,11 +1,12 @@
-//
-//  AppDelegate.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/17/23.
-//
+///
+/// AppDelegate.swift
+///
+///  Created by Cristina Dobson
+///
+
 
 import UIKit
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

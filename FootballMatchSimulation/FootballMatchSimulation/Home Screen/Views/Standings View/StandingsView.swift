@@ -47,12 +47,13 @@ class StandingsView: UIView {
      */
     standingsCard = getStandingsCard()
     addSubview(standingsCard)
+//    standingsCard.backgroundColor = .yellow
     
     NSLayoutConstraint.activate([
       standingsCard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
       standingsCard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-      standingsCard.topAnchor.constraint(equalTo: topAnchor),
-      standingsCard.bottomAnchor.constraint(equalTo: bottomAnchor)
+      standingsCard.heightAnchor.constraint(equalTo: standingsCard.widthAnchor, multiplier: 0.6),
+      standingsCard.centerYAnchor.constraint(equalTo: centerYAnchor)
     ])
     
   }

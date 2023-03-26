@@ -61,7 +61,7 @@ final class GameSimulationTests: XCTestCase {
   
   func testStartFirstTimeSimulation_thenGameStateIsInProgress() {
     // when
-    sut.startFirstTimeSimulation()
+    sut.startFirstHalfSimulation()
     
     // then
     XCTAssertTrue(sut.gameState == .inProgress)
@@ -69,7 +69,7 @@ final class GameSimulationTests: XCTestCase {
   
   func testStartFirstTimeSimulation_thenPlaysEqualOne() {
     // when
-    sut.startFirstTimeSimulation()
+    sut.startFirstHalfSimulation()
     
     // then
     XCTAssertTrue(sut.plays == 1)
@@ -77,7 +77,7 @@ final class GameSimulationTests: XCTestCase {
   
   func testStartSecondTimeSimulation_afterHalfTime_thenGameStateIsInProgress() {
     // when
-    sut.startSecondTimeSimulation()
+    sut.startSecondHalfSimulation()
     
     // then
     XCTAssertTrue(sut.gameState == .inProgress)
@@ -89,7 +89,7 @@ final class GameSimulationTests: XCTestCase {
      */
     
     // when
-    sut.startSecondTimeSimulation()
+    sut.startSecondHalfSimulation()
     
     // then
     XCTAssertTrue(sut.plays == 1)

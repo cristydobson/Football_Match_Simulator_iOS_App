@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,15 +12,51 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen_background" translatesAutoresizingMaskIntoConstraints="NO" id="gLp-jk-MRv">
+                                <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch_soccer_ball" translatesAutoresizingMaskIntoConstraints="NO" id="7fe-Bs-pKv">
+                                <rect key="frame" x="347.33333333333331" y="83.000000000000014" width="157.33333333333331" height="157.33333333333337"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7fe-Bs-pKv" secondAttribute="height" multiplier="1:1" id="r7c-iR-UVM"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="App_name_text" translatesAutoresizingMaskIntoConstraints="NO" id="5QY-Rb-dTG">
+                                <rect key="frame" x="251.33333333333334" y="252.33333333333334" width="349.33333333333326" height="78.333333333333343"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5QY-Rb-dTG" secondAttribute="height" multiplier="40:9" id="I8m-u1-l3E"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5QY-Rb-dTG" firstAttribute="top" secondItem="7fe-Bs-pKv" secondAttribute="bottom" constant="12" id="2NI-by-oae"/>
+                            <constraint firstItem="gLp-jk-MRv" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="4Db-m9-wMi"/>
+                            <constraint firstItem="5QY-Rb-dTG" firstAttribute="height" secondItem="7fe-Bs-pKv" secondAttribute="height" multiplier="0.5" id="GiE-aB-ixv"/>
+                            <constraint firstItem="gLp-jk-MRv" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="JcQ-0T-Lfd"/>
+                            <constraint firstItem="7fe-Bs-pKv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OA7-oe-ARK"/>
+                            <constraint firstItem="7fe-Bs-pKv" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="24" id="Rrk-4I-hB8"/>
+                            <constraint firstAttribute="bottom" secondItem="gLp-jk-MRv" secondAttribute="bottom" id="fhn-Lo-iph"/>
+                            <constraint firstItem="7fe-Bs-pKv" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.4" id="igM-zT-gkF"/>
+                            <constraint firstItem="5QY-Rb-dTG" firstAttribute="centerX" secondItem="7fe-Bs-pKv" secondAttribute="centerX" id="wsr-5g-iUD"/>
+                            <constraint firstAttribute="trailing" secondItem="gLp-jk-MRv" secondAttribute="trailing" id="znO-Eu-6S7"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.816901408450704" y="374.80916030534348"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="App_name_text" width="543.5" height="82.5"/>
+        <image name="LaunchScreen_background" width="1344" height="621"/>
+        <image name="Launch_soccer_ball" width="231" height="231"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

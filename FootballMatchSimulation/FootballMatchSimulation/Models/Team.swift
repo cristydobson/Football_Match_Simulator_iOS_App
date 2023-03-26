@@ -1,23 +1,43 @@
-//
-//  Team.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/17/23.
-//
+///
+/// Team.swift
+///
+/// A model to decode the Teams.json data into,
+/// and to save new data to Standings.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
 
 
-// MARK: - Team Model
+// MARK: - TEAM MODEL
 
 class Team: Codable {
   
+  // MARK: - Properties
+  
+  /*
+   Keys in the JSON file
+   */
   let name: String
+  
+  // Used in the standings card
   let shortened_name: String
+  
+  /*
+   Used to find the Team models of every
+   match in the Round.Match model
+   */
   let id: String
+  
+  // The team's home stadium
   let stadium: String
+  
+  // Logo
   let image_name: String
+  
+  // Players per position they play
   let keeper: Player
   let defenders: [Player]
   let midfielders: [Player]
@@ -26,8 +46,13 @@ class Team: Codable {
   var standings: Standings!
   
   
-  // MARK: - Standings Model
   
+  // MARK: - STANDINGS Model *********
+  
+  /*
+   Updated through out the app, and then saved
+   into DocumentDirectory along with the Team model.
+   */
   class Standings: Codable {
     
     enum GameResult {
@@ -35,12 +60,17 @@ class Team: Codable {
       case draw
     }
     
-    var hasPlayedHome = false
+    // MARK: - Properties *********
     
+    // Maximum number of games played is n Rounds
     var games_played = 0
+    
+    // Accumulated Points
     var points = 0
     
-    // Matches
+    /*
+     Match Outcomes
+     */
     var wins: Int = 0 {
       didSet {
         calculatePoints(for: .win)
@@ -56,15 +86,26 @@ class Team: Codable {
     var losses = 0
     
     
-    // Goals
+    /*
+     Goals
+     */
     var goals_for = 0
     var goals_against = 0
     
+    // Not in JSON
     var goalsDifference: Int {
       return goals_for - goals_against
     }
     
+    /*
+     Not in JSON.
+     Used when generating Rounds, to make sure
+     every team plays at Home at least once
+     */
+    var hasPlayedHome = false
     
+    
+    // The only keys in the JSON file
     private enum CodingKeys: String, CodingKey {
       case games_played
       case wins
@@ -75,8 +116,9 @@ class Team: Codable {
     }
     
     
-    // MARK: - Methods
+    // MARK: - Methods *********
     
+    // Add points for every Win and Draw
     func calculatePoints(for result: GameResult) {
       switch result {
         case .win:
@@ -86,6 +128,10 @@ class Team: Codable {
       }
     }
     
+    /*
+     Reset all values to zero, before recalculating
+     the team Standings, after a match has been replayed.
+     */
     func reset() {
       wins = 0
       draws = 0
@@ -97,12 +143,15 @@ class Team: Codable {
     }
   }
   
-  
 }
 
 
-// MARK: - Player Model
+// MARK: - PLAYER MODEL
 
+/*
+ Model for every individual Player
+ in the team
+ */
 class Player: Codable {
   
   let name: String

@@ -60,4 +60,9 @@ extension UIColor {
   static let cardYellowColor = UIColor(
     red: 195/255, green: 166/255, blue: 5/255, alpha: 1)
   
+  
+  // Dimmed White
+  static let dimmedWhite = UIColor(
+    red: 1, green: 1, blue: 1, alpha: 0.3)
+  
 }

@@ -1,9 +1,15 @@
-//
-//  SkillPower.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/19/23.
-//
+///
+/// SkillPower.swift
+///
+/// Calculate the SkillPower for a Position in a Team's
+/// lineup, for it to use in the Head-to-Head battle.
+///
+/// Midfielders SkillPower  = midfielders skillPower
+/// Attackers SkillPower = (attackers + 1/2 midfielders) skillPower
+/// Defenders SkillPower = (defenders + 1/2 midfielders) skillPower
+///
+///  Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -14,6 +20,7 @@ final class SkillPower {
   
   // MARK: - Properties
   
+  // Makes the Keeper more powerful against Attackers
   private static var scoringDifficulty: Double = 8
   
   
@@ -44,13 +51,15 @@ final class SkillPower {
   
   
   /*
-   Get the SkillPower for the Midfielders.
-   Add 1 to the totalSkillPower for every
-   player in the lineup with the same position.
+   Get the SkillPower for a single Position.
+   
+   Then add +1 for every player in the lineup with
+   the same position to the totalSkillPower.
    */
   private static func getSkillPower(for players: [Player]) -> Double {
     
     let skillPower = skillPowerSummation(for: players)
+    
     let averageSkillPower = DoubleHelper.getRoundedAverageNumber(
       for: skillPower, withCount: players.count)
     
@@ -61,11 +70,13 @@ final class SkillPower {
   
   /*
    Get the SkillPower for the Defenders & Attackers.
-   Add 1 to the totalSkillPower for every
-   player in the lineup with the same position.
    
-   Defenders & Attackers' SkillPower is higher because they
-   receive help in-game from the Midfielders.
+   Then add +1 for every player in the lineup with
+   the same position to the totalSkillPower.
+   
+   Defenders & Attackers SkillPower is higher than the
+   Midfielders alone, because they receive help in-game
+   from the Midfielders too.
    */
   private static func getSkillPower(for players: [Player], helpedBy neighborPlayers: [Player]) -> Double {
     
@@ -85,6 +96,10 @@ final class SkillPower {
   
   // MARK: - Summations
   
+  /*
+   Add up all the SkillPowers from every player
+   with the same Position in the line-up
+   */
   private static func skillPowerSummation(for players: [Player]) -> Double {
     
     var totalSkillPower: Double = 0.0
@@ -95,8 +110,6 @@ final class SkillPower {
     
     return totalSkillPower
   }
-  
-  
   
 }
 

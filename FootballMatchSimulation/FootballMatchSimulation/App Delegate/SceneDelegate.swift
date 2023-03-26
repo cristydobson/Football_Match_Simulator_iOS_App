@@ -1,11 +1,13 @@
-//
-//  SceneDelegate.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/17/23.
-//
+///
+/// SceneDelegate.swift
+///
+///
+/// Created by Cristina Dobson
+///
+
 
 import UIKit
+
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -18,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     
+    // Set HomeScreenViewController as the root viewController
     let viewController = HomeScreenViewController()
     
     window?.rootViewController = viewController

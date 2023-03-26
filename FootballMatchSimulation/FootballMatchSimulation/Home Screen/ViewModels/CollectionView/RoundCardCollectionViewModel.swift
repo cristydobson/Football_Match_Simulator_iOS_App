@@ -1,9 +1,11 @@
-//
-//  RoundCardCollectionViewModel.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/22/23.
-//
+///
+/// RoundCardCollectionViewModel.swift
+///
+/// The CollectionView displaying every
+/// Round in the tournament.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -20,6 +22,7 @@ class RoundCardCollectionViewModel: ObservableObject {
   
   // MARK: Load Cell ViewModels
   
+  // Create new Cell ViewModels
   func loadCellViewModels(from rounds: [Round]) {
     var viewModels: [RoundCardCellViewModel] = []
     
@@ -38,6 +41,7 @@ class RoundCardCollectionViewModel: ObservableObject {
   
   // MARK: - Helper Methods
   
+  // Get a single Cell ViewModel
   func getCellViewModel(at indexPath: IndexPath) -> RoundCardCellViewModel {
     return cellViewModels[indexPath.row]
   }

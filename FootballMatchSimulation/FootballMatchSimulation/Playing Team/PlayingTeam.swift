@@ -1,19 +1,15 @@
-//
-//  PlayingTeam.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/19/23.
-//
+///
+/// PlayingTeam.swift
+///
+/// Handles the team that is currently playing
+/// a match in the Game Simulation.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
 import Combine
-
-
-enum TeamType {
-  case homeTeam
-  case visitorTeam
-}
 
 
 class PlayingTeam: CurrentTeam, ObservableObject {
@@ -23,19 +19,18 @@ class PlayingTeam: CurrentTeam, ObservableObject {
   
   // Team
   let team: Team
-  private(set) var teamType: TeamType!
   
-  // Team Info
+  // Team's Info
   private(set) var name = ""
   private(set) var stadium = ""
   
-  // Team Players
+  // Team's Players
   private(set) var players: Players!
   
-  // Current position being played
+  // Current position being played in the field
   private(set) var currentPosition: Position = .midfielder
   
-  // Track Goals
+  // Track Team's scored Goals
   @Published private(set) var goals = 0
   
   
@@ -55,6 +50,7 @@ class PlayingTeam: CurrentTeam, ObservableObject {
   
   // MARK: - Setup Methods
   
+  // Setup the current Playing Team's info
   func setupTeam() {
     name = team.name
     stadium = team.stadium
@@ -64,12 +60,6 @@ class PlayingTeam: CurrentTeam, ObservableObject {
       defenders: team.defenders,
       midfielders: team.midfielders,
       attackers: team.attackers)
-  }
-  
-  func setTeamType(for currentStadium: String) {
-    teamType = (currentStadium == team.stadium) ?
-      .homeTeam :
-      .visitorTeam
   }
   
   
@@ -96,23 +86,30 @@ class PlayingTeam: CurrentTeam, ObservableObject {
     currentPosition = currentPosition.fallbackPosition(against: rivalPosition)
   }
   
+  // After half-time, they must return to the midfield
   func resetPosition() {
     currentPosition = .midfielder
   }
   
   
-  // MARK: - Get Field Position SkillPower
+  // MARK: - Get SkillPower
   
   /*
    Get the average SkillPower of all the players
    in the lineup with the same position.
+   Add +1 for every player in the lineup.
    (e.g., all the midfielders)
    */
   func playersSkillPower() -> Double {
     
-    // +1 Play to the field Position
+    /*
+     +1 Play to the field Position.
+     This increases the Athletic decay.
+     The more a position plays, the less fit they become.
+     */
     players.updatePlays(for: currentPosition)
     
+    // Get the SkillPower for the current playing position
     let totalSkillPower = totalSkillPower(for: currentPosition)
 
     /*
@@ -124,11 +121,15 @@ class PlayingTeam: CurrentTeam, ObservableObject {
     return randomSkillPower.rounded(to: 3)
   }
   
+  // Calculate the total SkillPower for a given position
   func totalSkillPower(for position: Position) -> Double {
-    // Calculate the SkillPower for a given position
+    
     let skillPower = players.skillPower(for: position)
     
-    // Calculate the total AthleticDecay so far in the game
+    /*
+     Calculate the total AthleticDecay for the position
+     so far in the game
+     */
     let athleticDecay = players.totalAthleticDecay(
       for: skillPower, andPosition: position)
     
@@ -138,6 +139,10 @@ class PlayingTeam: CurrentTeam, ObservableObject {
   
   // MARK: - Get Team Fouls
   
+  /*
+   Ask if the Players committed a foul
+   during the head-to-head battle
+   */
   func commitedFoul() -> Bool {
     return FoulChecker.committedFoul()
   }
@@ -185,21 +190,22 @@ extension PlayingTeam {
   
   
   // Handle the team receiving the foul
-  func handleReceivedFoul(_ foulPenalty: FoulPenalty) {    
+  func handleReceivedFoul(_ foulPenalty: FoulPenalty) {
     /*
-     Receiving a foul affects the players fitness
-     negatively
+     Receiving a foul affects the players
+     fitness negatively
      */
     switch foulPenalty {
+        
       case .yellowCard:
         players.updateAthleticDecayCoefficient(by: 0.002)
+        
       case .redCard:
         players.updateAthleticDecayCoefficient(by: 0.003)
+        
       default:
         players.updateAthleticDecayCoefficient(by: 0.001)
     }
   }
-  
-  
   
 }

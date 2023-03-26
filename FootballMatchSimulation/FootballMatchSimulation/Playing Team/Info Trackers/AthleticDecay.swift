@@ -1,9 +1,11 @@
-//
-//  AthleticDecay.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/19/23.
-//
+///
+/// AthleticDecay.swift
+///
+/// Calculate the Athletic Decay for
+/// the current PlayingTeam's position
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -26,8 +28,9 @@ final class AthleticDecay {
   
   /*
    Calculate the TotalAthleticDecay over time.
-   Here, each Play equals 1 minute.
-   (e.g., the game takes place over the course of 90 Plays)
+   Each Play represents 1 playing minute in real life.
+   (e.g., the game takes place over the course of 90 Plays,
+   which is 90 minutes in real life)
    */
   func getTotalAthleticDecay(skillPower: Double, plays: Int) -> Double {
     
@@ -54,10 +57,13 @@ final class AthleticDecay {
     return athleticDecayPerPlay
   }
   
+  /*
+   Total Athletic decay based on the plays (aka, minutes)
+   players have played.
+   */
   private func getAthleticDecayOverTime(_ plays: Int, decay: Double) -> Double {
     return decay * Double(plays)
   }
-  
   
 }
 
