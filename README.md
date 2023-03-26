@@ -31,21 +31,25 @@ The Team models contain within a Standings model, which gets updated every time 
 
 To calculate the Team's position in the leaderboard, we sort the Teams by their standings.
 
+![standings](Assets/Screenshots/Standings.png)<br>
+
 The sorting process:
 
 * Compare between 2 teams at a time.
 
 * The Team with the most Points wins.
 
-* If both teams share the same Points count, then compare them by the most positive Goal_Difference.
+* If both teams share the same amount of Points, then compare them by their Goal_Difference.
 
-* If both teams share the same Goal_Difference count, then compare them by the Goals_For count.
+* If both teams share the same Goal_Difference, then compare them by their Goals_For amount.
 
 <br>
 
 ### Rounds CollectionView
 
 On first app launch, the Rounds for the tournament don't exist. Therefore, they are created for the first time with the teams provided, and then they are saved to the DocumentDirectory for future retrieval.
+
+![round](Assets/Screenshots/Round.png)<br>
 
 The Round creation process:
 
@@ -82,6 +86,8 @@ This viewController shows only the matches/games for a user-selected Round.
 ## <a name="gameView"></a>Game Simulation ViewController
 
 Displays a simulation of a match between two teams, and it updates its UI based on the Game Simulation's state of the game.
+
+The "82" in this example, represents the number of Plays so far.
 
 ![game_view](Assets/Screenshots/GameSimulationViewController.png)<br>
 
@@ -212,14 +218,19 @@ Every individual player in the line-up has a skillPower value.
 
 1. Multiply 0.0001 by the skillPower for the current Position in the field. The greater the skillPower, the greater this number will be.
 
+  ![decay_001](Assets/Calculations/001.png)<br>
+
 2. Subtract the result from STEP 1, from the AthleticDecayCoefficient. 
 
    - The more fit the players are at the start of the game, the least AthleticDecay they will have.
+
+  ![decay_002](Assets/Calculations/002.png)<br>
 
 #### Get the total AthleticDecay so far in the game:
 
 3. Multiply the result from STEP 2, by the number of plays the position has played so far in the game.
 
+   ![decay_003](Assets/Calculations/003.png)<br>
 
 
 
