@@ -4,6 +4,8 @@ This project is a football/soccer tournament simulation with 4 teams. Two teams 
 
 The teams standings on the leaderboard are then calculated based on the outcomes from these matches/games.
 
+![app_logo](Assets/Football_Logo.png)<br>
+
 <br>
 
 ## Table of contents
@@ -126,11 +128,11 @@ Each Match has five game states:
 * Defender vs. Attacker
 * Midfielder vs. Midfielder
 
-1. Determine which player wins the head2head based on their skillPower.
+1. Determine which player (Position) wins the head2head based on their skillPower.
 
    - (e.g.) `if team2.attackers.skillPower > team1.defenders.skillPower {}`
 
-2. When a player wins, determine if the player won the ball by committing a foul.
+2. When a player (Position) wins, determine if the player won the ball by committing a foul.
 
    - If the player did not commit a foul, then it gets to keep the ball and passes it forward in the field.
    
@@ -159,7 +161,7 @@ Every individual player in the line-up has a skillPower value.
   ![keeper_SP](Assets/Calculations/Keeper_SkillPower.png)<br>
 
 
-   * Midfielders: Add up all the midfielders skillPowers, and get the average. Then add +1 for every midfielder in the line-up.
+   * Midfielders: Add up all of the midfielders skillPowers, and get the average. Then add +1 for every midfielder in the line-up.
 
   ![midfielders_SP](Assets/Calculations/MidfieldersSkillPower.png)<br>
 
@@ -222,7 +224,7 @@ Every individual player in the line-up has a skillPower value.
 
 2. Subtract the result from STEP 1, from the AthleticDecayCoefficient. 
 
-   - The more fit the players are at the start of the game, the least AthleticDecay they will have.
+   - The more fit the players in the Position are at the start of the game, the least AthleticDecay they will have.
 
   ![decay_002](Assets/Calculations/002.png)<br>
 
