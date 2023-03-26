@@ -37,9 +37,9 @@ The sorting process:
 
 * The Team with the most Points wins.
 
-* If both teams share the same Points count, then compare them by the most positive Goal Difference.
+* If both teams share the same Points count, then compare them by the most positive Goal_Difference.
 
-* If both teams share the same Goal Difference count, then compare them by the Goals For count.
+* If both teams share the same Goal_Difference count, then compare them by the Goals_For count.
 
 <br>
 
@@ -60,7 +60,7 @@ The Round creation process:
 
 Each Round model contains a Match model.
 
-Every Round can contain any given of matches.
+Every Round can contain any given number of matches.
 
 A single Match object contains information such as, the two teams for that match, and the scores (outcome) if the game has been played already.
 
@@ -120,17 +120,17 @@ Each Match has five game states:
 * Defender vs. Attacker
 * Midfielder vs. Midfielder
 
-1. Determine which Team wins the head2head based on their skillPower.
+1. Determine which player wins the head2head based on their skillPower.
 
-   - (e.g.) `If team2.skillPower > team1.skillPower {}`
+   - (e.g.) `if team2.attackers.skillPower > team1.defenders.skillPower {}`
 
-2. When a Team wins, determine if the Team won the ball by committing a foul.
+2. When a player wins, determine if the player won the ball by committing a foul.
 
-   - If the team did not commit a foul, then it gets to keep the ball and passes it forward in the field.
+   - If the player did not commit a foul, then it gets to keep the ball and passes it forward in the field.
    
    ![player_wins](Assets/Sketches/Wins_ball.png)<br>
 
-   - If the Team committed a foul, then it loses the ball to the other team, and must fall back to a defense position trying to win back the ball.
+   - If the player committed a foul, then it loses the ball to the other team, and the team must fall back to a defense position trying to win back the ball.
    
    ![player_loses](Assets/Sketches/Commits_foul.png)<br>
 
@@ -143,6 +143,8 @@ Each Match has five game states:
 ### Calculating the SkillPower:
 
 Every individual player in the line-up has a skillPower value.
+
+<br>
 
 1. Calculate the skillPower for a Position in the line-up (e.g., the defenders). Keep in mind that the Attackers and the Defenders get help from the Midfielders during the head2head battles. The calculations are as follows:
 
@@ -162,12 +164,20 @@ Every individual player in the line-up has a skillPower value.
    * Defenders: Add up all the defenders skillPowers, and get the average. Then add +1 for every defenders in the line-up. Then add + 1/2 midfielders.skillPower.
 
   ![defenders_SP](Assets/Calculations/DefendersSkillPower.png)<br>
+  
+  <br>
 
-2. Obtain the final skillPower by subtracting the AthleticDecay to that skillPower.
+2. Then subtract the AthleticDecay from the Position's totalSkillPower.
+
+![minus_athleticDecay](Assets/Calculations/Minus_Athletic_Decay.png)<br>
+
+<br>
 
 3. Finally, get a random number in the range of (0...skillPower).
 
-   * This random number is the skillPower with which the Team will battle against the opposing team.
+   * This random number is the skillPower with which the Position will battle against the opposing team's Position.
+
+  ![final_skillPower](Assets/Calculations/final_skillPower.png)<br>
 
 <br>
 
@@ -175,16 +185,28 @@ Every individual player in the line-up has a skillPower value.
 
 * The AthleticDecayCoefficient has a starting value of 0.025.
 
-   - When players receive a foul, then this starting value (AthleticDecayCoefficient) increases based on the type of foul they received.
+![athletic_decay_coefficient](Assets/Calculations/athleticDecayCoefficient.png)<br>
 
-   - A foul that generated a red card will injure the players more than a simple foul that awards them a free-kick.
+
+   - When a player receives a foul, then this starting value (AthleticDecayCoefficient) increases based on the type of foul he received.
+
+   - (e.g.) A foul that generated a red card will injure the players in the Position more than a lesser foul that awards them a free-kick.
+
+  ![athletic_decay_penalty](Assets/Calculations/penalty_athleticDecay.png)<br>
 
 * Calculate the AthleticDecay per play.
 
+![position_plays](Assets/Calculations/position_plays.png)<br>
+
    - Every time a position in the team goes into a head2head battle, we added +1 play to this team's position.
 
-   - These plays are then used to calculate the final AthleticDecay, since the more players battle, the less fit they become over the course of the game.
+   ![update_position_decay](Assets/Calculations/update_position_plays.png)<br>
 
+   - These plays are then used to calculate the final AthleticDecay, because when players battle more, they become less fit over the course of the game.
+
+  ![plays_decay](Assets/Calculations/plays_decay.png)<br>
+
+<br>
 
 #### Get The AthleticDecay per play:
 
@@ -196,7 +218,7 @@ Every individual player in the line-up has a skillPower value.
 
 #### Get the total AthleticDecay so far in the game:
 
-3. Multiply the result from STEP 2, by the number of plays the players have played.
+3. Multiply the result from STEP 2, by the number of plays the position has played so far in the game.
 
 
 
