@@ -1,9 +1,9 @@
-//
-//  MockPlayingTeam.swift
-//  FootballMatchSimulationTests
-//
-//  Created by Cristina Dobson on 3/21/23.
-//
+///
+/// MockPlayingTeam.swift
+///
+/// Created by Cristina Dobson
+///
+
 
 import Foundation
 @testable import FootballMatchSimulation

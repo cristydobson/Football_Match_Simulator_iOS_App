@@ -1,5 +1,9 @@
+///
+/// RoundGamesCollectionView.swift
+///
+/// A collectionView showing the
+/// matches for the current Round
 //
-//  RoundGamesCollectionView.swift
 //  FootballMatchSimulation
 //
 //  Created by Cristina Dobson on 3/22/23.
@@ -24,6 +28,8 @@ class RoundGamesCollectionView: UIView {
   let cellID = "RoundGameCell"
   
   private var viewModel = RoundGamesCollectionViewModel()
+  
+  // Current Round
   var round: Round!
     
   
@@ -55,6 +61,7 @@ class RoundGamesCollectionView: UIView {
     backgroundColor = .clear
   }
   
+  // Setup the Round collectionView
   func setupCollectionView() {
 
     // CollectionView Layout
@@ -79,6 +86,7 @@ class RoundGamesCollectionView: UIView {
     
   }
   
+  // Create the UICollectionViewFlowLayout for the collectionView
   func getCollectionViewLayout() -> UICollectionViewFlowLayout {
     let cellWidth = frame.width*0.45
     
@@ -94,9 +102,14 @@ class RoundGamesCollectionView: UIView {
   
   // MARK: - Navigation
   
+  // Present the Game Simulation ViewController
   func presentGameViewController(for indexPath: IndexPath) {
     
     let viewController = GameSimulationViewController()
+    
+    if UIDevice.current.userInterfaceIdiom == .pad {
+      viewController.modalPresentationStyle = .fullScreen
+    }
     
     let match = round.matches[indexPath.row]
     viewController.teams = createPlayingTeams(for: match)
@@ -107,8 +120,9 @@ class RoundGamesCollectionView: UIView {
     viewController.$goals.sink { [weak self] teamGoals in
       if let goals = teamGoals {
         DispatchQueue.main.async {
-          self?.updateGameScores(goals, for: match,
-                                 at: indexPath, onReplay: didReplayGame)
+          self?.updateGameScores(
+            goals, for: match,
+            at: indexPath, onReplay: didReplayGame)
         }
       }
     }.store(in: &subscriptions)
@@ -116,22 +130,31 @@ class RoundGamesCollectionView: UIView {
     controller.present(viewController, animated: true)
   }
   
+  // Create Playing teams to pass to the Game Simulation
   func createPlayingTeams(for match: Round.Match) -> [PlayingTeam] {
     let team1 = PlayingTeam(team: match.teams[0])
     let team2 = PlayingTeam(team: match.teams[1])
     return [team1, team2]
   }
   
+  /*
+   Update the scores after the game has been played
+   */
   func updateGameScores(_ scores: [Int], for match: Round.Match, at indexPath: IndexPath, onReplay: Bool) {
     
     viewModel.setNewGameScore(scores, at: indexPath)
     subscriptions.removeAll()
     collectionView.reloadData()
     
+    /*
+     The game has been played
+     for the first time
+     */
     if !onReplay {
       match.updateTeamStandings()
     }
     else {
+      // The game is being replayed
       match.gameReplayed()
     }
   }
@@ -158,6 +181,7 @@ extension RoundGamesCollectionView: UICollectionViewDataSource, UICollectionView
 
     cell.viewModel = viewModel.getCellViewModel(at: indexPath)
     
+    // Listen for the Start game button being tapped
     cell.$cellTapped.sink { [weak self] flag in
       if flag {
         DispatchQueue.main.async {

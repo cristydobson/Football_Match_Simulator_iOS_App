@@ -1,11 +1,12 @@
-//
-//  StandingsCard.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/18/23.
-//
+///
+/// StandingsCard.swift
+///
+/// Created by Cristina Dobson
+///
+
 
 import UIKit
+
 
 class StandingsCard: UIView {
 
@@ -14,6 +15,10 @@ class StandingsCard: UIView {
   
   @IBOutlet weak var headerStackView: UIStackView!
   
+  /*
+   Rows displaying the standings
+   of each Team
+   */
   var row1: StandingsCardRow!
   var row2: StandingsCardRow!
   var row3: StandingsCardRow!
@@ -36,7 +41,7 @@ class StandingsCard: UIView {
   }
   
 
-  
+  // Display the rows
   func addViews() {
     
     row1 = createCardRow()
@@ -52,18 +57,23 @@ class StandingsCard: UIView {
     
     
     NSLayoutConstraint.activate([
+      // Row 1
       row1.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
       row1.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-      row1.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 16),
+      row1.topAnchor.constraint(
+        equalTo: headerStackView.bottomAnchor, constant: 16),
       
+      // Row 2
       row2.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
       row2.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
       row2.topAnchor.constraint(equalTo: row1.bottomAnchor, constant: 8),
       
+      // Row 3
       row3.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
       row3.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
       row3.topAnchor.constraint(equalTo: row2.bottomAnchor, constant: 8),
       
+      // Row 4
       row4.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
       row4.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
       row4.topAnchor.constraint(equalTo: row3.bottomAnchor, constant: 8)
@@ -71,6 +81,7 @@ class StandingsCard: UIView {
     
   }
   
+  // Create a single row
   func createCardRow() -> StandingsCardRow? {
     let cardRow = UINib(nibName: "StandingsCardRow", bundle: nil)
       .instantiate(withOwner: nil)[0] as? StandingsCardRow
@@ -83,6 +94,7 @@ class StandingsCard: UIView {
   
   // MARK: - Load Rows
   
+  // Load the rows with their ViewModels
   func loadRows() {
     
     let rowViewModels = viewModel?.loadRowViewModels()

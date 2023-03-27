@@ -1,9 +1,10 @@
-//
-//  RoundGameCellViewModel.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/22/23.
-//
+///
+/// RoundGameCellViewModel.swift
+///
+/// The ViewModel for RoundGameCell.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -24,6 +25,7 @@ class RoundGameCellViewModel {
     self.match = match
   }
 
+  // Create the ViewModel for a GameCard
   func createGameCardViewModel() -> GameRoundCardViewModel {
     return GameRoundCardViewModel(match: match)
   }

@@ -1,9 +1,8 @@
-//
-//  RoundCardRow.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/18/23.
-//
+///
+/// RoundCardRow.swift
+///
+/// Created by Cristina Dobson
+/// 
 
 import UIKit
 

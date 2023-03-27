@@ -1,9 +1,8 @@
-//
-//  GameRoundCard.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/18/23.
-//
+///
+/// GameRoundCard.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import UIKit
@@ -68,6 +67,7 @@ class GameRoundCard: UIView, ObservableObject {
     backgroundColor = .cardBackgroundColor
   }
   
+  // Start the game button
   func setupButton() {
     playButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .heavy)
     playButton.setTitle("START", for: .normal)

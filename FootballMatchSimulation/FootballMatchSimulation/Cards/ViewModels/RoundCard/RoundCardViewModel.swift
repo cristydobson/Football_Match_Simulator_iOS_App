@@ -1,9 +1,8 @@
-//
-//  RoundCardViewModel.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/22/23.
-//
+///
+/// RoundCardViewModel.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -25,6 +24,7 @@ class RoundCardViewModel: ObservableObject {
     self.matches = matches
   }
   
+  // Create a row to display every match in the round
   func createRowViewModels() -> [RoundCardRowViewModel] {
     var viewModels: [RoundCardRowViewModel] = []
     

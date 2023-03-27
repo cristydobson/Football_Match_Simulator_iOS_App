@@ -13,16 +13,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGf-Is-Dt6">
-                    <rect key="frame" x="0.0" y="4" width="393" height="50"/>
+                    <rect key="frame" x="0.0" y="4" width="393" height="48.666666666666664"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ROUND 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIa-b8-Z6R">
-                            <rect key="frame" x="24" y="11.999999999999998" width="93" height="26.333333333333329"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ROUND 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIa-b8-Z6R">
+                            <rect key="frame" x="24" y="13.999999999999998" width="73" height="20.333333333333329"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z19-qh-ipz">
-                            <rect key="frame" x="24" y="49" width="345" height="1"/>
+                            <rect key="frame" x="24" y="47.666666666666664" width="345" height="1"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="BfJ-Xt-vms"/>
@@ -33,7 +33,6 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="z19-qh-ipz" secondAttribute="bottom" id="Ej3-4i-gRX"/>
                         <constraint firstItem="gIa-b8-Z6R" firstAttribute="centerY" secondItem="tGf-Is-Dt6" secondAttribute="centerY" id="Zam-AI-Elo"/>
-                        <constraint firstAttribute="height" constant="50" id="g4n-N7-vN1"/>
                         <constraint firstAttribute="trailing" secondItem="z19-qh-ipz" secondAttribute="trailing" constant="24" id="gZu-Ty-YlQ"/>
                         <constraint firstItem="z19-qh-ipz" firstAttribute="leading" secondItem="tGf-Is-Dt6" secondAttribute="leading" constant="24" id="hyk-Vu-W3Z"/>
                         <constraint firstItem="gIa-b8-Z6R" firstAttribute="leading" secondItem="tGf-Is-Dt6" secondAttribute="leading" constant="24" id="qJk-0G-awP"/>
@@ -43,6 +42,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="tGf-Is-Dt6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VpI-ys-va8"/>
+                <constraint firstItem="tGf-Is-Dt6" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.2" id="j9y-9M-kuA"/>
                 <constraint firstItem="tGf-Is-Dt6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="yJS-Bu-KTz"/>
                 <constraint firstAttribute="trailing" secondItem="tGf-Is-Dt6" secondAttribute="trailing" id="zzO-vC-iRQ"/>
             </constraints>

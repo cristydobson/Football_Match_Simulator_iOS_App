@@ -1,9 +1,10 @@
-//
-//  TeamViewModel.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/20/23.
-//
+///
+/// TeamViewModel.swift
+///
+/// The ViewModel for TeamView.
+///
+/// Created by Cristina Dobson on 3/20/23.
+///
 
 
 import Foundation
@@ -26,6 +27,7 @@ class TeamViewModel {
     self.team2ImageName = team2ImageName
   }
   
+  // Get the logo images from the teams
   func getTeamImage(_ name: String) -> UIImage? {
     return ImageHelper.getImage(name)
   }

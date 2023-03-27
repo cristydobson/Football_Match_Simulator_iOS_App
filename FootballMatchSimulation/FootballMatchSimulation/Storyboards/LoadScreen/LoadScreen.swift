@@ -1,9 +1,8 @@
-//
-//  LoadScreen.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/26/23.
-//
+///
+/// LoadScreen.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import UIKit
@@ -34,6 +33,7 @@ class LoadScreen: UIView {
     stopRotatingView(soccerBall)
   }
   
+  // Start the rotating ball animation
   func startRotatingView(_ imageView: UIImageView) {
     
     let animation = CABasicAnimation(keyPath: "transform.rotation")
@@ -45,6 +45,7 @@ class LoadScreen: UIView {
     imageView.layer.add(animation, forKey: animationKey)
   }
   
+  // Stop the rotating ball animation
   func stopRotatingView(_ imageView: UIImageView) {
     imageView.layer.removeAnimation(forKey: animationKey)
   }

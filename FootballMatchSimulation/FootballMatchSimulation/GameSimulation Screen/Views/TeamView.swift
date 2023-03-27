@@ -1,9 +1,11 @@
-//
-//  TeamView.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/20/23.
-//
+///
+/// TeamView.swift
+///
+/// Displays the team logos and
+/// the score labels.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -48,6 +50,7 @@ class TeamView: UIView {
   
   // MARK: - Setup Methods
   
+  // Add the views to display
   func addViews() {
     
     // Team 1 Logo
@@ -101,20 +104,30 @@ class TeamView: UIView {
     NSLayoutConstraint.activate([
       
       // Logo Image Views
-      team1ImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.9),
-      team1ImageView.widthAnchor.constraint(equalTo: team1ImageView.heightAnchor),
-      team2ImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.9),
-      team2ImageView.widthAnchor.constraint(equalTo: team2ImageView.heightAnchor),
+      team1ImageView.heightAnchor.constraint(
+        equalTo: heightAnchor, multiplier: 0.9),
+      team1ImageView.widthAnchor.constraint(
+        equalTo: team1ImageView.heightAnchor),
+      team2ImageView.heightAnchor.constraint(
+        equalTo: heightAnchor, multiplier: 0.9),
+      team2ImageView.widthAnchor.constraint(
+        equalTo: team2ImageView.heightAnchor),
       
       // Team Score Stack View
-      teamScoreStackView.centerXAnchor.constraint(equalTo: scoreView.centerXAnchor),
-      teamScoreStackView.centerYAnchor.constraint(equalTo: scoreView.centerYAnchor),
+      teamScoreStackView.centerXAnchor.constraint(
+        equalTo: scoreView.centerXAnchor),
+      teamScoreStackView.centerYAnchor.constraint(
+        equalTo: scoreView.centerYAnchor),
       
       // Container Stack View
-      containerStackView.topAnchor.constraint(equalTo: topAnchor),
-      containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-      containerStackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.85),
-      containerStackView.centerXAnchor.constraint(equalTo: centerXAnchor)
+      containerStackView.topAnchor.constraint(
+        equalTo: topAnchor),
+      containerStackView.bottomAnchor.constraint(
+        equalTo: bottomAnchor),
+      containerStackView.widthAnchor.constraint(
+        equalTo: widthAnchor, multiplier: 0.85),
+      containerStackView.centerXAnchor.constraint(
+        equalTo: centerXAnchor)
     ])
     
   }
@@ -143,6 +156,5 @@ class TeamView: UIView {
   func getStackView() -> UIStackView {
     return ViewHelper.createStackView(.horizontal, distribution: .fill)
   }
-  
   
 }

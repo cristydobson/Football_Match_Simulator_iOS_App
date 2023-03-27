@@ -1,9 +1,11 @@
-//
-//  HudView.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/20/23.
-//
+///
+/// HudView.swift
+///
+/// Displays the names of the teams
+/// and the Plays counter.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -45,6 +47,7 @@ class HudView: UIView {
   
   // MARK: - Setup Methods
   
+  // Add the views to be displayed
   func addViews() {
     
 
@@ -144,7 +147,6 @@ class HudView: UIView {
       for: "Hud-Header-Team-Title-Right")
     container.addSubview(titleHeaderBackgroundView)
     
-    
     // HUD Header Title Two
     teamTwoNameLabel = getTeamLabel()
     container.addSubview(teamTwoNameLabel)
@@ -176,20 +178,25 @@ class HudView: UIView {
   
   // MARK: - Decoration Views
   
+  // Decoration
   func setLongBar(by neighborView: UIView) {
     let barImage = getImageView(for: "Header-Bar")
     addSubview(barImage)
     
     NSLayoutConstraint.activate([
-      barImage.leadingAnchor.constraint(equalTo: leadingAnchor),
-      barImage.trailingAnchor.constraint(equalTo: trailingAnchor),
+      barImage.leadingAnchor.constraint(
+        equalTo: leadingAnchor),
+      barImage.trailingAnchor.constraint(
+        equalTo: trailingAnchor),
       barImage.bottomAnchor.constraint(
         equalTo: neighborView.bottomAnchor, constant: 20)
     ])
     
   }
   
+  // The background for the Plays counter
   func setPlaysCounterBackground(by neighborView: UIView) {
+    
     let playsCounterBackgroundImage = getImageView(for: "Plays_Counter_BG")
     addSubview(playsCounterBackgroundImage)
     bringSubviewToFront(playsCounterBackgroundImage)

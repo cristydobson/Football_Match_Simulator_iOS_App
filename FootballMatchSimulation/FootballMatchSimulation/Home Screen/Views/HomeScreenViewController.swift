@@ -102,7 +102,10 @@ class HomeScreenViewController: UIViewController {
     view.addSubview(container)
     
     standingsView = createStandingsView()
+    standingsView.translatesAutoresizingMaskIntoConstraints = false
+    
     container.addSubview(standingsView)
+    
     
     NSLayoutConstraint.activate([
       
@@ -111,20 +114,16 @@ class HomeScreenViewController: UIViewController {
         equalTo: container.leadingAnchor),
       standingsView.trailingAnchor.constraint(
         equalTo: container.trailingAnchor),
-      standingsView.topAnchor.constraint(
-        equalTo: container.topAnchor),
-      standingsView.bottomAnchor.constraint(
-        equalTo: container.bottomAnchor),
+      
       
       // Container View
       container.leadingAnchor.constraint(
         equalTo: safeArea.leadingAnchor, constant: 48),
       container.bottomAnchor.constraint(
         equalTo: safeArea.bottomAnchor),
-      container.widthAnchor.constraint(
-        equalTo: view.widthAnchor, multiplier: 0.5),
       container.heightAnchor.constraint(
-        equalTo: view.heightAnchor, multiplier: 0.70)
+        equalTo: view.heightAnchor, multiplier: 0.70),
+      container.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5)
       
     ])
   }

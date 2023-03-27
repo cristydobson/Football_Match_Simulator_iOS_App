@@ -1,11 +1,12 @@
-//
-//  StandingsCardRow.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/18/23.
-//
+///
+/// StandingsCardRow.swift
+///
+/// Created by Cristina Dobson
+///
+///
 
 import UIKit
+
 
 class StandingsCardRow: UIView {
 
@@ -32,20 +33,25 @@ class StandingsCardRow: UIView {
   
   var viewModel: StandingsCardRowViewModel? {
     didSet {
+      
       positionLabel.text = viewModel?.positionString
       nameLabel.text = viewModel?.team.shortened_name
       teamLogo.image = viewModel?.teamImage()
      
+      // Total games played by the team
       matchesLabel.text = viewModel?.getString(for: .gamesPlayed)
       
+      // Game Outcomes
       winsLabel.text = viewModel?.getString(for: .wins)
       drawsLabel.text = viewModel?.getString(for: .draws)
       losesLabel.text = viewModel?.getString(for: .losses)
       
+      // Goals
       goalsForLabel.text = viewModel?.getString(for: .goalsFor)
       goalsAgainstLabel.text = viewModel?.getString(for: .goalsAgainst)
       goalDifferenceLabel.text = viewModel?.getString(for: .goalsDifference)
       
+      // Points
       pointsLabel.text = viewModel?.getString(for: .points)
     }
   }

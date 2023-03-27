@@ -1,9 +1,8 @@
-//
-//  StandingsCardRowViewModel.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/23/23.
-//
+///
+/// StandingsCardRowViewModel.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -43,12 +42,13 @@ class StandingsCardRowViewModel {
     standings = team.standings
   }
   
-  
+  // Get the logo of every team
   func teamImage() -> UIImage? {
     let name = team.image_name
     return ImageHelper.getImage(name)
   }
   
+  // Get the standings of every team
   func getString(for score: Score) -> String {
     switch score {
       case .gamesPlayed:

@@ -1,9 +1,11 @@
-//
-//  GoalView.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/25/23.
-//
+///
+/// GoalView.swift
+///
+/// This bar is displayed
+/// every time a team scores a goal
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -28,18 +30,11 @@ class GoalView: UIView {
   
   // MARK: Setup Methods
   
+  // Add views to be displayed
   func addViews() {
     
     // Background Image
-    let imageView = getImageView(for: "Goal_bar")
-    addSubview(imageView)
-    
-    NSLayoutConstraint.activate([
-      imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      imageView.topAnchor.constraint(equalTo: topAnchor),
-      imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
-    ])
+    setupBackgroundBar()
     
     
     // Ball Image
@@ -75,6 +70,21 @@ class GoalView: UIView {
   }
   
   
+  // MARK: - Background Bar
+  
+  func setupBackgroundBar() {
+    let imageView = getImageView(for: "Goal_bar")
+    addSubview(imageView)
+    
+    NSLayoutConstraint.activate([
+      imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+      imageView.topAnchor.constraint(equalTo: topAnchor),
+      imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+    ])
+  }
+  
+  
   // MARK: - View Helper Methods
   
   func getImageView(for image: String) -> UIImageView {
@@ -99,7 +109,5 @@ class GoalView: UIView {
     return ViewHelper.createStackView(
       .horizontal, distribution: .fill)
   }
-  
-  
   
 }

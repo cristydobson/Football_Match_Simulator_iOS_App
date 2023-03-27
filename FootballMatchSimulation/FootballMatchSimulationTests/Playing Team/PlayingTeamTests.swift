@@ -1,9 +1,8 @@
-//
-//  PlayingTeamTests.swift
-//  FootballMatchSimulationTests
-//
-//  Created by Cristina Dobson on 3/19/23.
-//
+///
+/// PlayingTeamTests.swift
+///
+/// Created by Cristina Dobson
+/// 
 
 
 import XCTest

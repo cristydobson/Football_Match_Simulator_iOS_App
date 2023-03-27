@@ -1,9 +1,8 @@
-//
-//  CollectionViewHelper.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/22/23.
-//
+///
+/// CollectionViewHelper.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -12,6 +11,7 @@ import UIKit
 
 struct CollectionViewHelper {
   
+  // Create a collectionView
   static func createCollectionView(with frame: CGRect, andLayout layout: UICollectionViewFlowLayout) -> UICollectionView {
     
     let collectionView = UICollectionView(

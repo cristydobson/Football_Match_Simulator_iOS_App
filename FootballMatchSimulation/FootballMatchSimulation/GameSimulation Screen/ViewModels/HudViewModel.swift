@@ -1,9 +1,10 @@
-//
-//  HudViewModel.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/20/23.
-//
+///
+/// HudViewModel.swift
+///
+/// The ViewModel for HudView.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -20,11 +21,13 @@ class HudViewModel {
   
   
   // MARK: - Methods
+
   init(team1Name: String, team2Name: String) {
     self.team1Name = team1Name
     self.team2Name = team2Name
   }
   
+  // Get the names of the teams playing
   func getNameCapitalized(at index: Int) -> String {
     let string = index == 0 ? team1Name : team2Name
     return string.uppercased()

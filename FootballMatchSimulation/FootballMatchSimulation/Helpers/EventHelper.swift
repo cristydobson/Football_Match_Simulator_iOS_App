@@ -1,14 +1,13 @@
-//
-//  EventHelper.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/21/23.
-//
+///
+/// EventHelper.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
 
-
+// Game Events
 enum Event {
   
   case foul
@@ -18,7 +17,7 @@ enum Event {
   case halfTime
   case matchFinished
   
-  
+  // Game event string
   func string() -> String {
     switch self {
       case .foul:
@@ -41,6 +40,7 @@ enum Event {
 
 struct EventHelper {
   
+  // Get a complete Game event string
   static func eventString(for event: Event, andTeam team: PlayingTeam?) -> String {
     switch event {
         

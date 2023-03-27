@@ -1,9 +1,10 @@
-//
-//  RoundCardCell.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/21/23.
-//
+///
+/// RoundCardCell.swift
+///
+/// Cell for every Round
+///
+/// Created by Cristina Dobson
+///
 
 
 import UIKit
@@ -47,6 +48,10 @@ class RoundCardCell: UICollectionViewCell {
       borderWidth: 1, borderColor: .alphaDarkBlue)
   }
   
+  /*
+   Add the Round card displaying
+   the matches in the round
+   */
   func addViews() {
     
     roundCard = getRoundCard()
@@ -61,6 +66,7 @@ class RoundCardCell: UICollectionViewCell {
     
   }
   
+  // Get Round card
   func getRoundCard() -> RoundCard? {
     let card = UINib(nibName: "RoundCard", bundle: nil)
       .instantiate(withOwner: nil)[0] as? RoundCard

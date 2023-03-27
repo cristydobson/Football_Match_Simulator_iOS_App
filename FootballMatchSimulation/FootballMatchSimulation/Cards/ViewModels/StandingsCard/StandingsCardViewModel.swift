@@ -1,9 +1,8 @@
-//
-//  StandingsCardViewModel.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/23/23.
-//
+///
+/// StandingsCardViewModel.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -25,14 +24,16 @@ class StandingsCardViewModel {
     self.teams = teams
   }
   
-  
+  /*
+   Load the view models for every row
+   in the Standings board
+   */
   func loadRowViewModels() -> [StandingsCardRowViewModel] {
     return createRowViewModels()
   }
   
   
   func createRowViewModels() -> [StandingsCardRowViewModel] {
-    
     var viewModels: [StandingsCardRowViewModel] = []
     
     for i in 0..<teams.count {

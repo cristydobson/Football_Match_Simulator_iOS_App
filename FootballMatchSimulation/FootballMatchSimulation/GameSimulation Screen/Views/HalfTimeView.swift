@@ -1,9 +1,11 @@
-//
-//  HalfTimeView.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/25/23.
-//
+///
+/// HalfTimeView.swift
+///
+/// Displays a view during the
+/// Half-Time state of the game.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -34,6 +36,7 @@ class HalfTimeView: UIView {
   
   func addViews() {
     
+    // Create a Half-Time image to display
     let imageView = getImageView(for: "Half_Time_image")
     addSubview(imageView)
     
@@ -50,8 +53,8 @@ class HalfTimeView: UIView {
   func getImageView(for image: String) -> UIImageView {
     let imageView = ViewHelper.createImageView(
       contentMode: .scaleAspectFill)
-    imageView.image = UIImage(named: image)
     
+    imageView.image = UIImage(named: image)
     return imageView
   }
 

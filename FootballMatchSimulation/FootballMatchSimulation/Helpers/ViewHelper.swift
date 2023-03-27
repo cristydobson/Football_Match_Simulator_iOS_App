@@ -1,9 +1,8 @@
-//
-//  ViewHelper.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/19/23.
-//
+///
+/// ViewHelper.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -35,19 +34,6 @@ extension UIView {
     gradient.locations = [0.3, 0.6, 1]
     layer.addSublayer(gradient)
   }
-  
-//  func addGreenGradientBackground() {
-//    let gradient = CAGradientLayer()
-//    gradient.frame = bounds
-//    gradient.colors = [
-//      UIColor.darkGreen.cgColor,
-//      UIColor.mediumGreen.cgColor,
-//      UIColor.darkGreen.cgColor,
-//      UIColor.lightGreen.cgColor
-//    ]
-//    gradient.locations = [0.25, 0.50, 0.75, 1]
-//    layer.addSublayer(gradient)
-//  }
   
   
   // MARK: - Add Corner Radius

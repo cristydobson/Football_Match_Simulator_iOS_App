@@ -1,9 +1,8 @@
-//
-//  ImageHelper.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/20/23.
-//
+///
+/// ImageHelper.swift
+///
+/// Created by Cristina Dobson
+/// 
 
 
 import Foundation

@@ -1,9 +1,10 @@
-//
-//  StandingsView.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/24/23.
-//
+///
+/// StandingsView.swift
+///
+/// Display the teams Standings card.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -40,6 +41,7 @@ class StandingsView: UIView {
   
   // MARK: - Setup Methods
   
+  // Load the Standings Card
   func addViews() {
     
     /*
@@ -47,17 +49,21 @@ class StandingsView: UIView {
      */
     standingsCard = getStandingsCard()
     addSubview(standingsCard)
-//    standingsCard.backgroundColor = .yellow
+
     
     NSLayoutConstraint.activate([
-      standingsCard.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-      standingsCard.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-      standingsCard.heightAnchor.constraint(equalTo: standingsCard.widthAnchor, multiplier: 0.6),
-      standingsCard.centerYAnchor.constraint(equalTo: centerYAnchor)
+      standingsCard.leadingAnchor.constraint(
+        equalTo: leadingAnchor, constant: 24),
+      standingsCard.trailingAnchor.constraint(
+        equalTo: trailingAnchor, constant: -24),
+      standingsCard.topAnchor.constraint(
+        equalTo: topAnchor, constant: 12)
+      
     ])
     
   }
   
+  // Create the Standings Card
   func getStandingsCard() -> StandingsCard? {
     let card = UINib(nibName: "StandingsCard", bundle: nil)
       .instantiate(withOwner: nil)[0] as? StandingsCard
@@ -70,6 +76,10 @@ class StandingsView: UIView {
   
   // MARK: - Helper Methods
   
+  /*
+   Sort the teams by Standings and
+   update the standingsCardViewModel
+   */
   func updateStandings() {
     if let newTeams = viewModel?.sortTeamsByStandings() {
   

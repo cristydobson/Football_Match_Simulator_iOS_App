@@ -1,9 +1,10 @@
-//
-//  RoundGamesCollectionViewModel.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/22/23.
-//
+///
+/// RoundGamesCollectionViewModel.swift
+///
+/// The ViewModel for RoundGamesCollectionView.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -20,6 +21,10 @@ class RoundGamesCollectionViewModel: ObservableObject {
   
   // MARK: Load Cell ViewModels
   
+  /*
+   Create the cellViewModels containing
+   the matches for the current round
+   */
   func loadCellViewModels(from round: Round) {
     cellViewModels = createCellViewModels(from: round)
   }
@@ -41,6 +46,7 @@ class RoundGamesCollectionViewModel: ObservableObject {
     return cellViewModels[indexPath.row]
   }
   
+  // Update the Match model after the game has been played
   func setNewGameScore(_ scores: [Int], at indexPath: IndexPath) {
     let viewModel = cellViewModels[indexPath.row]
     viewModel.match.gameIsPlayed = true

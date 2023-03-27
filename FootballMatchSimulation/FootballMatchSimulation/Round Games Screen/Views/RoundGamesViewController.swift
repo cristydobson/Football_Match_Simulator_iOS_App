@@ -1,9 +1,11 @@
-//
-//  RoundGamesViewController.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/22/23.
-//
+///
+/// RoundGamesViewController.swift
+///
+/// This ViewController displays the
+/// matches in the user-selected Round
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -18,6 +20,7 @@ class RoundGamesViewController: UIViewController {
   var round: Round!
   var collectionView: RoundGamesCollectionView!
   
+  // Button to go back to the HomeScreen
   var dismissControllerButton: UIButton!
   
   
@@ -26,42 +29,40 @@ class RoundGamesViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    setupTitle()
     setupBackground()
     addViews()
   }
 
   
   // MARK: - Setup Methods
-  
-  func setupTitle() {
-    
-  }
+
   
   func setupBackground() {
     view.addBlueGradientBackground()
   }
   
-  func setViewTitle(on label: UIView) {
-    if let titleLabel = label as? UILabel {
-      titleLabel.text = "\(round.name)"
-    }
-  }
-  
+  // Add views to be displayed
   func addViews() {
     
-    let safeArea = view.safeAreaLayoutGuide
+    setupCollectionView()
     
-    /*
-     Collection View
-     */
-    
+    setupDismissButton()
+
+    addTitleLabel()
+  }
+  
+  
+  // MARK: - Rounds CollectionView
+  
+  /*
+   Collection View
+   */
+  func setupCollectionView() {
     let collectionViewContainer = getEmptyView()
     view.addSubview(collectionViewContainer)
     
     collectionView = setupRoundGamesCollectionView()
     collectionViewContainer.addSubview(collectionView)
-
     
     NSLayoutConstraint.activate([
       collectionViewContainer.topAnchor.constraint(
@@ -73,30 +74,6 @@ class RoundGamesViewController: UIViewController {
       collectionViewContainer.centerXAnchor.constraint(
         equalTo: view.centerXAnchor)
     ])
-    
-    
-    // Dismiss button
-    dismissControllerButton = createDismissButton()
-    
-    NSLayoutConstraint.activate([
-      dismissControllerButton.leadingAnchor.constraint(
-        equalTo: safeArea.leadingAnchor, constant: 48),
-      dismissControllerButton.topAnchor.constraint(
-        equalTo: view.topAnchor, constant: 24),
-      dismissControllerButton.heightAnchor.constraint(equalTo: dismissControllerButton.widthAnchor, multiplier: 1),
-      dismissControllerButton.setWidthContraint(by: 60)
-    ])
-    
-    
-    // Title Label
-    let titleLabel = getLabel()
-    view.addSubview(titleLabel)
-    
-    NSLayoutConstraint.activate([
-      titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
-      titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-    ])
-        
   }
   
   func setupRoundGamesCollectionView() -> RoundGamesCollectionView {
@@ -109,8 +86,24 @@ class RoundGamesViewController: UIViewController {
       frame: cvFrame, controller: self, round: round)
     
     newView.round = round
-    
     return newView
+  }
+  
+  
+  // MARK: - Title Label
+  
+  /*
+   Title Label
+   */
+  func addTitleLabel() {
+    // Add the name of the Round as a title
+    let titleLabel = getLabel()
+    view.addSubview(titleLabel)
+    
+    NSLayoutConstraint.activate([
+      titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
+      titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+    ])
   }
   
   
@@ -133,6 +126,24 @@ class RoundGamesViewController: UIViewController {
   
   // MARK: - Dismiss Controller Button
   
+  // Setup the button to go back to HomeScreen
+  func setupDismissButton() {
+    let safeArea = view.safeAreaLayoutGuide
+    
+    dismissControllerButton = createDismissButton()
+    
+    NSLayoutConstraint.activate([
+      dismissControllerButton.leadingAnchor.constraint(
+        equalTo: safeArea.leadingAnchor, constant: 48),
+      dismissControllerButton.topAnchor.constraint(
+        equalTo: view.topAnchor, constant: 24),
+      dismissControllerButton.heightAnchor.constraint(
+        equalTo: dismissControllerButton.widthAnchor, multiplier: 1),
+      dismissControllerButton.setWidthContraint(by: 60)
+    ])
+  }
+  
+  // Create the button with an image
   func createDismissButton() -> UIButton {
     let button = UIButton()
     
@@ -159,6 +170,7 @@ class RoundGamesViewController: UIViewController {
   
   // MARK: - Button Actions
   
+  // Action for the Dismiss button
   @objc func dismissControllerAction() {
     dismiss(animated: true)
   }

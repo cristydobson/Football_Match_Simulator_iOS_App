@@ -1,9 +1,10 @@
-//
-//  RoundGameCell.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/22/23.
-//
+///
+/// RoundGameCell.swift
+///
+/// The cell for a game/match in the Round.
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -23,6 +24,7 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
   
   var viewModel: RoundGameCellViewModel? {
     didSet {
+      // Create the Card for the Match/Game
       let cardViewModel = viewModel?.createGameCardViewModel()
       gameCard.viewModel = cardViewModel
     }
@@ -58,6 +60,10 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
     gameCard.addBorderStyle(borderWidth: 1, borderColor: .alphaDarkBlue)
   }
   
+  /*
+   Add the Game Card displaying
+   a match/game
+   */
   func addViews() {
     
     gameCard = getGameCard()
@@ -66,12 +72,12 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
     NSLayoutConstraint.activate([
       gameCard.leadingAnchor.constraint(equalTo: leadingAnchor),
       gameCard.trailingAnchor.constraint(equalTo: trailingAnchor),
-      gameCard.topAnchor.constraint(equalTo: topAnchor),
-      gameCard.bottomAnchor.constraint(equalTo: bottomAnchor)
+      gameCard.centerYAnchor.constraint(equalTo: centerYAnchor)
     ])
     
   }
   
+  // Create a Game Card
   func getGameCard() -> GameRoundCard? {
     let card = UINib(nibName: "GameRoundCard", bundle: nil)
       .instantiate(withOwner: nil)[0] as? GameRoundCard
@@ -80,6 +86,9 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
     
     return card
   }
+  
+  
+  // MARK: View Helper Methods
   
   func addDropShadow() {
     addDropShadow(
@@ -94,6 +103,10 @@ class RoundGameCell: UICollectionViewCell, ObservableObject {
   
   func setupBindings() {
     
+    /*
+     Listen for the Start button in
+     the Game Card being tapped
+     */
     gameCard.$playButtonIsTapped.sink { [weak self] flag in
       if flag {
         DispatchQueue.main.async {

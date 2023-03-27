@@ -1,9 +1,8 @@
-//
-//  DoubleHelper.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/18/23.
-//
+///
+/// DoubleHelper.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -11,14 +10,20 @@ import Foundation
 
 extension Double {
   
+  // Get a random Double
   func randomNumber() -> Double {
     return Double.random(in: 0.0...self)
   }
   
+  // Get the average
   func average(of count: Int) -> Double {
     return self / Double(count)
   }
   
+  /*
+   Round a Double to a given number
+   of decimal places
+   */
   func rounded(to decimalPlaces: Int) -> Double {
     let divisor = pow(10.0, Double(decimalPlaces))
     return (self * divisor).rounded() / divisor

@@ -1,9 +1,8 @@
-//
-//  RoundCard.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/18/23.
-//
+///
+/// RoundCard.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import UIKit
@@ -19,6 +18,7 @@ class RoundCard: UIView {
   @IBOutlet weak var separatorView: UIView!
   @IBOutlet weak var titleLabel: UILabel!
   
+  // Rows in the card
   var row1: RoundCardRow!
   var row2: RoundCardRow!
   
@@ -50,6 +50,7 @@ class RoundCard: UIView {
     separatorView.backgroundColor = .cardYellowColor
   }
   
+  // Create the rows to display the matches
   func addViews() {
     
     row1 = createCardRow()
@@ -61,20 +62,27 @@ class RoundCard: UIView {
     
     NSLayoutConstraint.activate([
       
-      row1.leadingAnchor.constraint(equalTo: leadingAnchor),
-      row1.trailingAnchor.constraint(equalTo: trailingAnchor),
-      row1.topAnchor.constraint(equalTo: headerContainerView.bottomAnchor, constant: 12),
+      row1.leadingAnchor.constraint(
+        equalTo: leadingAnchor),
+      row1.trailingAnchor.constraint(
+        equalTo: trailingAnchor),
+      row1.topAnchor.constraint(
+        equalTo: headerContainerView.bottomAnchor, constant: 12),
       row1.setHeightContraint(by: 50),
       
-      row2.leadingAnchor.constraint(equalTo: leadingAnchor),
-      row2.trailingAnchor.constraint(equalTo: trailingAnchor),
-      row2.topAnchor.constraint(equalTo: row1.bottomAnchor, constant: 24),
+      row2.leadingAnchor.constraint(
+        equalTo: leadingAnchor),
+      row2.trailingAnchor.constraint(
+        equalTo: trailingAnchor),
+      row2.topAnchor.constraint(
+        equalTo: row1.bottomAnchor, constant: 12),
       row2.setHeightContraint(by: 50)
       
     ])
     
   }
   
+  // Create a single card row
   func createCardRow() -> RoundCardRow? {
     let cardRow = UINib(nibName: "RoundCardRow", bundle: nil)
       .instantiate(withOwner: nil)[0] as? RoundCardRow
@@ -87,6 +95,7 @@ class RoundCard: UIView {
   
   // MARK: Helper Methods
 
+  // Load the rows with their ViewModels
   func loadRows(withModels models: [RoundCardRowViewModel]?) {
     if let models = models {
       row1.viewModel = models[0]

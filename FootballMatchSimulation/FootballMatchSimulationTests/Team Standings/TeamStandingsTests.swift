@@ -1,9 +1,8 @@
-//
-//  TeamStandingsTests.swift
-//  FootballMatchSimulationTests
-//
-//  Created by Cristina Dobson on 3/25/23.
-//
+///
+/// TeamStandingsTests.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import XCTest
@@ -61,6 +60,7 @@ final class TeamStandingsTests: XCTestCase {
     return match
   }
   
+  // Add Standings to teams
   func addStandingsToTeams() -> [Team] {
     
     let team1 = teams[0]

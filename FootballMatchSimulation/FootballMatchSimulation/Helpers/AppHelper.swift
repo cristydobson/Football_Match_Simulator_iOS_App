@@ -1,9 +1,8 @@
-//
-//  AppHelper.swift
-//  FootballMatchSimulation
-//
-//  Created by Cristina Dobson on 3/23/23.
-//
+///
+/// AppHelper.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -11,6 +10,7 @@ import Foundation
 
 struct AppHelper {
   
+  // Check if it's the app's first launch
   static func isApplicationFirstLaunch() -> Bool {
     
     let key = "appHasLaunched"

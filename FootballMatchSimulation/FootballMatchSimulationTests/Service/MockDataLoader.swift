@@ -1,9 +1,8 @@
-//
-//  MockDataLoader.swift
-//  FootballMatchSimulationTests
-//
-//  Created by Cristina Dobson on 3/25/23.
-//
+///
+/// MockDataLoader.swift
+///
+/// Created by Cristina Dobson
+///
 
 
 import Foundation
@@ -14,7 +13,7 @@ class MockDataLoader {
   
   static let decoder = JSONDecoder()
 
-  
+  // Load the mock JSON data from Bundlw
   static func loadDataFromBundle<T: Codable>(_ type: T.Type, from fileName: String) throws -> T? {
 
     if let url = Bundle(for: MockDataLoader.self).url(forResource: fileName, withExtension: "json") {
